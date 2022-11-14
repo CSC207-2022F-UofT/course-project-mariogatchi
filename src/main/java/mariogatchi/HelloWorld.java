@@ -1,4 +1,4 @@
-package tutorial;
+package mariogatchi;
 
 public class HelloWorld {
 
