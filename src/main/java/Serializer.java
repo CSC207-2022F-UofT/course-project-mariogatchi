@@ -6,6 +6,11 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Serializer {
+    /**
+     * Saves a serializable object with the name being the filename into the Data folder
+     * @param filename Name of the file
+     * @param obj The object to serialize
+     */
     public void save(final String filename, Serializable obj){
         try{
             FileOutputStream fos = new FileOutputStream(filename);
@@ -18,6 +23,11 @@ public class Serializer {
         }
     }
 
+    /**
+     * Loads a serialized object from a file with the name being the filename from the Data folder
+     * @param filename Name of the file
+     * @return Returns the serialized object
+     */
     public Serializable load(final String filename){
         Serializable obj = null;
         try{
