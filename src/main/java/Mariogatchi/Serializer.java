@@ -8,9 +8,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Serializer {
+    private final String DIR_OF_DATA = "Data/";
     public void save(final String filename, Serializable obj){
         try{
-            FileOutputStream fos = new FileOutputStream(filename);
+            FileOutputStream fos = new FileOutputStream(DIR_OF_DATA + filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(obj);
             oos.close();
@@ -23,7 +24,7 @@ public class Serializer {
     public Serializable load(final String filename){
         Serializable obj = null;
         try{
-            FileInputStream fis = new FileInputStream(filename);
+            FileInputStream fis = new FileInputStream(DIR_OF_DATA + filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
             try{
                 obj = (Serializable) ois.readObject();
