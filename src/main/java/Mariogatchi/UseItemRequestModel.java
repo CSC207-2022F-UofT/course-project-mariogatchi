@@ -1,4 +1,4 @@
-package mariogatchi;
+package Mariogatchi;
 
 public class UseItemRequestModel {
     private Item itemToUse;

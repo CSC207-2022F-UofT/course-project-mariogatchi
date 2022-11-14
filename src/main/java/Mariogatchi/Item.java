@@ -1,4 +1,4 @@
-package mariogatchi;
+package Mariogatchi;
 
 public abstract class Item {
 
