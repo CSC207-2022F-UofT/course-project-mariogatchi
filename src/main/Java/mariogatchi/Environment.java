@@ -1,25 +1,21 @@
 package mariogatchi;
 
-public class Environment {
-    /*
-     * Class that organizes environments that are responsible for
-     * dictating Mariogatchi-User interactions. Contains the
-     * list of possible actions based on the environment.
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Environment{
+    private final String name;
+    private final List<String> actionList;
+
+    /**
+     * Abstract environment constructor for the actual environments.
      */
-    private String name;
-    private List<Action> eligbleActions;
 
-    public String getEnvironment(){
-        /*
-         * Getter function for environment name, will be used when a user wants to use an item.
-         */
-        return this.name;
+    public Environment(){
+        this.name = "";
+        this.actionList = new ArrayList<>();
     }
 
-    public List<Action> getActions(){
-        /*
-         * Getter function for environment actions, will be used to check weather a user is making a valid action.
-         */
-        return this.eligbleActions;
-    }
+    public abstract String getName();
+    public abstract List<String> getActions();
 }
