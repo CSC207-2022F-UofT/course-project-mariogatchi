@@ -1,10 +1,9 @@
 package Mariogatchi;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Stream;
+
+
 
 public class Inventory implements Serializable {
     private Map<Item, Integer> itemToQuantity;
@@ -28,8 +27,8 @@ public class Inventory implements Serializable {
      */
     public boolean removeItem(Item item, int quantityToRemove) {
         if (itemToQuantity.containsKey(item) && quantityToRemove <= itemToQuantity.get(item)){
-            int new_quantity = itemToQuantity.get(item) - quantityToRemove;
-            itemToQuantity.replace(item, new_quantity);
+            int newQuantity = itemToQuantity.get(item) - quantityToRemove;
+            itemToQuantity.replace(item, newQuantity);
 
             this.occupied = this.occupied - quantityToRemove;
             return true;
@@ -47,20 +46,18 @@ public class Inventory implements Serializable {
     Return true if this is successfully done, return false otherwise.
      */
     public boolean addItem(Item item, int quantityToAdd) {
-        if (itemToQuantity.containsKey(item) && ((quantityToAdd + this.occupied) <= this.capacity)) {
-            int new_quantity = itemToQuantity.get(item) + quantityToAdd;
-            itemToQuantity.replace(item, new_quantity);
-
-            this.occupied = this.occupied + quantityToAdd;
-            return true;
-        } else if (quantityToAdd + this.occupied <= this.capacity) {
-            itemToQuantity.put(item, quantityToAdd);
-
-            this.occupied = this.occupied + quantityToAdd;
-            return true;
-
-        } else {
+        if ((quantityToAdd + this.occupied) > this.capacity) {
             return false;
+        }
+        else {
+            if (itemToQuantity.containsKey(item)) {
+                int new_quantity = itemToQuantity.get(item) + quantityToAdd;
+                itemToQuantity.replace(item, new_quantity);
+            }
+            else {
+                itemToQuantity.put(item, quantityToAdd);
+            }
+            return true;
         }
     }
 
@@ -88,17 +85,5 @@ public class Inventory implements Serializable {
     public int getAvailableSpace() {
         return this.capacity - this.occupied;
     }
-
-
-    public List<Item> sortedByQuantity() {
-        // returns a sorted list of the Items in itemToQuantity according to quantity value in ascending order
-        Set<Map.Entry<Item, Integer>> entrySet = itemToQuantity.entrySet();
-        Stream<Map.Entry<Item, Integer>> entryStream = entrySet.stream();
-        Stream<Map.Entry<Item, Integer>> sortedEntryStream = entryStream.sorted();
-        Object[] sortedEntryArray = sortedEntryStream.toArray();
-        // this does not work
-    }
-
-
 
 }

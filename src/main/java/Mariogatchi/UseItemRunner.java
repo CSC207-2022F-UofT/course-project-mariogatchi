@@ -2,12 +2,20 @@ package Mariogatchi;
 
 public class UseItemRunner implements UseItemInputBoundary {
 
-    final UseItemPresenter useItemPresenter;
+    private final UseItemPresenter useItemPresenter;
 
+    /*
+    The interactor for the UseItem use case
+    @param useItemPresenter - the presenter (output boundary object) for this use case.
+     */
     public UseItemRunner(UseItemPresenter useItemPresenter) {
         this.useItemPresenter = useItemPresenter;
     }
 
+
+    /*
+    Uses an Item and returns a UseItemResponseModel.
+     */
     @Override
     public UseItemResponseModel useItem(UseItemRequestModel requestModel) {
         try {
@@ -24,7 +32,8 @@ public class UseItemRunner implements UseItemInputBoundary {
                         requestModel.getInventory()
                 );
 
-                UseItemResponseModel responseModel = new UseItemResponseModel(1);
+                UseItemResponseModel responseModel = new UseItemResponseModel(1,
+                        requestModel.getInventory());
                 return useItemPresenter.prepareSuccessView(responseModel);
             }
             else {

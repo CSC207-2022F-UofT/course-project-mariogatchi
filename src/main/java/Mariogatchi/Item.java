@@ -47,7 +47,7 @@ public abstract class Item implements Serializable {
 
 
     /*
-    return whether there is at least one of this mariogatchi.Item in the given mariogatchi.Inventory to use.
+    return whether there is at least one of this Item in the given Inventory to use.
      */
     private boolean hasEligibleQuantity(Inventory inventory, Item item) {
         return inventory.itemExists(item) &&
@@ -58,10 +58,10 @@ public abstract class Item implements Serializable {
 
 
     /*
-    updates the mariogatchi.Inventory of the User who uses this item to reflect the change in quantity of the given mariogatchi.Item
+    updates the Inventory of the User who uses this item to reflect the change in quantity of the given Item
     ABSTRACT
      */
-    abstract void updateInventory(UseItemRequestModel request);
+    abstract void updateInventory(int quantity, Inventory inventory);
 
 
 }
