@@ -1,6 +1,8 @@
 package Mariogatchi;
 
-public abstract class Item {
+import java.io.Serializable;
+
+public abstract class Item implements Serializable {
 
     // set of Environments that the mariogatchi.Item can be used in
     private Set<Environment> eligibleAreas = new Set<Environment>;

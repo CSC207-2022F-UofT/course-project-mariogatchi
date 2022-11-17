@@ -1,11 +1,12 @@
 package Mariogatchi;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class Inventory {
+public class Inventory implements Serializable {
     private Map<Item, Integer> itemToQuantity;
 
     // max capacity of the mariogatchi.Inventory. The sum of quantities of each item in itemToQuantity should not exceed this amount
