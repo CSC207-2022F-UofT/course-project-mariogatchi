@@ -24,11 +24,11 @@ public enum Action {
         this.statEffects = statEffects;
     }
 
-    public boolean getneedsItem(){
+    public boolean getNeedsItem(){
         return needsItem;
     }
 
-    public List<String> getstatsEffects(){
+    public List<String> getStatsEffects(){
         return statEffects;
     }
 }
