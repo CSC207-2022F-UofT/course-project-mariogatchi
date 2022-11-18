@@ -2,6 +2,11 @@ package mariogatchi;
 import java.util.List;
 
 public enum Action {
+    /**
+     * Action enum containing all the types/categories of actions a user can make
+     * needsItem - boolean representing whether an item is needed to perform the type of action
+     * statEffects - string representation of the statistics impacted when the type of action is executed
+     */
     CATCH (false, List.of()),
     RELEASE (false, List.of()),
     CLEANABLE (true, List.of("Cleanliness")),
