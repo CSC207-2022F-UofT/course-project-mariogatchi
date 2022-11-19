@@ -14,8 +14,8 @@ public class MariogatchiManager {
     /**
      * Instantiate a new MariogatchiManager
      */
-    public MariogatchiManager() {
-        mariogatchis = new List<>();
+    public MariogatchiManager(User user) {
+        mariogatchis = new user.getMariogatchis();
     }
 
     /**
@@ -51,23 +51,16 @@ public class MariogatchiManager {
      *
      * @param name the name of the Mariogatchi
      */
-    public void createMariogatchi(String name) {
+    public void createMariogatchi(Mariogatchi name){
+        this.mariogatchis.add(name);
     }
 
     /**
-     * Remove a Mariogatchi
+     * Remove a Mariogatchi from mariogatchi
      *
      * @param name the name of the Mariogatchi
      */
-    public void removeMariogatchi(String name){}
-
-    /**
-     * Return a Mariogatchi
-     *
-     * @param name the name of the Mariogatchi
-     * @return the information of the Mariogatchi
-     */
-    public String returnMariogatchi(String name){
-        return name;
+    public void removeMariogatchi(Mariogatchi name){
+        this.mariogatchis.remove(name);
     }
 }
