@@ -18,6 +18,9 @@ public class RemoveItemRunner implements RemoveItemInputBoundary{
      */
     @Override
     public RemoveItemResponseModel removeItemFromInv(RemoveItemRequestModel requestModel) {
+        if (requestModel.getItem() instanceof Reusable) {
+            return presenter.prepareFailureView("Default item cannot be removed from inventory");
+        }
         if (requestModel.getInventory().removeItem(requestModel.getItem(), requestModel.getQuantity())) {
             RemoveItemResponseModel responseModel = new RemoveItemResponseModel(requestModel.getItem(),
                     requestModel.getInventory(), requestModel.getQuantity());

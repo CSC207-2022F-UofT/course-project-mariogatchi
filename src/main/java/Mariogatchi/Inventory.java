@@ -29,7 +29,9 @@ public class Inventory implements Serializable {
         if (itemToQuantity.containsKey(item) && quantityToRemove <= itemToQuantity.get(item)){
             int newQuantity = itemToQuantity.get(item) - quantityToRemove;
             itemToQuantity.replace(item, newQuantity);
-
+            if (newQuantity == 0) {
+                itemToQuantity.remove(item);
+            }
             this.occupied = this.occupied - quantityToRemove;
             return true;
         }

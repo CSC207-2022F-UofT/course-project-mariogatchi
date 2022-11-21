@@ -2,7 +2,7 @@ package Mariogatchi;
 
 public class UseItemRequestModel {
     private Item itemToUse;
-    private Environment currentEnvironment;
+    private Env currentEnvironment;
     private Mariogatchi mariogatchi;
     private Inventory inventory;
 
@@ -14,7 +14,7 @@ public class UseItemRequestModel {
     @param inventory - the inventory that the item is to be used from
      */
 
-    public UseItemRequestModel(Item item, Environment environment, Mariogatchi mariogatchi, Inventory inventory) {
+    public UseItemRequestModel(Item item, Env environment, Mariogatchi mariogatchi, Inventory inventory) {
         this.itemToUse = item;
         this.currentEnvironment = environment;
         this.mariogatchi = mariogatchi;
@@ -27,7 +27,7 @@ public class UseItemRequestModel {
     }
 
     //returns the currentEnvironment
-    public Environment getCurrentEnvironment() {
+    public Env getCurrentEnvironment() {
         return this.currentEnvironment;
     }
 

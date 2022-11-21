@@ -1,23 +1,27 @@
 package Mariogatchi;
 
 public class UseItemResponseModel {
-
-    private int quantityToUpdate;
-
     private Inventory inventory;
+
+    private Items name;
 
     /*
     The output data for the UseItem use case:
     @param - the quantity of item that was used
     @param - the inventory that the item was used from.
      */
-    public UseItemResponseModel(int quantityToUpdate, Inventory inventory) {
-
-        this.quantityToUpdate = quantityToUpdate;
+    public UseItemResponseModel(Inventory inventory, Items name) {
         this.inventory = inventory;
+        this.name = name;
     }
 
-    public int getQuantityToUpdate() {
-        return quantityToUpdate;
+    // returns the Inventory
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    // returns the name of the Item
+    public Items getName() {
+        return this.name;
     }
 }

@@ -1,9 +1,9 @@
 package Mariogatchi;
 
 public class AddItemRequestModel {
-    private Item item;
-    private Inventory inventory;
-    private int quantity;
+    private Item item; // item to add to inventory
+    private Inventory inventory; // inventory that item is to be added to
+    private int quantity; // quantity to add of item to inventory
 
     /*
     The input data needed for the AddItem use case

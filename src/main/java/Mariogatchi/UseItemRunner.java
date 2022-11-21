@@ -22,18 +22,17 @@ public class UseItemRunner implements UseItemInputBoundary {
             if (requestModel.getItemToUse().itemCanBeUsed(
                     requestModel.getItemToUse(),
                     requestModel.getCurrentEnvironment(),
-                    requestModel.getMariogatchi(),
                     requestModel.getInventory()))
             {
                 requestModel.getItemToUse().useThisItem(
-                        requestModel.getItemToUse(),
-                        requestModel.getCurrentEnvironment(),
                         requestModel.getMariogatchi(),
                         requestModel.getInventory()
                 );
 
-                UseItemResponseModel responseModel = new UseItemResponseModel(1,
-                        requestModel.getInventory());
+                UseItemResponseModel responseModel = new UseItemResponseModel(
+                        requestModel.getInventory(),
+                        requestModel.getItemToUse().getName());
+
                 return useItemPresenter.prepareSuccessView(responseModel);
             }
             else {
