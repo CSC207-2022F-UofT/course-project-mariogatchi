@@ -1,7 +1,9 @@
 package mariogatchi.removemariogatchi;
 
+import mariogatchi.Mariogatchi;
 import mariogatchi.RemoveMariogatchiDisplayerInterface;
 import mariogatchi.RemoveMariogatchiPresenterInterface;
+import mariogatchi.User;
 
 /**
  * Use case
