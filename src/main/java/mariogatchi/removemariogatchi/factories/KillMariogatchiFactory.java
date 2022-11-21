@@ -36,7 +36,6 @@ public class KillMariogatchiFactory implements RemoveMariogatchiFactory {
                 return new UFOAbduction();
 
             default:
-                System.out.println("Action " + Action + " cannot be specified and does not run.");
                 return null;
         }
     }

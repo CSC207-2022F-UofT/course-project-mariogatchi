@@ -24,7 +24,6 @@ public class TransferMariogatchiFactory implements RemoveMariogatchiFactory {
                 return new Merge();
 
             default:
-                System.out.println("Action " + Action + " cannot be specified and does not run.");
                 return null;
         }
     }
