@@ -31,6 +31,8 @@ public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInt
                 return "Your Mariogatchi died by starvation.";
             case UFOABDUCTION:
                 return "Your Mariogatchi was abducted by a UFO.";
+            case ERROR:
+                return "Error, invalid call";
             default:
                 return "Error, invalid" + type;
         }
@@ -47,6 +49,8 @@ public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInt
                 return "You successfully released your Mariogatchi into the wild. Good bye Mariogatchi!";
             case MERGE:
                 return "You successfully merged two Mariogatchis together. The Mariogatchi was given updates in stats!";
+            case ERROR:
+                return "Error, invalid call";
             default:
                 return "Error, invalid" + type;
         }

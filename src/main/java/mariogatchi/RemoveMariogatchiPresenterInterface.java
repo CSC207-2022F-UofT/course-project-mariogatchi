@@ -20,7 +20,8 @@ public interface RemoveMariogatchiPresenterInterface {
         PREDATORS,
         PROBLEMSET,
         STARVATION,
-        UFOABDUCTION
+        UFOABDUCTION,
+        ERROR
     }
 
     /**
@@ -28,6 +29,7 @@ public interface RemoveMariogatchiPresenterInterface {
      */
     enum TransferAction{
         RELEASE,
-        MERGE
+        MERGE,
+        ERROR
     }
 }
