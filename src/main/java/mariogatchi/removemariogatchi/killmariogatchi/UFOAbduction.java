@@ -1,9 +1,6 @@
 package mariogatchi.removemariogatchi.killmariogatchi;
 
-import mariogatchi.Mariogatchi;
-import mariogatchi.RemoveMariogatchiPresenter;
-import mariogatchi.RemoveMariogatchiPresenterInterface;
-import mariogatchi.User;
+import mariogatchi.*;
 
 /**
  * Use case
@@ -12,11 +9,11 @@ import mariogatchi.User;
 public class UFOAbduction extends KillMariogatchi {
 
     @Override
-    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter) {
+    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter, RemoveMariogatchiDisplayer displayer) {
         if (Kill(user, mario)) {
-            presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.UFOABDUCTION);
+            displayer.removeMariogatchiText(presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.UFOABDUCTION));
         } else {
-            presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.ERROR);
+            displayer.removeMariogatchiText(presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.ERROR));
         }
     }
 }

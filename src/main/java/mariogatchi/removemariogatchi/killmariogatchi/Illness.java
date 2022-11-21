@@ -1,9 +1,6 @@
 package mariogatchi.removemariogatchi.killmariogatchi;
 
-import mariogatchi.Mariogatchi;
-import mariogatchi.RemoveMariogatchiPresenterInterface;
-import mariogatchi.RemoveMariogatchiPresenter;
-import mariogatchi.User;
+import mariogatchi.*;
 
 /**
  * Use case
@@ -12,12 +9,12 @@ import mariogatchi.User;
 public class Illness extends KillMariogatchi{
 
     @Override
-    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter) {
+    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter, RemoveMariogatchiDisplayer displayer) {
         if (Kill(user, mario)){
-            presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.ILLNESS);
+            displayer.removeMariogatchiText(presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.ILLNESS));
         }
         else {
-            presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.ERROR);
+            displayer.removeMariogatchiText(presenter.getKillActionType(RemoveMariogatchiPresenterInterface.KillAction.ERROR));
         }
     }
 }

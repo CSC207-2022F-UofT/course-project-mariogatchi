@@ -1,9 +1,6 @@
 package mariogatchi.removemariogatchi.transfermariogatchi;
 
-import mariogatchi.Mariogatchi;
-import mariogatchi.RemoveMariogatchiPresenter;
-import mariogatchi.RemoveMariogatchiPresenterInterface;
-import mariogatchi.User;
+import mariogatchi.*;
 
 /**
  * Use case
@@ -11,11 +8,11 @@ import mariogatchi.User;
  */
 public class Release extends TransferMariogatchi {
     @Override
-    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter) {
+    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter, RemoveMariogatchiDisplayer displayer) {
         if (Transfer(user, mario)) {
-                    presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.RELEASE);
+            displayer.removeMariogatchiText(presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.RELEASE));
         } else {
-            presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.ERROR);
+            displayer.removeMariogatchiText(presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.ERROR));
         }
     }
 }

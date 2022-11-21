@@ -1,22 +1,18 @@
 package mariogatchi.removemariogatchi.transfermariogatchi;
 
-import mariogatchi.Mariogatchi;
-import mariogatchi.RemoveMariogatchiPresenterInterface;
-import mariogatchi.RemoveMariogatchiPresenter;
-import mariogatchi.User;
+import mariogatchi.*;
 
 /**
  * Use case
  * User action to merge two Mariogatchis together
  */
-public class Merge extends TransferMariogatchi{
+public class Merge extends TransferMariogatchi {
     @Override
-    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter) {
-        if (Transfer(user, mario)){
-            presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.MERGE);
-        }
-        else {
-            presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.ERROR);
+    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter, RemoveMariogatchiDisplayer displayer) {
+        if (Transfer(user, mario)) {
+            displayer.removeMariogatchiText(presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.MERGE));
+        } else {
+            displayer.removeMariogatchiText(presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.ERROR));
         }
     }
 }
