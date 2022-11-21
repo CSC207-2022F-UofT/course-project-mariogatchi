@@ -1,6 +1,7 @@
 package mariogatchi.removemariogatchi.factories;
 
 
+import mariogatchi.removemariogatchi.transfermariogatchi.ErrorExecution;
 import mariogatchi.removemariogatchi.transfermariogatchi.Merge;
 import mariogatchi.removemariogatchi.transfermariogatchi.Release;
 import mariogatchi.removemariogatchi.transfermariogatchi.TransferMariogatchi;
@@ -24,7 +25,7 @@ public class TransferMariogatchiFactory implements RemoveMariogatchiFactory {
                 return new Merge();
 
             default:
-                return null;
+                return new ErrorExecution();
         }
     }
 }

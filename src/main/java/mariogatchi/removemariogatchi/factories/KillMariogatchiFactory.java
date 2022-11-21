@@ -36,7 +36,7 @@ public class KillMariogatchiFactory implements RemoveMariogatchiFactory {
                 return new UFOAbduction();
 
             default:
-                return null;
+                return new ErrorExecution();
         }
     }
 }
