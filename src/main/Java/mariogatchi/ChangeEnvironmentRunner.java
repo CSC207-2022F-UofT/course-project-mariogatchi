@@ -21,7 +21,7 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
      */
 
     @Override
-    public ChangeEnvironmentResponseModel changeEnvironmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
+    public ChangeEnvironmentResponseModel environmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
         String lowerEnvironment = environmentRequestModel.getEnvironmentInput().toLowerCase(); // lowerEnvironment is the input of the user as a lower case string
         if (environmentRequestModel.isSame()){ // checks to see whether the user is already in the environment they which to change to
             return environmentPresenter.prepareFailView("Cannot change environment: You are already in that environment!"); // sends error message to FailView
