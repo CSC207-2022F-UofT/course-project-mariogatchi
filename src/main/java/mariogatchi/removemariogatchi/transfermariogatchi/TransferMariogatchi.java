@@ -1,8 +1,6 @@
 package mariogatchi.removemariogatchi.transfermariogatchi;
 
-import mariogatchi.Mariogatchi;
 import mariogatchi.MariogatchiManager;
-import mariogatchi.User;
 import mariogatchi.removemariogatchi.RemoveMariogatchi;
 
 /**
