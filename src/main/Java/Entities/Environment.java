@@ -1,4 +1,4 @@
-package mariogatchi;
+package Entities;
 
 public abstract class Environment{
     private final String name; // the name of the environment as a string

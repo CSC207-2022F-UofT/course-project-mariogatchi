@@ -1,4 +1,7 @@
-package mariogatchi;
+package ChangeEnvironmentUseCase;
+
+import Entities.Environment;
+import Entities.User;
 
 public class ChangeEnvironmentRequestModel{
     private final User user; // the user who wants to change their environment

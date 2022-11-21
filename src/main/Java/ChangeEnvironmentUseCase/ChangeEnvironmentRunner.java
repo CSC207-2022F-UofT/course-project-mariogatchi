@@ -1,4 +1,4 @@
-package mariogatchi;
+package ChangeEnvironmentUseCase;
 
 public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
     private final ChangeEnvironmentPresenter environmentPresenter; // presenter

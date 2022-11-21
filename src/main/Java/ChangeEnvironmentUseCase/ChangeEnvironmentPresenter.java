@@ -1,4 +1,4 @@
-package mariogatchi;
+package ChangeEnvironmentUseCase;
 
 public interface ChangeEnvironmentPresenter {
     /*

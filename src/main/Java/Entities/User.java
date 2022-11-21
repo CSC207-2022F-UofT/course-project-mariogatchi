@@ -1,4 +1,4 @@
-package mariogatchi;
+package Entities;
 
 import java.io.Serializable;
 import java.util.List;

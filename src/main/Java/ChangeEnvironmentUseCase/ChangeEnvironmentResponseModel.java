@@ -1,4 +1,6 @@
-package mariogatchi;
+package ChangeEnvironmentUseCase;
+
+import Entities.Environment;
 
 public class ChangeEnvironmentResponseModel{
     private final Environment newEnvironment; // the environment of the user after it has been changed

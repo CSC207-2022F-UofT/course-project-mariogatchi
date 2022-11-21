@@ -1,4 +1,4 @@
-package mariogatchi;
+package Entities;
 
 public class Home extends Environment{
     /**
