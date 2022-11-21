@@ -35,6 +35,6 @@ public class ChangeEnvironmentRequestModel{
 
     // check to see weather the user is already in the environment they want to change to, return whether input = current environment
     public boolean isSame(){
-        return user.getEnvironment().getName().toLowerCase().equals(environmentInput.toLowerCase());
+        return environmentInput.equalsIgnoreCase(currEnvironment.getName()); // comparing whether the environment is the same as the name of the current environment
     }
 }
