@@ -33,13 +33,8 @@ public class ChangeEnvironmentRequestModel{
         return currEnvironment;
     }
 
-    // check to see weather the user is already in the environment they want to change to, return whether input = current environment
-    public boolean isSame(){
-        return environmentInput.equalsIgnoreCase(currEnvironment.getName()); // comparing whether the environment is the same as the name of the current environment
-    }
-
-    // check to see weather the users environment input is an environment that exists, return whether input = park or home or forest
-    public boolean isLegalEnvironment(){
-        return environmentInput.equalsIgnoreCase("park") || environmentInput.equalsIgnoreCase("home") || environmentInput.equalsIgnoreCase("forest");
+    // getter for the current user in-game environment as a string
+    public String getCurrEnvironmentString() {
+        return currEnvironment.getName();
     }
 }

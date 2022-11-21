@@ -23,14 +23,25 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
     @Override
     public ChangeEnvironmentResponseModel environmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
         String lowerEnvironment = environmentRequestModel.getEnvironmentInput().toLowerCase(); // lowerEnvironment is the input of the user as a lower case string
-        if (environmentRequestModel.isSame()){ // checks to see whether the user is already in the environment they which to change to
+        if (isSame(environmentRequestModel)){ // checks to see whether the user is already in the environment they which to change to
             return environmentPresenter.prepareFailView("Cannot change environment: You are already in that environment!"); // sends error message to FailView
-        } else if (environmentRequestModel.isLegalEnvironment()) { // checks to see whether the input is a valid environment
+        } else if (isLegalEnvironment(environmentRequestModel)) { // checks to see whether the input is a valid environment
             environmentRequestModel.getUser().setEnvironment(lowerEnvironment); // changing the environment of the user by using the request model user and user input
             ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(environmentRequestModel.getUser().getEnvironment()); // use the request models changed environment as the new environment for the response model
             return environmentPresenter.prepareSuccessView(environmentResponseModel); // the environment was changed, SuccessView
         } else { // the environment is not a valid environment input
             return environmentPresenter.prepareFailView("Cannot change environment: That is not a valid environment input!"); // sends error message to FailView
         }
+    }
+
+    // check to see weather the user is already in the environment they want to change to (given the information from the request model), return whether input = current environment
+    private boolean isSame(ChangeEnvironmentRequestModel environmentRequestModel){
+        return environmentRequestModel.getEnvironmentInput().equalsIgnoreCase(environmentRequestModel.getCurrEnvironmentString());
+    }
+
+    // check to see weather the users environment input is an environment that exists (given the information from the request model), return whether input = park or home or forest
+    private boolean isLegalEnvironment(ChangeEnvironmentRequestModel environmentRequestModel){
+        String lower = environmentRequestModel.getEnvironmentInput();
+        return lower.equalsIgnoreCase("park") || lower.equalsIgnoreCase("home") || lower.equalsIgnoreCase("forest");
     }
 }
