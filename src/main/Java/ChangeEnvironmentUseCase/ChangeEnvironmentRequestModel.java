@@ -4,9 +4,9 @@ import Entities.Environment;
 import Entities.User;
 
 public class ChangeEnvironmentRequestModel{
-    private final User user; // the user who wants to change their environment
-    private final String environmentInput; // the input of the user, taken as a string
-    private final Environment currEnvironment; // the users current in-game environment, pulled from the user class using user.environment
+    private final User USER; // the user who wants to change their environment
+    private final String ENVIRONMENTINPUT; // the input of the user, taken as a string
+    private final Environment CURRENVIRONMENT; // the users current in-game environment, pulled from the user class using user.environment
 
     /**
      * Request model (input data) for the ChangeEnvironment use case.
@@ -16,28 +16,28 @@ public class ChangeEnvironmentRequestModel{
 
     // constructor
     public ChangeEnvironmentRequestModel(User user, String environmentInput) {
-        this.user = user;
-        this.environmentInput = environmentInput;
-        this.currEnvironment = user.getEnvironment();
+        this.USER = user;
+        this.ENVIRONMENTINPUT = environmentInput;
+        this.CURRENVIRONMENT = user.getEnvironment();
     }
 
     // getter function for the user, return user
     public User getUser() {
-        return user;
+        return USER;
     }
 
     // getter for user environment input, return environmentInput
     public String getEnvironmentInput(){
-        return environmentInput;
+        return ENVIRONMENTINPUT;
     }
 
     // getter for current user in-game environment
     public Environment getCurrEnvironment(){
-        return currEnvironment;
+        return CURRENVIRONMENT;
     }
 
     // getter for the current user in-game environment as a string
     public String getCurrEnvironmentString() {
-        return currEnvironment.getName();
+        return CURRENVIRONMENT.getName();
     }
 }

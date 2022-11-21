@@ -1,7 +1,7 @@
 package ChangeEnvironmentUseCase;
 
 public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
-    private final ChangeEnvironmentPresenter environmentPresenter; // presenter
+    private final ChangeEnvironmentPresenter ENVIRONMENTPRESENTER; // presenter
 
     /**
      * Request model (input data) for the ChangeEnvironment use case.
@@ -10,7 +10,7 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
      */
 
     public ChangeEnvironmentRunner(ChangeEnvironmentPresenter environmentPresenter) {
-        this.environmentPresenter = environmentPresenter;
+        this.ENVIRONMENTPRESENTER = environmentPresenter;
     }
 
     /*
@@ -24,13 +24,13 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
     public ChangeEnvironmentResponseModel environmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
         String lowerEnvironment = environmentRequestModel.getEnvironmentInput().toLowerCase(); // lowerEnvironment is the input of the user as a lower case string
         if (isSame(environmentRequestModel)){ // checks to see whether the user is already in the environment they which to change to
-            return environmentPresenter.prepareFailView("Cannot change environment: You are already in that environment!"); // sends error message to FailView
+            return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: You are already in that environment!"); // sends error message to FailView
         } else if (isLegalEnvironment(environmentRequestModel)) { // checks to see whether the input is a valid environment
             environmentRequestModel.getUser().setEnvironment(lowerEnvironment); // changing the environment of the user by using the request model user and user input
             ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(environmentRequestModel.getUser().getEnvironment()); // use the request models changed environment as the new environment for the response model
-            return environmentPresenter.prepareSuccessView(environmentResponseModel); // the environment was changed, SuccessView
+            return ENVIRONMENTPRESENTER.prepareSuccessView(environmentResponseModel); // the environment was changed, SuccessView
         } else { // the environment is not a valid environment input
-            return environmentPresenter.prepareFailView("Cannot change environment: That is not a valid environment input!"); // sends error message to FailView
+            return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: That is not a valid environment input!"); // sends error message to FailView
         }
     }
 
