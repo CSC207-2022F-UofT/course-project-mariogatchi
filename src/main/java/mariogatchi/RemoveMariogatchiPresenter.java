@@ -14,7 +14,7 @@ public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInt
     public String getKillActionType(KillAction type) {
         switch(type) {
             case BLOWNAWAY:
-                return "Nature uses wind attack! Your Mariogatchi was blown away.";
+                System.out.println("Nature uses wind attack! Your Mariogatchi was blown away.");
             case DROWN:
                 return "Your Mariogatchi drowned in a puddle :(";
             case ILLNESS:

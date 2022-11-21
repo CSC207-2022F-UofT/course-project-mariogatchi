@@ -3,6 +3,7 @@ package mariogatchi.removemariogatchi.factories;
 import mariogatchi.removemariogatchi.RemoveMariogatchi;
 
 /**
+ * Use case
  * Abstract factory interface for a method to transfer or kill a Mariogatchi
  */
 public interface RemoveMariogatchiFactory {

@@ -4,6 +4,7 @@ import mariogatchi.MariogatchiManager;
 import mariogatchi.removemariogatchi.RemoveMariogatchi;
 
 /**
+ * Use case
  * Abstract class to remove a Mariogatchi from the users collection of Mariogatchis
  */
 public abstract class TransferMariogatchi implements RemoveMariogatchi {

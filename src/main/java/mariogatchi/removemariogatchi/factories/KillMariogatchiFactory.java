@@ -3,6 +3,7 @@ package mariogatchi.removemariogatchi.factories;
 import mariogatchi.removemariogatchi.killmariogatchi.*;
 
 /**
+ * Use case
  * Concrete factory for cases to kill a Mariogatchi
  */
 

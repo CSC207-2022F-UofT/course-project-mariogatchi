@@ -1,6 +1,7 @@
 package mariogatchi;
 
 /**
+ * Presenter
  * Prints the remove Mariogatchi action text to the console
  */
 public class RemoveMariogatchiDisplayer{

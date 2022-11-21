@@ -7,6 +7,7 @@ import mariogatchi.removemariogatchi.transfermariogatchi.Release;
 import mariogatchi.removemariogatchi.transfermariogatchi.TransferMariogatchi;
 
 /**
+ * Use case
  * Concrete factory for cases to transfer a Mariogatchi
  */
 public class TransferMariogatchiFactory implements RemoveMariogatchiFactory {

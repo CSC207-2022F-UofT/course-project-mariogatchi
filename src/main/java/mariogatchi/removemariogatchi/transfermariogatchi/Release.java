@@ -8,7 +8,7 @@ import mariogatchi.*;
  */
 public class Release extends TransferMariogatchi {
     @Override
-    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter, RemoveMariogatchiDisplayer displayer) {
+    public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenterInterface presenter, RemoveMariogatchiDisplayerInterface displayer) {
         if (Transfer(user, mario)) {
             displayer.removeMariogatchiText(presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.RELEASE));
         } else {

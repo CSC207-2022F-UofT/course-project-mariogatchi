@@ -2,6 +2,9 @@ package mariogatchi;
 
 import java.util.List;
 
+/**
+ * Use case to manage a Mariogatchi entity
+ */
 public class MariogatchiManager {
     /**
      * Removes a Mariogatchi from a users collection of Mariogatchis List<Mariogatchi>
