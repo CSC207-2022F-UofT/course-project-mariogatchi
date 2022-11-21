@@ -1,4 +1,4 @@
 package mariogatchi;
 
-public class TimeRunner {
+public class TimeRunner implements TimeInputBoundary{
 }

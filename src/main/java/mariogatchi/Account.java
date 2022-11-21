@@ -1,4 +1,4 @@
-package Mariogatchi;
+package mariogatchi;
 
 import java.io.Serializable;
 import java.util.List;
@@ -45,6 +45,8 @@ public class Account implements Serializable {
     public void addUser(String name) {
         this.users.add(new User(name));
     }
+
+    public void addUserInstance(User user) {this.users.add(user);}
 
     public void delUser(User user) {
         this.users.remove(user);

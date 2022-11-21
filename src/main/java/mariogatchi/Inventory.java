@@ -1,4 +1,4 @@
-package Mariogatchi;
+package mariogatchi;
 
 public class Inventory {
 }
