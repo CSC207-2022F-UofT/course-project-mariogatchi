@@ -14,21 +14,21 @@ public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInt
     public String getKillActionType(KillAction type) {
         switch(type) {
             case BLOWNAWAY:
-                return "Your Mariogatchi was blown away by a gust of wind.";
+                return "Nature uses wind attack! Your Mariogatchi was blown away.";
             case DROWN:
-                return "Your Mariogatchi drowned in a pool of water :(";
+                return "Your Mariogatchi drowned in a puddle :(";
             case ILLNESS:
-                return "Your Mariogatchi was too ill and died from sickness.";
+                return "Your Mariogatchi is weak and did not wear a mask. Died from illness.";
             case OLDAGE:
-                return "Your Mariogatchi lived a good life and passed away from old age.";
+                return "Your Mariogatchi expired.";
             case OVERCARE:
                 return "Your Mariogatchi was given too much attention and died from execessive nutrients.";
             case PREDATORS:
-                return "Your Mariogatchi was killed by wild animals.";
+                return "Your Mariogatchi has merged with the predators, gone wrong. (Eaten).";
             case PROBLEMSET:
-                return "Your Mariogatchi was crushed by a CS problem set";
+                return "UofT uses Final Exam! It was super effective. Your Mariogatchi was crushed by a CS problem set";
             case STARVATION:
-                return "Your Mariogatchi died by starvation.";
+                return "Your Mariogatchi died by hunger damage.";
             case UFOABDUCTION:
                 return "Your Mariogatchi was abducted by a UFO.";
             case ERROR:
