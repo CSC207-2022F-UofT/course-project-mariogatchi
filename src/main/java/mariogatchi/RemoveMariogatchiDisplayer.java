@@ -4,7 +4,7 @@ package mariogatchi;
  * Presenter
  * Prints the remove Mariogatchi action text to the console
  */
-public class RemoveMariogatchiDisplayer{
+public class RemoveMariogatchiDisplayer implements RemoveMariogatchiDisplayerInterface{
 
     /**
      * Prints the text to the console
