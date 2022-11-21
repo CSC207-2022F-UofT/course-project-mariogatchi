@@ -13,10 +13,9 @@ public class Release extends TransferMariogatchi {
     @Override
     public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter) {
         if (Transfer(user, mario)) {
-            System.out.println
-                    (presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.RELEASE));
+                    presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.RELEASE);
         } else {
-            System.out.println("Failed to release the Mariogatchi");
+            presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.ERROR);
         }
     }
 }

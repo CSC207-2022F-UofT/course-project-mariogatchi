@@ -13,10 +13,10 @@ public class Merge extends TransferMariogatchi{
     @Override
     public void execute(User user, Mariogatchi mario, RemoveMariogatchiPresenter presenter) {
         if (Transfer(user, mario)){
-            System.out.println(presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.MERGE));
+            presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.MERGE);
         }
         else {
-            System.out.println("Failed to merge the Mariogatchis");
+            presenter.getTransferActionType(RemoveMariogatchiPresenterInterface.TransferAction.ERROR);
         }
     }
 }
