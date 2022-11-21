@@ -2,8 +2,8 @@ package mariogatchi;
 import java.util.List;
 
 public abstract class Environment{
-    private final String name;
-    private final List<Action> actionList;
+    private final String name; // the name of the environment as a string
+    private final List<Action> actionList; // the list of the possible action types executable in the environment
 
     /**
      * Construct a Home, giving them the given name and list of actions. The name and actions are final
@@ -18,11 +18,13 @@ public abstract class Environment{
         this.actionList = actionList;
     }
 
-    public String getName() {
+    // getter function for name, return name
+    public String getName(){
         return name;
     }
 
-    public List<Action> getActions() {
+    // getter function for actionList, return list
+    public List<Action> getActions(){
         return actionList;
     }
 }
