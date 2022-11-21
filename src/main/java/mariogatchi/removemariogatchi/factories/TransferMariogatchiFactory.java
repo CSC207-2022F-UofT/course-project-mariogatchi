@@ -1,6 +1,9 @@
 package mariogatchi.removemariogatchi.factories;
 
-import mariogatchi.removemariogatchi.transfermariogatchi.*;
+
+import mariogatchi.removemariogatchi.transfermariogatchi.Merge;
+import mariogatchi.removemariogatchi.transfermariogatchi.Release;
+import mariogatchi.removemariogatchi.transfermariogatchi.TransferMariogatchi;
 
 /**
  * Concrete factory for cases to transfer a Mariogatchi

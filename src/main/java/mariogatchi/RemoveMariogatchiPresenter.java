@@ -32,7 +32,7 @@ public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInt
             case UFOABDUCTION:
                 return "Your Mariogatchi was abducted by a UFO.";
             case ERROR:
-                return "Error, invalid call";
+                return "Error, unkillable Mariogatchi (cannot kill Mariogatchi)";
             default:
                 return "Error, invalid" + type;
         }
@@ -50,7 +50,7 @@ public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInt
             case MERGE:
                 return "You successfully merged two Mariogatchis together. The Mariogatchi was given updates in stats!";
             case ERROR:
-                return "Error, invalid call";
+                return "Mariogatchi uses sticky! Status: Undetachable :( (Mariogatchi cannot be transfered)";
             default:
                 return "Error, invalid" + type;
         }
