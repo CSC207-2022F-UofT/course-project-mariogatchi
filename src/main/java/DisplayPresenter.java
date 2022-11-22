@@ -25,10 +25,10 @@ public class DisplayPresenter implements OutputBoundary {
     private int acceptBtnH;
     // private Boolean loginScreenB = false;
 
-    public static void main(String[] args) {
-        DisplayPresenter dp = new DisplayPresenter();
+    // public static void main(String[] args) {
+    //     DisplayPresenter dp = new DisplayPresenter();
         
-    }
+    // }
 
     DisplayPresenter(){
         frame = new JFrame();
@@ -100,7 +100,7 @@ public class DisplayPresenter implements OutputBoundary {
             public void actionPerformed(ActionEvent e){
                 String username = usernameF.getText();
                 String password = new String(passwordF.getPassword());
-                System.out.println(username + " " + password);
+                // System.out.println(username + " " + password);
                 //output the credentials
                 //{command.login, username, password};
             }
