@@ -3,46 +3,46 @@ package mariogatchi;
 import java.io.Serializable;
 
 /**
- * Statistics for a mariogatchi.Mariogatchi creature
+ * Statistics for a mariogatchi creature
  */
 public class Statistics implements Serializable {
     /**
-     * The maximum level for any one of this mariogatchi.Mariogatchi's stats.
+     * The maximum level for any one of this mariogatchis stats.
      */
     private int maxLevel;
     /**
-     * mariogatchi.Mariogatchi's hunger level.
+     * Mariogatch's hunger level.
      */
     private int hunger;
     /**
-     * mariogatchi.Mariogatchi's energy level.
+     * Mariogatchi's energy level.
      */
     private int energy;
     /**
-     * mariogatchi.Mariogatchi's level of cleanliness.
+     * Mariogatchi's level of cleanliness.
      */
     private int cleanliness;
     /**
-     * mariogatchi.Mariogatchi's happiness level.
+     * Mariogatchi's happiness level.
      */
     private int happiness;
     /**
-     * mariogatchi.Mariogatchi's agility level.
+     * Mariogatchi's agility level.
      */
     private int agility;
     /**
-     * mariogatchi.Mariogatchi's strategy level.
+     * Mariogatchi's strategy level.
      */
     private int strategy;
     /**
-     * The last time this mariogatchi.Mariogatchi's stats were checked.
+     * The last time this Mariogatchi's stats were checked.
      */
     private long lastCheckTime;
 
 
     /**
-     * Initiate Stats for a new mariogatchi.Mariogatchi.
-     * @param mariogatchiKind: This mariogatchi's rarity.
+     * Initiate Stats for a new Mariogatchi
+     * @param mariogatchiKind: This Mariogatchi's rarity.
      */
     public Statistics(String mariogatchiKind){
         int startingValue = 50;
