@@ -8,6 +8,9 @@ public class DisplayPresenter implements OutputBoundary {
     private JFrame frame;
     private JPanel startScreen;
     private JPanel loginScreen;
+    private JPanel homeScreen;
+    private JLabel loginT;
+    private JLabel loginErrorT;
     // private int usernameFX;
     // private int usernameFY;
     // private int usernameFW;
@@ -21,56 +24,65 @@ public class DisplayPresenter implements OutputBoundary {
     private int acceptBtnW;
     private int acceptBtnH;
     // private Boolean loginScreenB = false;
-    private CardLayout crd;
-    private Container con;
 
     public static void main(String[] args) {
         DisplayPresenter dp = new DisplayPresenter();
-        dp.draw();
+        
     }
 
     DisplayPresenter(){
         frame = new JFrame();
-        con = new Container();
-        crd = new CardLayout();
         startScreen = new JPanel();
         loginScreen = new JPanel();
+        homeScreen = new JPanel();
 
-        con.setLayout(crd);
-        frame.add(con);
+        //frame.add(startScreen);
+        //frame.add(loginScreen);
         frame.setSize(START_WIDTH, START_HEIGHT);
         //frame.add("Login", loginScreen);
-        frame.setLayout(crd);
+        frame.setLayout(null);
         frame.setVisible(true);
         update();
+        draw();
     }
 
     private void draw(){
-        
-
         JButton loginBtn = new JButton("Login");
         JButton signupBtn = new JButton("Signup");
 
-        JLabel loginT = new JLabel("Login to your account");
+        loginT = new JLabel("Login to your account");
         JLabel enterUsernameT = new JLabel("Enter Username: ");
         JLabel enterPasswordT = new JLabel("Enter Password: ");
         JTextField usernameF = new JTextField();
         JPasswordField passwordF = new JPasswordField();
         JButton acceptBtn = new JButton("Login");
+        loginErrorT = new JLabel();
+
+        JLabel homeT = new JLabel("You successfully logged in");
+
+        startScreen.setBounds(0, 0, START_WIDTH, START_HEIGHT);
+        loginScreen.setBounds(0, 0, START_WIDTH, START_HEIGHT);
+        homeScreen.setBounds(0, 0, START_WIDTH, START_HEIGHT);
 
         loginBtn.setBounds(acceptBtnX - acceptBtnW, acceptBtnY - acceptBtnY / 2, acceptBtnW, acceptBtnH);
         signupBtn.setBounds(acceptBtnX, acceptBtnY - acceptBtnY / 2, acceptBtnW, acceptBtnH);
         
         loginT.setBounds(acceptBtnX - acceptBtnW / 2, acceptBtnY - acceptBtnY / 2 - 60, acceptBtnW, 20);
+        enterUsernameT.setBounds(20, acceptBtnY - acceptBtnY / 2 - 40, acceptBtnW * 2, 20);
         usernameF.setBounds(acceptBtnX - acceptBtnW / 2, acceptBtnY - acceptBtnY / 2 - 40, acceptBtnW, 20);
+        enterPasswordT.setBounds(20, acceptBtnY - acceptBtnY / 2 - 20, acceptBtnW * 2, 20);
         passwordF.setBounds(acceptBtnX - acceptBtnW / 2, acceptBtnY - acceptBtnY / 2 - 20, acceptBtnW, 20);
         acceptBtn.setBounds(acceptBtnX - acceptBtnW / 2, acceptBtnY - acceptBtnY / 2, acceptBtnW, 20);
+        loginErrorT.setBounds(acceptBtnX - acceptBtnW / 2, acceptBtnY - acceptBtnY / 2 + 20, acceptBtnW * 2, 20);
+
+        homeT.setBounds(acceptBtnX - acceptBtnW / 2, acceptBtnY - acceptBtnY / 2, acceptBtnW * 2, 20);
 
         loginBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 // loginScreenB = true;
-                changeToNewScreen("Login");
+                changeToNewScreen(ScreenNames.LOGIN);
+                loginT.setText("Login to your account");
             }
         });
 
@@ -78,7 +90,8 @@ public class DisplayPresenter implements OutputBoundary {
             @Override
             public void actionPerformed(ActionEvent e){
                 // loginScreenB = false;
-                changeToNewScreen("Login");
+                changeToNewScreen(ScreenNames.LOGIN);
+                loginT.setText("Signup for a account");
             }
         });
 
@@ -97,26 +110,29 @@ public class DisplayPresenter implements OutputBoundary {
         startScreen.add(signupBtn);
 
         loginScreen.add(loginT);
+        loginScreen.add(enterUsernameT);
         loginScreen.add(usernameF);
+        loginScreen.add(enterPasswordT);
         loginScreen.add(passwordF);
         loginScreen.add(acceptBtn);
-        
-        con.add(ScreenNames.START.name(), startScreen);
-        con.add(ScreenNames.LOGIN.name(), loginScreen);
-        crd.show(con, ScreenNames.START.name());
-        // crd.show(frame, "Login");
+        loginScreen.add(loginErrorT);
 
-        /*
-        con.setLayout(crd);
-        con.add(loginBtn);
-        */        
-        /*
+        homeScreen.add(homeT);
+
+        frame.add(startScreen);
+        frame.add(loginScreen);
+        frame.add(homeScreen);
+
         startScreen.setEnabled(true);
         startScreen.setLayout(null);
         startScreen.setVisible(true);
         loginScreen.setEnabled(true);
         loginScreen.setLayout(null);
-        loginScreen.setVisible(true);*/
+        loginScreen.setVisible(true);
+        homeScreen.setEnabled(true);
+        homeScreen.setLayout(null);
+        homeScreen.setVisible(true);
+        changeToNewScreen(ScreenNames.START);  
     }
 
     private void update(){
@@ -134,21 +150,38 @@ public class DisplayPresenter implements OutputBoundary {
         acceptBtnH = (int) (60 + frame.getHeight() * 0.1);
     }
 
-    private void changeToNewScreen(String screenName){
-        crd.show(con, screenName);
+    private void changeToNewScreen(ScreenNames screenName){
+        // for (Component c : frame.getComponents()) {
+        //     c.setVisible(false);
+        // }
+        startScreen.setVisible(false);
+        loginScreen.setVisible(false);
+        homeScreen.setVisible(false);
+        // homeScreen.setVisible(true);
+        switch(screenName){
+            case START:
+                startScreen.setVisible(true);
+            case LOGIN:
+                loginScreen.setVisible(true);
+            case HOME:
+                homeScreen.setVisible(true);
+        }
     }
 
     @Override
     public void updateLoginState(Boolean success, String message) {
         if(success){
             //change to logged in screen
-            
+            changeToNewScreen(ScreenNames.HOME);
         }else{
             //Show message for the reason of failure
+            changeToNewScreen(ScreenNames.LOGIN);
+            loginErrorT.setText(message);
         }
+        
     }
 
     private enum ScreenNames {
-        START, LOGIN
+        START, LOGIN, HOME
     }
 }
