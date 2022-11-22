@@ -9,35 +9,35 @@ public class Statistics implements Serializable {
     /**
      * The maximum level for any one of this Mariogatchi's stats.
      */
-    private int maxLevel;
+    private final int maxLevel;
     /**
      * Mariogatchi's hunger level.
      */
-    private int hunger;
+    private final int hunger;
     /**
      * Mariogatchi's energy level.
      */
-    private int energy;
+    private final int energy;
     /**
      * Mariogatchi's level of cleanliness.
      */
-    private int cleanliness;
+    private final int cleanliness;
     /**
      * Mariogatchi's happiness level.
      */
-    private int happiness;
+    private final int happiness;
     /**
      * Mariogatchi's agility level.
      */
-    private int agility;
+    private final int agility;
     /**
      * Mariogatchi's strategy level.
      */
-    private int strategy;
+    private final int strategy;
     /**
      * The last time this Mariogatchi's stats were checked.
      */
-    private long lastCheckTime;
+    private final long lastCheckTime;
 
 
     /**
