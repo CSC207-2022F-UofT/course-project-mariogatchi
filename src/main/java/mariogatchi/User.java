@@ -1,9 +1,11 @@
+package mariogatchi;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class User implements Serializable{
     private String name;
-    private List<Inventory> inventory;
+    private Inventory inventory;
     private List<Mariogatchi> mariogatchis;
     private List<User> friends;
 
@@ -19,11 +21,11 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public List<Inventory> getInventory(){
+    public Inventory getInventory(){
         return inventory;
     }
 
-    public void setInventory(List<Inventory> inventory){
+    public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
 
