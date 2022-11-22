@@ -32,17 +32,17 @@ public class Mariogatchi {
         stats = new Statistics(rarity);
     }
 
-    /* Gets the level of our mariogatchi.Mariogatchi */
+    /* Gets the level of the mariogatchi */
     public int getLvl() { return this.lvl; }
 
 
-    /* Gets the name of our mariogatchi.Mariogatchi */
+    /* Gets the name of the mariogatchi */
     public String getName() { return this.name; }
 
-    /* Gets the rarity of our mariogatchi.Mariogatchi */
+    /* Gets the rarity of the mariogatchi*/
     public String getRarity() { return this.rarity; }
 
-    /* Gets the avatar of our mariogatchi.Mariogatchi */
+    /* Gets the avatar of the mariogatchi */
     public Image getAvatar() { return this.avatar; }
 
     @Override
