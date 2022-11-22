@@ -96,28 +96,28 @@ public class Statistics implements Serializable {
 
         switch (stat.toLowerCase()){//use switch case for efficiency
             case "hunger":
-                if(this.hunger >=(10*factor))
-                    this.hunger-=(10*factor);
+                if(this.hunger >=(factor))
+                    this.hunger-=(factor);
                 break;
             case "energy":
-                if(this.energy >=(10*factor))
-                    this.energy-=(10*factor);
+                if(this.energy >=(factor))
+                    this.energy-=(factor);
                 break;
             case "cleanliness":
-                if(this.cleanliness >=(10*factor))
-                    this.cleanliness-=(10 * factor);
+                if(this.cleanliness >=(factor))
+                    this.cleanliness-=(factor);
                 break;
             case "happiness":
-                if(this.happiness >=(10*factor))
-                    this.happiness-=(10 * factor);
+                if(this.happiness >=(factor))
+                    this.happiness-=(factor);
                 break;
             case "agility":
-                if(this.agility >=(10*factor))
-                    this.agility-=(10 * factor);
+                if(this.agility >=(factor))
+                    this.agility-=(factor);
                 break;
             case "strategy":
-                if(this.strategy >=(10*factor))
-                    this.strategy-=(10 * factor);
+                if(this.strategy >=(factor))
+                    this.strategy-=(factor);
                 break;
         }
 
@@ -129,38 +129,38 @@ public class Statistics implements Serializable {
          */
         switch (stat.toLowerCase()){
             case "hunger":
-                if(this.hunger<=maxLevel-((10*factor)))
-                    this.hunger+=(10*factor);
+                if(this.hunger<=maxLevel-((factor)))
+                    this.hunger+=(factor);
                 else
                     this.hunger =maxLevel;
                 break;
             case "energy":
-                if(this.energy<=maxLevel-((10*factor)))
-                    this.energy+=(10*factor);
+                if(this.energy<=maxLevel-((factor)))
+                    this.energy+=(factor);
                 else
                     this.energy =maxLevel;
                 break;
             case "cleanliness":
-                if(this.cleanliness<=maxLevel-((10*factor)))
-                    this.cleanliness+=(10*factor);
+                if(this.cleanliness<=maxLevel-((factor)))
+                    this.cleanliness+=(factor);
                 else
                     this.cleanliness = maxLevel;
                 break;
             case "happiness":
-                if(this.happiness <= maxLevel - ((10*factor)))
-                    this.happiness += (10*factor);
+                if(this.happiness <= maxLevel - ((factor)))
+                    this.happiness += (factor);
                 else
                     this.happiness = maxLevel;
                 break;
             case "agility":
-                if(this.agility<=maxLevel-((10*factor)))
-                    this.agility+=(10*factor);
+                if(this.agility<=maxLevel-((factor)))
+                    this.agility+=(factor);
                 else
                     this.agility =maxLevel;
                 break;
             case "strategy":
-                if(this.strategy<=maxLevel-((10*factor)))
-                    this.strategy+=(10*factor);
+                if(this.strategy<=maxLevel-((factor)))
+                    this.strategy+=(factor);
                 else
                     this.strategy = maxLevel;
                 break;
