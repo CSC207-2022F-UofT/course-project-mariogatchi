@@ -1,28 +1,21 @@
-package mariogatchi;
+package Mariogatchi;
 
-import java.io.*;
-import java.text.*;
-import java.time.*;
 
-public class TimeRunner implements Serializable {
+public class TimeRunner implements TimeInputBoundary {
 
-    private long time;
-    public TimeRunner(){
-        this.time = System.currentTimeMillis();
-    }
-    public long difference(int time){
-        long  diff = 0;
+    private final TimePresenter PRESENTER;
 
-        diff = (System.currentTimeMillis() - time)/1000;
-        return diff;
-
+    public TimeRunner(TimePresenter presenter) {
+        this.PRESENTER = presenter;
     }
 
-    public String displayTime(){
-
-        String time = LocalDateTime.now().toString();
-        return time;
-
+    @Override
+    /*
+      Check how much time has passed since last action and decrement stats
+     */
+    public TimeResponseModel checkPassedTime(TimeRequestModel requestModel) {
+        long timeDiff = requestModel.getStats().statDecay(requestModel.getTime());
+        return this.PRESENTER.prepareSuccessView(new TimeResponseModel(requestModel.getStats(), timeDiff));
     }
 
 }

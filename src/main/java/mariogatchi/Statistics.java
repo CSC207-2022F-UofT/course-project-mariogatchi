@@ -1,4 +1,4 @@
-package mariogatchi;
+package Mariogatchi;
 
 import java.io.Serializable;
 
@@ -87,6 +87,161 @@ public class Statistics implements Serializable {
 
     public long getLastCheckTime(){
         return this.lastCheckTime;
+    }
+
+    public void reduceStat(String stat, int factor){
+        /**
+         * make sure to check for string errors
+         */
+
+        switch (stat.toLowerCase()){//use switch case for efficiency
+            case "hunger":
+                if(this.hunger >=(10*factor))
+                    this.hunger-=(10*factor);
+                break;
+            case "energy":
+                if(this.energy >=(10*factor))
+                    this.energy-=(10*factor);
+                break;
+            case "cleanliness":
+                if(this.cleanliness >=(10*factor))
+                    this.cleanliness-=(10 * factor);
+                break;
+            case "happiness":
+                if(this.happiness >=(10*factor))
+                    this.happiness-=(10 * factor);
+                break;
+            case "agility":
+                if(this.agility >=(10*factor))
+                    this.agility-=(10 * factor);
+                break;
+            case "strategy":
+                if(this.strategy >=(10*factor))
+                    this.strategy-=(10 * factor);
+                break;
+        }
+
+    }
+
+    public void increaseStat(String stat, int factor){
+        /**
+         * make sure to check for string errors
+         */
+        switch (stat.toLowerCase()){
+            case "hunger":
+                if(this.hunger<=maxLevel-((10*factor)))
+                    this.hunger+=(10*factor);
+                else
+                    this.hunger =maxLevel;
+                break;
+            case "energy":
+                if(this.energy<=maxLevel-((10*factor)))
+                    this.energy+=(10*factor);
+                else
+                    this.energy =maxLevel;
+                break;
+            case "cleanliness":
+                if(this.cleanliness<=maxLevel-((10*factor)))
+                    this.cleanliness+=(10*factor);
+                else
+                    this.cleanliness = maxLevel;
+                break;
+            case "happiness":
+                if(this.happiness <= maxLevel - ((10*factor)))
+                    this.happiness += (10*factor);
+                else
+                    this.happiness = maxLevel;
+                break;
+            case "agility":
+                if(this.agility<=maxLevel-((10*factor)))
+                    this.agility+=(10*factor);
+                else
+                    this.agility =maxLevel;
+                break;
+            case "strategy":
+                if(this.strategy<=maxLevel-((10*factor)))
+                    this.strategy+=(10*factor);
+                else
+                    this.strategy = maxLevel;
+                break;
+        }
+    }
+
+    public int getStat(String stat){
+        return switch (stat.toLowerCase()) {
+            case "hunger" -> this.hunger;
+            case "energy" -> this.energy;
+            case "cleanliness" -> this.cleanliness;
+            case "happiness" -> this.happiness;
+            case "agility" -> this.agility;
+            case "strategy" -> this.strategy;
+            default -> 0;
+        };
+
+    }
+
+    public void statChange(String func){
+
+        switch(func.toLowerCase()){
+            case "decay":
+                reduceStat("hunger",1);
+                reduceStat("energy", 1);
+                reduceStat("cleanliness", 1);
+                reduceStat("happiness", 1);
+                reduceStat("agility", 1);
+                reduceStat("strategy", 1);
+                break;
+            case "feed":
+                increaseStat("happiness", 1);
+                increaseStat("energy", 1);
+                increaseStat("hunger", 2);
+
+            case "bathe":
+                increaseStat("happiness", 1);
+                increaseStat("cleanliness", 1);
+
+                break;
+            case "walk":
+                increaseStat("happiness", 1);
+                reduceStat("energy", 1);
+                reduceStat("cleanliness", 1);
+                break;
+            case "sleep":
+                increaseStat("happiness", 2);
+                this.energy = maxLevel;
+                reduceStat("cleanliness", 1);
+                reduceStat("hunger", 1);
+                break;
+            case "train":
+                increaseStat("agility", 1);
+                increaseStat("strategy", 1);
+                reduceStat("energy",1 );
+                reduceStat("cleanliness", 1);
+                break;
+            case "play":
+                increaseStat("happiness", 1);
+                reduceStat("energy", 1);
+                break;
+        }
+    }
+
+    /**
+     * Decay mariogatchi's stats due to passed time.
+     * @param currentTime - current time as millis long
+     * @return how much time has elapsed (current - lastCheck)
+     */
+    public long statDecay(long currentTime){
+        long elapsedTime = currentTime - this.lastCheckTime;
+        // how many intervals of 30 minutes have passed
+        long intervals30min = elapsedTime / (30 * 60 * 1000);
+        // decrement stats by 2 for each hour (1 per 30min)
+        int reduceBy =  (int) intervals30min;
+        reduceStat("hunger", reduceBy);
+        reduceStat("energy", reduceBy);
+        reduceStat("cleanliness", reduceBy);
+        reduceStat("happiness", reduceBy);
+        this.lastCheckTime = currentTime;
+        return elapsedTime;
     }
 
 }
