@@ -3,45 +3,45 @@ package mariogatchi;
 import java.io.Serializable;
 
 /**
- * Statistics for a Mariogatchi creature
+ * Statistics for a mariogatchi.Mariogatchi creature
  */
 public class Statistics implements Serializable {
     /**
-     * The maximum level for any one of this Mariogatchi's stats.
+     * The maximum level for any one of this mariogatchi.Mariogatchi's stats.
      */
     private int maxLevel;
     /**
-     * Mariogatchi's hunger level.
+     * mariogatchi.Mariogatchi's hunger level.
      */
     private int hunger;
     /**
-     * Mariogatchi's energy level.
+     * mariogatchi.Mariogatchi's energy level.
      */
     private int energy;
     /**
-     * Mariogatchi's level of cleanliness.
+     * mariogatchi.Mariogatchi's level of cleanliness.
      */
     private int cleanliness;
     /**
-     * Mariogatchi's happiness level.
+     * mariogatchi.Mariogatchi's happiness level.
      */
     private int happiness;
     /**
-     * Mariogatchi's agility level.
+     * mariogatchi.Mariogatchi's agility level.
      */
     private int agility;
     /**
-     * Mariogatchi's strategy level.
+     * mariogatchi.Mariogatchi's strategy level.
      */
     private int strategy;
     /**
-     * The last time this Mariogatchi's stats were checked.
+     * The last time this mariogatchi.Mariogatchi's stats were checked.
      */
     private long lastCheckTime;
 
 
     /**
-     * Initiate Stats for a new Mariogatchi.
+     * Initiate Stats for a new mariogatchi.Mariogatchi.
      * @param mariogatchiKind: This mariogatchi's rarity.
      */
     public Statistics(String mariogatchiKind){
@@ -88,5 +88,26 @@ public class Statistics implements Serializable {
     public long getLastCheckTime(){
         return this.lastCheckTime;
     }
+
+    public void LevelUp(){
+        this.maxLevel += 50;
+    }
+    public void ResetAgility(){
+        if(this.agility > this.maxLevel){
+            this.agility = this.agility - this.maxLevel;
+        }
+        else{
+            this.agility = 0;
+        }
+    }
+    public void ResetStrategy(){
+        if(this.strategy > this.maxLevel){
+            this.strategy = this.strategy - this.maxLevel;
+        }
+        else{
+            this.strategy = 0;
+        }
+    }
+
 
 }
