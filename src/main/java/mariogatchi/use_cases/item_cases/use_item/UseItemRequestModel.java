@@ -1,6 +1,6 @@
 package mariogatchi.use_cases.item_cases.use_item;
 
-import mariogatchi.entities.Env;
+import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.items.Item;

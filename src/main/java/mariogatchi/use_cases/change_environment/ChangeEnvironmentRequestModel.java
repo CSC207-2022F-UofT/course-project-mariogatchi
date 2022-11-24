@@ -1,6 +1,6 @@
 package mariogatchi.use_cases.change_environment;
 
-import mariogatchi.entities.Environment;
+import mariogatchi.entities.environments.Environment;
 import mariogatchi.entities.User;
 
 public class ChangeEnvironmentRequestModel{

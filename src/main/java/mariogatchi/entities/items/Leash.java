@@ -1,6 +1,6 @@
 package mariogatchi.entities.items;
 
-import mariogatchi.entities.Env;
+import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
 

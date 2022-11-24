@@ -1,4 +1,4 @@
-package mariogatchi.entities;
+package mariogatchi.entities.environments;
 
 public class Forest extends Environment{
     /**

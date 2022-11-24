@@ -1,6 +1,6 @@
 package mariogatchi.use_cases.change_environment;
 
-import mariogatchi.entities.Environment;
+import mariogatchi.entities.environments.Environment;
 
 public class ChangeEnvironmentResponseModel{
     private final Environment NEWENVIRONMENT; // the environment of the user after it has been changed
