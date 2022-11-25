@@ -1,6 +1,7 @@
 package mariogatchi.use_cases.info_access;
 
 import mariogatchi.entities.Statistics;
+import mariogatchi.entities.Statistics.Stats;
 
 public class InfoAccessRequestModel {
     /**
@@ -10,7 +11,7 @@ public class InfoAccessRequestModel {
     /**
      * Specific stat to check
      */
-    private String statToCheck;
+    private Stats statToCheck;
 
     /**
      The input data needed for the InfoAccess use case
@@ -18,7 +19,7 @@ public class InfoAccessRequestModel {
      @param statsName - the name of the statistic to check
       */
 
-    public InfoAccessRequestModel (Statistics stats, String statName) {
+    public InfoAccessRequestModel (Statistics stats, Stats statName) {
         this.stats = stats;
         this.statToCheck = statName;
     }
@@ -29,7 +30,7 @@ public class InfoAccessRequestModel {
     }
 
     // return statToCheck
-    public String getStatToCheck() {
+    public Stats getStatToCheck() {
         return this.statToCheck;
     }
 

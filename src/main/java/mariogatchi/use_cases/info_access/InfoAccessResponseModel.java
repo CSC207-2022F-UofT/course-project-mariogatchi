@@ -1,10 +1,12 @@
 package mariogatchi.use_cases.info_access;
 
+import mariogatchi.entities.Statistics.Stats;
+
 public class InfoAccessResponseModel {
     /**
      * What stat this response is about
      */
-    private String statType;
+    private Stats statType;
     /**
      * The current value of that stat
      */
@@ -16,12 +18,12 @@ public class InfoAccessResponseModel {
      @param value - the value of that stat
       */
 
-    public InfoAccessResponseModel(String type, int value) {
+    public InfoAccessResponseModel(Stats type, int value) {
         this.statType = type;
         this.currentValue = value;
     }
 
-    public String getStatType(){
+    public Stats getStatType(){
         return this.statType;
     }
 

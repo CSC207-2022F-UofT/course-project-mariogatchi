@@ -38,13 +38,23 @@ public class Statistics implements Serializable {
      * The last time this Mariogatchi's stats were checked.
      */
     private long lastCheckTime;
+
+    /**
+     * The starting level for common mariogatchi
+     */
+    private final int STARTING_LEVEL_COMMON = 50;
+
+    /**
+     * The starting level for rare mariogatchi
+     */
+    private final int STARTING_LEVEL_RARE= 75;
     
     
-    enum Operator{
+    public enum Operator{
          ADD,
          SUBTRACT
     }
-     enum Stats{
+    public enum Stats{
          HUNGER,
          ENERGY,
          CLEANLINESS,
@@ -54,13 +64,16 @@ public class Statistics implements Serializable {
          LASTCHECKTIME
     }
 
+
     /**
      * Initiate Stats for a new Mariogatchi.
      * @param mariogatchiKind: This mariogatchi's rarity.
      */
     public Statistics(String mariogatchiKind){
-        int startingValue = 50;
-        if(mariogatchiKind.equals("rare")) startingValue = 75;
+        int startingValue = STARTING_LEVEL_COMMON;
+        if(mariogatchiKind.equals("rare")){
+            startingValue = STARTING_LEVEL_RARE;
+        }
         this.maxLevel = startingValue;
         this.hunger = startingValue;
         this.energy = startingValue;
@@ -139,40 +152,40 @@ public class Statistics implements Serializable {
         if(operate == Operator.SUBTRACT && factor > 0){
             switch (stat){
                 case HUNGER:
-                    if(this.hunger<=max-((factor)))
+                    if(this.hunger<= this.maxLevel-((factor)))
                         this.hunger+=(factor);
                     else
-                        this.hunger =max;
+                        this.hunger = this.maxLevel;
                     break;
                 case ENERGY:
-                    if(this.energy<=max-((factor)))
+                    if(this.energy<= this.maxLevel-((factor)))
                         this.energy+=(factor);
                     else
-                        this.energy =max;
+                        this.energy = this.maxLevel;
                     break;
                 case CLEANLINESS:
-                    if(this.cleanliness<=max-((factor)))
+                    if(this.cleanliness<= this.maxLevel -((factor)))
                         this.cleanliness+=(factor);
                     else
-                        this.cleanliness = max;
+                        this.cleanliness = this.maxLevel;
                     break;
                 case HAPPINESS:
-                    if(this.happiness <= max - ((factor)))
+                    if(this.happiness <= this.maxLevel - ((factor)))
                         this.happiness += (factor);
                     else
-                        this.happiness = max;
+                        this.happiness = this.maxLevel;
                     break;
                 case AGILITY:
-                    if(this.agility<=max-((factor)))
+                    if(this.agility<= this.maxLevel -((factor)))
                         this.agility+=(factor);
                     else
-                        this.agility =max;
+                        this.agility = this.maxLevel;
                     break;
                 case STRATEGY:
-                    if(this.strategy<=max-((factor)))
+                    if(this.strategy<= this.maxLevel -((factor)))
                         this.strategy+=(factor);
                     else
-                        this.strategy = max;
+                        this.strategy = this.maxLevel;
                     break;
             }
         }
