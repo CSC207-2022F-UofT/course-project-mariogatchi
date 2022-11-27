@@ -51,10 +51,4 @@ public class Account implements Serializable {
     public void delUser(User user) {
         this.users.remove(user);
     }
-
-
 }
-
-
-
-
