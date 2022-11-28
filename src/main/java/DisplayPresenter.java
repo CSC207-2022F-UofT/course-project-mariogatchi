@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class DisplayPresenter implements OutputBoundary {
+    private final String TITLE = "Mariogatchi";
     private final int START_WIDTH = 400;
     private final int START_HEIGHT = 400;
     private JFrame frame;
@@ -23,27 +24,32 @@ public class DisplayPresenter implements OutputBoundary {
     private int acceptBtnY;
     private int acceptBtnW;
     private int acceptBtnH;
-    // private Boolean loginScreenB = false;
+    private InputControllerLogin icl;
+    private Boolean loginScreenB;
 
     // public static void main(String[] args) {
     //     DisplayPresenter dp = new DisplayPresenter();
         
     // }
 
-    DisplayPresenter(){
-        frame = new JFrame();
+    DisplayPresenter(InputControllerLogin inputControllerLogin){
+        icl = inputControllerLogin;
+        frame = new JFrame(TITLE);
         startScreen = new JPanel();
         loginScreen = new JPanel();
         homeScreen = new JPanel();
+
+        update();
+        draw();
 
         //frame.add(startScreen);
         //frame.add(loginScreen);
         frame.setSize(START_WIDTH, START_HEIGHT);
         //frame.add("Login", loginScreen);
         frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        update();
-        draw();
+        
     }
 
     private void draw(){
@@ -80,7 +86,7 @@ public class DisplayPresenter implements OutputBoundary {
         loginBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                // loginScreenB = true;
+                loginScreenB = true;
                 changeToNewScreen(ScreenNames.LOGIN);
                 loginT.setText("Login to your account");
             }
@@ -89,7 +95,7 @@ public class DisplayPresenter implements OutputBoundary {
         signupBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                // loginScreenB = false;
+                loginScreenB = false;
                 changeToNewScreen(ScreenNames.LOGIN);
                 loginT.setText("Signup for a account");
             }
@@ -102,7 +108,7 @@ public class DisplayPresenter implements OutputBoundary {
                 String password = new String(passwordF.getPassword());
                 // System.out.println(username + " " + password);
                 //output the credentials
-                //{command.login, username, password};
+                icl.request(loginScreenB ? icl.LOGIN : icl.SIGNUP, List.of(icl.LOGIN, username, password));
             }
         });
 
@@ -178,7 +184,6 @@ public class DisplayPresenter implements OutputBoundary {
             changeToNewScreen(ScreenNames.LOGIN);
             loginErrorT.setText(message);
         }
-        
     }
 
     private enum ScreenNames {
