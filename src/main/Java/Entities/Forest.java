@@ -7,6 +7,6 @@ public class Forest extends Environment{
 
     // constructor for forest, make a new forest class
     public Forest(){
-        super("Forest");
+        super(Env.FOREST);
     }
 }

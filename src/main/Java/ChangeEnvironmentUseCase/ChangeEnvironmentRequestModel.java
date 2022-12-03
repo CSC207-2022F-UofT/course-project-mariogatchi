@@ -1,7 +1,7 @@
 package ChangeEnvironmentUseCase;
 
-import Entities.Environment;
 import Entities.User;
+import Entities.Environment;
 
 public class ChangeEnvironmentRequestModel{
     private final User USER; // the user who wants to change their environment

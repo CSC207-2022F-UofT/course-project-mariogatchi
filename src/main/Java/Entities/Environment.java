@@ -1,21 +1,19 @@
 package Entities;
 
 public abstract class Environment{
-    private final String NAME; // the name of the environment as a string
-
+    private final Env NAME; // the name of the environment as an enum
     /**
-     * Construct an environment
+     * Abstract Constructor
      *
      * @param name The name of the Environment
      */
-
     // constructor
-    public Environment(String name){
+    public Environment(Env name){
         this.NAME = name;
     }
 
     // getter function for name, return name
-    public String getName(){
+    public Env getName(){
         return NAME;
     }
 }
