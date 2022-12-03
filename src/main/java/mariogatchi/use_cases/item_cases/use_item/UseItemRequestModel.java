@@ -4,6 +4,7 @@ import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.items.Item;
+import mariogatchi.use_cases.item_cases.add_item.AddItemInputBoundary;
 
 public class UseItemRequestModel {
     private Item itemToUse;

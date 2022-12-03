@@ -16,9 +16,9 @@ import java.util.Map;
 public class GameInteractor implements GameInputBoundary{
 
     private final Apple APPLE = new Apple();
-    private final Map<Item, Integer> DEFAULT_ITENS = Map.of(APPLE, 1);
+    private final Map<Item.Items, Integer> DEFAULT_ITENS = Map.of(APPLE.getName(), 1);
 
-    private final Inventory DEFAULT_INVENTORY = new Inventory(DEFAULT_ITENS); // Needs work
+    private final Inventory DEFAULT_INVENTORY = new Inventory(DEFAULT_ITENS, 100); // Needs work
 
     @Override
     public void createRequest(String name) {

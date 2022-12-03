@@ -6,20 +6,21 @@ import mariogatchi.entities.items.Item;
 public class RemoveItemRequestModel {
     private Item item;
     private Inventory inventory;
-
     private int quantity;
+
 
     /*
     The input data for the RemoveItem use case
     @param item - The item to be removed from the inventory
     @param inventory - The inventory that the item is to be removed from
-    @param quantity - The amoutn of the specified item to be removed from the inventory
+    @param quantity - The amount of the specified item to be removed from the inventory
      */
 
 
-    public RemoveItemRequestModel(Item item, Inventory inventory) {
+    public RemoveItemRequestModel(Item item, Inventory inventory, Integer quantity) {
         this.item = item;
         this.inventory = inventory;
+        this.quantity = quantity;
     }
 
     // return item

@@ -26,8 +26,8 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
         if (isSame(environmentRequestModel)){ // checks to see whether the user is already in the environment they which to change to
             return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: You are already in that environment!"); // sends error message to FailView
         } else if (isLegalEnvironment(environmentRequestModel)) { // checks to see whether the input is a valid environment
-            environmentRequestModel.getUser().setEnvironment(lowerEnvironment); // changing the environment of the user by using the request model user and user input
-            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(environmentRequestModel.getUser().getEnvironment()); // use the request models changed environment as the new environment for the response model
+            environmentRequestModel.getUser().setCurrentEnv(lowerEnvironment); // changing the environment of the user by using the request model user and user input
+            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(environmentRequestModel.getUser().getCurrentEnv()); // use the request models changed environment as the new environment for the response model
             return ENVIRONMENTPRESENTER.prepareSuccessView(environmentResponseModel); // the environment was changed, SuccessView
         } else { // the environment is not a valid environment input
             return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: That is not a valid environment input!"); // sends error message to FailView

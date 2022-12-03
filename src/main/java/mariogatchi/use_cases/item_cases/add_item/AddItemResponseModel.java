@@ -8,6 +8,8 @@ public class AddItemResponseModel {
     private Inventory inventory;
     private int quantity;
 
+    private boolean added;
+
     /*
     The Response Model (output data) for the AddItem Use Case
     @param item - The item that was to be added to the inventory
@@ -15,10 +17,11 @@ public class AddItemResponseModel {
     @param quantity - The quantity of the specified item that was to be added to the inventory
      */
 
-    public AddItemResponseModel(Item item, Inventory inventory, int quantity) {
+    public AddItemResponseModel(Item item, Inventory inventory, int quantity, boolean added) {
         this.item = item;
         this.inventory = inventory;
         this.quantity = quantity;
+        this.added = added;
     }
 
     // returns the item
@@ -34,5 +37,10 @@ public class AddItemResponseModel {
     // returns the quantity
     public int getQuantity() {
         return this.getQuantity();
+    }
+
+    // return added
+    public boolean getAdded() {
+        return this.added;
     }
 }

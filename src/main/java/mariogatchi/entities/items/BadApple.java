@@ -1,20 +1,23 @@
 package mariogatchi.entities.items;
 
-import mariogatchi.entities.Statistics;
-import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.Statistics;
+import mariogatchi.entities.environments.Env;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
-public class Apple extends Item{
+public class BadApple extends Item{
 
-    public Apple() {
+    public BadApple() {
         super(Items.APPLE,
                 new HashSet<Env>(Arrays.asList(Env.HOME, Env.FOREST, Env.PARK)),
-                 new HashMap<ItemEffects, Integer>() {{
-                    put(ItemEffects.HUNGER, 10);
-                    put(ItemEffects.ENERGY, 5);
+                new HashMap<ItemEffects, Integer>() {{
+                    put(ItemEffects.HUNGER, -10);
+                    put(ItemEffects.ENERGY, -5);
                 }}
         );
     }

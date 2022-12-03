@@ -1,15 +1,18 @@
 package mariogatchi.use_cases.item_cases.use_item;
-import mariogatchi.entities.items.Items;
+import mariogatchi.entities.Statistics;
+
+import java.util.Map;
+
 public class UseItemRunner implements UseItemInputBoundary {
 
-    private final UseItemPresenter useItemPresenter;
+    private final UseItemOutputBoundary USEITEMPRESENTER;
 
     /*
     The interactor for the UseItem use case
     @param useItemPresenter - the presenter (output boundary object) for this use case.
      */
-    public UseItemRunner(UseItemPresenter useItemPresenter) {
-        this.useItemPresenter = useItemPresenter;
+    public UseItemRunner(UseItemOutputBoundary useItemOutputBoundary) {
+        this.USEITEMPRESENTER = useItemOutputBoundary;
     }
 
 
@@ -20,28 +23,31 @@ public class UseItemRunner implements UseItemInputBoundary {
     public UseItemResponseModel useItem(UseItemRequestModel requestModel) {
         try {
             if (requestModel.getItemToUse().itemCanBeUsed(
-                    requestModel.getItemToUse(),
+                    requestModel.getItemToUse().getName(),
                     requestModel.getCurrentEnvironment(),
                     requestModel.getInventory()))
             {
-                requestModel.getItemToUse().useThisItem(
+                Map<Statistics.Stats, Integer> statToValue = requestModel.getItemToUse().useThisItem(
                         requestModel.getMariogatchi(),
                         requestModel.getInventory()
                 );
 
                 UseItemResponseModel responseModel = new UseItemResponseModel(
                         requestModel.getInventory(),
-                        requestModel.getItemToUse().getName());
+                        requestModel.getItemToUse().getName(),
+                        requestModel.getMariogatchi(),
+                        statToValue
+                        );
 
-                return useItemPresenter.prepareSuccessView(responseModel);
+                return USEITEMPRESENTER.useItemPrepareSuccessView(responseModel);
             }
             else {
-                return useItemPresenter.prepareFailView("mariogatchi.Item cannot be used");
+                return USEITEMPRESENTER.useItemPrepareFailureView("Item cannot be used");
             }
             
         }
         catch (Exception e) {
-            return useItemPresenter.prepareFailView(e.getMessage());
+            return USEITEMPRESENTER.useItemPrepareFailureView(e.getMessage());
         }
     }
 
