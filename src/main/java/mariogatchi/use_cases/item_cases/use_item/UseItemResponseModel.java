@@ -7,12 +7,12 @@ import mariogatchi.entities.Statistics;
 import java.util.Map;
 
 public class UseItemResponseModel {
-    private Inventory inventory;
+    private final Inventory INVENTORY;
 
-    private Items name;
+    private final Items ITEM_NAME;
 
-    private Mariogatchi gatchi;
-    private Map<Statistics.Stats, Integer> statToValue;
+    private final Mariogatchi GATCHI;
+    private final Map<Statistics.Stats, Integer> STAT_TO_VALUE;
 
 
 
@@ -23,24 +23,29 @@ public class UseItemResponseModel {
      */
     public UseItemResponseModel(Inventory inventory, Items name, Mariogatchi gatchi,
                                 Map<Statistics.Stats, Integer> statToValue) {
-        this.inventory = inventory;
-        this.name = name;
-        this.gatchi = gatchi;
-        this.statToValue = statToValue;
+        this.INVENTORY = inventory;
+        this.ITEM_NAME = name;
+        this.GATCHI = gatchi;
+        this.STAT_TO_VALUE = statToValue;
     }
 
     // returns the Inventory
     public Inventory getInventory() {
-        return this.inventory;
+        return this.INVENTORY;
     }
 
     // returns the name of the Item
     public Items getName() {
-        return this.name;
+        return this.ITEM_NAME;
     }
 
     // returns the statToValue Map
     public Map<Statistics.Stats, Integer> getStatToValue() {
-        return statToValue;
+        return this.STAT_TO_VALUE;
+    }
+
+    // returns the Mariogatchi
+    public Mariogatchi getMariogatchi() {
+        return this.GATCHI;
     }
 }

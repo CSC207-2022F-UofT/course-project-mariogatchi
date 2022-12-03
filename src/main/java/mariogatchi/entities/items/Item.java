@@ -12,13 +12,13 @@ import java.util.Set;
 
 public abstract class Item implements Serializable {
     // the name of the Item
-    private Items name;
+    private final Items NAME;
 
     // set of Environments that the Item can be used in
-    private Set<Env> eligibleEnvironments;
+    private final Set<Env> ELIGIBLE_ENVIRONMENTS;
 
     // a mapping of Effects to their corresponding values
-    private Map<ItemEffects, Integer> effectToValues;
+    private final Map<ItemEffects, Integer> EFFECT_TO_VALUES;
 
     public enum Items {
         /*
@@ -27,8 +27,7 @@ public abstract class Item implements Serializable {
 
         // non-reusable
         APPLE,
-        BADAPPLE,
-        TREAT,
+        BAD_APPLE,
 
         // reusable
         SPONGE,
@@ -43,8 +42,7 @@ public abstract class Item implements Serializable {
         generate reusable items
          */
         APPLE,
-        BADAPPLE,
-        TREAT
+        BAD_APPLE,
     }
 
     public enum ItemEffects {
@@ -61,9 +59,9 @@ public abstract class Item implements Serializable {
     }
 
     public Item(Items name, Set<Env> eligibleEnvironments, Map<ItemEffects, Integer> effectToValues) {
-        this.name = name;
-        this.eligibleEnvironments = eligibleEnvironments;
-        this.effectToValues = effectToValues;
+        this.NAME = name;
+        this.ELIGIBLE_ENVIRONMENTS = eligibleEnvironments;
+        this.EFFECT_TO_VALUES = effectToValues;
     }
 
 
@@ -81,22 +79,7 @@ public abstract class Item implements Serializable {
     ABSTRACT
      */
     public Items getName(){
-        return this.name;
-    }
-
-    /*
-    returns the set of environments that the Item can be used in
-     */
-    public Set<Env> getEligibleEnvironments() {
-        return this.eligibleEnvironments;
-    }
-
-    /*
-    /*
-    returns a mapping of the Items effects to their corresponding values
-     */
-    public Map<ItemEffects, Integer> getEffectValues() {
-        return this.effectToValues;
+        return this.NAME;
     }
 
     /*
@@ -111,17 +94,17 @@ public abstract class Item implements Serializable {
     return whether mariogatchi.Item can be used in the current Environment
      */
     private boolean isEligibleEnvironment(Env environment) {
-        return this.eligibleEnvironments.contains(environment);
+        return this.ELIGIBLE_ENVIRONMENTS.contains(environment);
     }
 
-    /* update the mariogatchi's statistics based on this Items' itemEffects and their corresponding values
-    then return a mapping of the mariogatchi's statistics to their updated values.
+    /* update the Mariogatchi statistics based on this Item's itemEffects and their corresponding values
+    then return a mapping of the Mariogatchi statistics to their updated values.
     */
     protected Map<Statistics.Stats, Integer> updateStatistics(Mariogatchi gatchi) {
         Statistics gatchiStats = gatchi.getGatchiStats();
         Map<Statistics.Stats, Integer> statToValue = new HashMap<>();
 
-        for (Map.Entry<ItemEffects, Integer> entry: this.effectToValues.entrySet()) {
+        for (Map.Entry<ItemEffects, Integer> entry: this.EFFECT_TO_VALUES.entrySet()) {
 
             ItemEffects itemEffect = entry.getKey();
             Integer value = entry.getValue();
@@ -131,27 +114,14 @@ public abstract class Item implements Serializable {
                 value = value * -1;
             }
 
-            Statistics.Stats statEnum= null;
-                switch (itemEffect) {
-                    case HUNGER:
-                        statEnum = Statistics.Stats.HUNGER;
-                        break;
-                    case ENERGY:
-                        statEnum = Statistics.Stats.ENERGY;
-                        break;
-                    case CLEANLINESS:
-                        statEnum = Statistics.Stats.CLEANLINESS;
-                        break;
-                    case HAPPINESS:
-                        statEnum = Statistics.Stats.HAPPINESS;
-                        break;
-                    case AGILITY:
-                        statEnum = Statistics.Stats.AGILITY;
-                        break;
-                    case STRATEGY:
-                        statEnum = Statistics.Stats.STRATEGY;
-                        break;
-                }
+            Statistics.Stats statEnum = switch (itemEffect) {
+                case HUNGER -> Statistics.Stats.HUNGER;
+                case ENERGY -> Statistics.Stats.ENERGY;
+                case CLEANLINESS -> Statistics.Stats.CLEANLINESS;
+                case HAPPINESS -> Statistics.Stats.HAPPINESS;
+                case AGILITY -> Statistics.Stats.AGILITY;
+                case STRATEGY -> Statistics.Stats.STRATEGY;
+            };
             gatchiStats.changeStat(statEnum, value, operate);
             }
 

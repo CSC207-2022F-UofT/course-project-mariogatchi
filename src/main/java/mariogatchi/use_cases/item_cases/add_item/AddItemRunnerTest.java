@@ -22,10 +22,10 @@ public class AddItemRunnerTest {
      */
     @Test
     public void nonReusableAddOneFromNoneTest() {
-        AddItemOutputBoundary ADDITEMPRESENTER = new AddItemOutputBoundary() {
+        AddItemOutputBoundary ADD_ITEM_PRESENTER = new AddItemOutputBoundary() {
             @Override
             public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel) {
-                assertTrue(responseModel.getInventory().getQuantity(responseModel.getItem().getName()) == 1);
+                assertEquals(1, responseModel.getInventory().getQuantity(responseModel.getItem().getName()));
                 return null;
             }
 
@@ -40,14 +40,14 @@ public class AddItemRunnerTest {
         Item apple = new Apple();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<Item.Items, Integer>();
+        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
-        Integer quantityToAdd = 1;
+        int quantityToAdd = 1;
 
         // creating the RemoveItemInputBoundary
-        AddItemInputBoundary addItemRunner = new AddItemRunner(ADDITEMPRESENTER);
+        AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
         AddItemRequestModel addItemRequestModel = new AddItemRequestModel(apple, inventory, quantityToAdd);
@@ -62,10 +62,10 @@ public class AddItemRunnerTest {
      */
     @Test
     public void nonReusableAddOneFromOneTest() {
-        AddItemOutputBoundary ADDITEMPRESENTER = new AddItemOutputBoundary() {
+        AddItemOutputBoundary ADD_ITEM_PRESENTER = new AddItemOutputBoundary() {
             @Override
             public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel) {
-                assertTrue(responseModel.getInventory().getQuantity(responseModel.getItem().getName()) == 2);
+                assertEquals(2, responseModel.getInventory().getQuantity(responseModel.getItem().getName()));
                 return null;
             }
 
@@ -80,15 +80,15 @@ public class AddItemRunnerTest {
         Item apple = new Apple();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<Item.Items, Integer>();
+        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Apple().getName(), 1);
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
-        Integer quantityToAdd = 1;
+        int quantityToAdd = 1;
 
         // creating the RemoveItemInputBoundary
-        AddItemInputBoundary addItemRunner = new AddItemRunner(ADDITEMPRESENTER);
+        AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
         AddItemRequestModel addItemRequestModel = new AddItemRequestModel(apple, inventory, quantityToAdd);
@@ -98,12 +98,12 @@ public class AddItemRunnerTest {
     }
 
     /*
-    When AddItem is called with a non-reusable Item with quantity 101 when the capacity is 100, the ADDITEMPRESENTER
+    When AddItem is called with a non-reusable Item with quantity 101 when the capacity is 100, the ADD_ITEM_PRESENTER
     should call it's prepareFailureView method with the message "Item cannot be added: not enough space in inventory".
      */
     @Test
     public void nonReusableExceedsCapacityTest() {
-        AddItemOutputBoundary ADDITEMPRESENTER = new AddItemOutputBoundary() {
+        AddItemOutputBoundary ADD_ITEM_PRESENTER = new AddItemOutputBoundary() {
             @Override
             public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel) {
                 fail("prepareSuccessView was not supposed to be called");
@@ -121,14 +121,14 @@ public class AddItemRunnerTest {
         Item apple = new Apple();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<Item.Items, Integer>();
+        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
-        Integer quantityToAdd = 101;
+        int quantityToAdd = 101;
 
         // creating the RemoveItemInputBoundary
-        AddItemInputBoundary addItemRunner = new AddItemRunner(ADDITEMPRESENTER);
+        AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
         AddItemRequestModel addItemRequestModel = new AddItemRequestModel(apple, inventory, quantityToAdd);
@@ -145,10 +145,10 @@ public class AddItemRunnerTest {
      */
     @Test
     public void reusableAddWhenNotExistInInventoryTest() {
-        AddItemOutputBoundary ADDITEMPRESENTER = new AddItemOutputBoundary() {
+        AddItemOutputBoundary ADD_ITEM_PRESENTER = new AddItemOutputBoundary() {
             @Override
             public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel) {
-                assertTrue(responseModel.getInventory().getQuantity(responseModel.getItem().getName()) == 1);
+                assertEquals(1, responseModel.getInventory().getQuantity(responseModel.getItem().getName()));
                 return null;
             }
 
@@ -163,14 +163,14 @@ public class AddItemRunnerTest {
         Item leash = new Leash();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<Item.Items, Integer>();
+        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
-        Integer quantityToAdd = 1;
+        int quantityToAdd = 1;
 
         // creating the RemoveItemInputBoundary
-        AddItemInputBoundary addItemRunner = new AddItemRunner(ADDITEMPRESENTER);
+        AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
         AddItemRequestModel addItemRequestModel = new AddItemRequestModel(leash, inventory, quantityToAdd);
@@ -186,7 +186,7 @@ public class AddItemRunnerTest {
      */
     @Test
     public void reusableAddWhenExistsInInventoryTest() {
-        AddItemOutputBoundary ADDITEMPRESENTER = new AddItemOutputBoundary() {
+        AddItemOutputBoundary ADD_ITEM_PRESENTER = new AddItemOutputBoundary() {
             @Override
             public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel) {
                 fail("prepareSuccessView was not supposed to be called");
@@ -204,15 +204,15 @@ public class AddItemRunnerTest {
         Item leash = new Leash();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<Item.Items, Integer>();
+        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Leash().getName(), 1);
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
-        Integer quantityToAdd = 1;
+        int quantityToAdd = 1;
 
         // creating the RemoveItemInputBoundary
-        AddItemInputBoundary addItemRunner = new AddItemRunner(ADDITEMPRESENTER);
+        AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
         AddItemRequestModel addItemRequestModel = new AddItemRequestModel(leash, inventory, quantityToAdd);

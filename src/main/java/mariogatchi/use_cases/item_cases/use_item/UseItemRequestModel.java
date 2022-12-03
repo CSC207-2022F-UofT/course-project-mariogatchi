@@ -1,16 +1,15 @@
 package mariogatchi.use_cases.item_cases.use_item;
 
-import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.items.Item;
-import mariogatchi.use_cases.item_cases.add_item.AddItemInputBoundary;
 
 public class UseItemRequestModel {
-    private Item itemToUse;
-    private Env currentEnvironment;
-    private Mariogatchi mariogatchi;
-    private Inventory inventory;
+    private final Item ITEM_TO_USE;
+    private final Env CURRENT_ENVIRONMNENT;
+    private final Mariogatchi GATCHI;
+    private final Inventory INVENTORY;
 
     /*
     The input data needed for the use item use case
@@ -21,30 +20,30 @@ public class UseItemRequestModel {
      */
 
     public UseItemRequestModel(Item item, Env environment, Mariogatchi mariogatchi, Inventory inventory) {
-        this.itemToUse = item;
-        this.currentEnvironment = environment;
-        this.mariogatchi = mariogatchi;
-        this.inventory = inventory;
+        this.ITEM_TO_USE = item;
+        this.CURRENT_ENVIRONMNENT = environment;
+        this.GATCHI = mariogatchi;
+        this.INVENTORY = inventory;
     }
 
     // returns item
     public Item getItemToUse() {
-        return this.itemToUse;
+        return this.ITEM_TO_USE;
     }
 
     //returns the currentEnvironment
     public Env getCurrentEnvironment() {
-        return this.currentEnvironment;
+        return this.CURRENT_ENVIRONMNENT;
     }
 
     //returns mariogatchi
     public Mariogatchi getMariogatchi() {
-        return this.mariogatchi;
+        return this.GATCHI;
     }
 
     //returns inventory
     public Inventory getInventory() {
-        return this.inventory;
+        return this.INVENTORY;
     }
 
 }

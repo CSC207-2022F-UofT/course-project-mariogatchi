@@ -5,14 +5,14 @@ import java.util.Map;
 
 public class UseItemRunner implements UseItemInputBoundary {
 
-    private final UseItemOutputBoundary USEITEMPRESENTER;
+    private final UseItemOutputBoundary USE_ITEM_PRESENTER;
 
     /*
     The interactor for the UseItem use case
     @param useItemPresenter - the presenter (output boundary object) for this use case.
      */
     public UseItemRunner(UseItemOutputBoundary useItemOutputBoundary) {
-        this.USEITEMPRESENTER = useItemOutputBoundary;
+        this.USE_ITEM_PRESENTER = useItemOutputBoundary;
     }
 
 
@@ -39,15 +39,15 @@ public class UseItemRunner implements UseItemInputBoundary {
                         statToValue
                         );
 
-                return USEITEMPRESENTER.useItemPrepareSuccessView(responseModel);
+                return USE_ITEM_PRESENTER.useItemPrepareSuccessView(responseModel);
             }
             else {
-                return USEITEMPRESENTER.useItemPrepareFailureView("Item cannot be used");
+                return USE_ITEM_PRESENTER.useItemPrepareFailureView("Item cannot be used");
             }
             
         }
         catch (Exception e) {
-            return USEITEMPRESENTER.useItemPrepareFailureView(e.getMessage());
+            return USE_ITEM_PRESENTER.useItemPrepareFailureView(e.getMessage());
         }
     }
 

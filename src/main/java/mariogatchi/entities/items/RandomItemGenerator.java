@@ -13,12 +13,12 @@ public class RandomItemGenerator {
     }
 
     public Item generateRandomItem() {
-        Item.Items[] itemEnumSet = Item.Items.values();
+        Item.NonReusableItems[] itemEnumSet = Item.NonReusableItems.values();
 
         Random random_method = new Random();
         // generates a random index for the enum set based on its size
         int index = random_method.nextInt(itemEnumSet.length);
-        Item.Items newItemName = itemEnumSet[index];
+        Item.NonReusableItems newItemName = itemEnumSet[index];
 
         return this.ITEMFACTORY.getItem(newItemName);
     }

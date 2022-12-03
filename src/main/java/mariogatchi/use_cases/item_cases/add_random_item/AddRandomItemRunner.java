@@ -2,10 +2,8 @@ package mariogatchi.use_cases.item_cases.add_random_item;
 
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.RandomItemGenerator;
-import mariogatchi.use_cases.item_cases.add_item.AddItemInputBoundary;
 import mariogatchi.use_cases.item_cases.add_item.AddItemRequestModel;
 import mariogatchi.use_cases.item_cases.add_item.AddItemResponseModel;
-import mariogatchi.use_cases.item_cases.add_item.AddItemRunner;
 
 /*
 Adds a randomly generated item to the users inventory

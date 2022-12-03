@@ -7,27 +7,27 @@ import mariogatchi.entities.items.Item;
 Response model for AddRandomItem use case
  */
 public class AddRandomItemResponseModel {
-    private Item.Items itemName;
-    private Inventory inventory;
+    private final Item.Items ITEM_NAME;
+    private final Inventory INVENTORY;
 
-    private boolean added;
+    private final boolean ADDED;
 
     public AddRandomItemResponseModel(Item.Items itemName, Inventory inventory, boolean added) {
-        this.itemName = itemName;
-        this.inventory = inventory;
-        this.added = added;
+        this.ITEM_NAME = itemName;
+        this.INVENTORY = inventory;
+        this.ADDED = added;
     }
 
     public Item.Items getItemName() {
-        return this.itemName;
+        return this.ITEM_NAME;
     }
 
     public Inventory getInventory() {
-        return this.inventory;
+        return this.INVENTORY;
     }
 
     public boolean getAdded() {
-        return this.added;
+        return this.ADDED;
     }
 
 

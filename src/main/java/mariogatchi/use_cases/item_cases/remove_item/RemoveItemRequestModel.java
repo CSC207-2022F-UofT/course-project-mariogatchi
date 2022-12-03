@@ -4,9 +4,9 @@ import mariogatchi.entities.Inventory;
 import mariogatchi.entities.items.Item;
 
 public class RemoveItemRequestModel {
-    private Item item;
-    private Inventory inventory;
-    private int quantity;
+    private final Item ITEM;
+    private final Inventory INVENTORY;
+    private final int QUANTITY;
 
 
     /*
@@ -18,24 +18,24 @@ public class RemoveItemRequestModel {
 
 
     public RemoveItemRequestModel(Item item, Inventory inventory, Integer quantity) {
-        this.item = item;
-        this.inventory = inventory;
-        this.quantity = quantity;
+        this.ITEM = item;
+        this.INVENTORY = inventory;
+        this.QUANTITY = quantity;
     }
 
     // return item
     public Item getItem() {
-        return this.item;
+        return this.ITEM;
     }
 
     // return inventory
     public Inventory getInventory() {
-        return this.inventory;
+        return this.INVENTORY;
     }
 
     // return quantity
     public int getQuantity() {
-        return this.quantity;
+        return this.QUANTITY;
     }
 
 }

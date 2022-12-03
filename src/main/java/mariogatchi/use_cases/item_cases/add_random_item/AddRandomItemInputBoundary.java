@@ -5,5 +5,5 @@ Input boundary for the AddRandomItem use case
  */
 public interface AddRandomItemInputBoundary {
 
-    public AddRandomItemResponseModel addRandomItem(AddRandomItemRequestModel requestModel);
+    AddRandomItemResponseModel addRandomItem(AddRandomItemRequestModel requestModel);
 }
