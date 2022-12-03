@@ -5,6 +5,7 @@ import java.util.List;
 
 public class User implements Serializable{
     private String name;
+
     private Inventory inventory;
     private List<Mariogatchi> mariogatchis;
     private List<User> friends;
@@ -20,6 +21,7 @@ public class User implements Serializable{
     public void setName(String name){
         this.name = name;
     }
+
 
     public Inventory getInventory(){
         return inventory;

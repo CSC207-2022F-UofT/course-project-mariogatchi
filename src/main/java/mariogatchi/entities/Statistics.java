@@ -47,7 +47,7 @@ public class Statistics implements Serializable {
     /**
      * The starting level for rare mariogatchi
      */
-    private final int STARTING_LEVEL_RARE= 75;
+    private final int STARTING_LEVEL_RARE = 75;
     
     
     public enum Operator{
@@ -63,7 +63,6 @@ public class Statistics implements Serializable {
          STRATEGY,
          LASTCHECKTIME
     }
-
 
     /**
      * Initiate Stats for a new Mariogatchi.
@@ -114,6 +113,28 @@ public class Statistics implements Serializable {
 
     public long getLastCheckTime(){
         return this.lastCheckTime;
+    }
+    
+    public void LevelUp(){
+        this.maxLevel += 10;
+    }
+    
+    public void ResetAgility(){
+        if(this.agility > this.maxLevel){
+            this.agility = this.agility - this.maxLevel;
+        }
+        else{
+            this.agility = 0;
+        }
+    }
+
+    public void ResetStrategy(){
+        if(this.strategy > this.maxLevel){
+            this.strategy = this.strategy - this.maxLevel;
+        }
+        else{
+            this.strategy = 0;
+        }
     }
 
     public boolean changeStat(Stats stat, int factor, Operator operate){
