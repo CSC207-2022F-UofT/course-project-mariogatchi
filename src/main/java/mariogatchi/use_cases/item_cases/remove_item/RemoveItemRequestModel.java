@@ -2,6 +2,7 @@ package mariogatchi.use_cases.item_cases.remove_item;
 
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.items.Item;
+import mariogatchi.entities.items.ItemFactory;
 
 public class RemoveItemRequestModel {
     private final Item ITEM;
@@ -17,8 +18,9 @@ public class RemoveItemRequestModel {
      */
 
 
-    public RemoveItemRequestModel(Item item, Inventory inventory, Integer quantity) {
-        this.ITEM = item;
+    public RemoveItemRequestModel(String itemName, Inventory inventory, Integer quantity) {
+        ItemFactory itemFactory = new ItemFactory();
+        this.ITEM = itemFactory.getItem(Item.Items.valueOf(itemName));
         this.INVENTORY = inventory;
         this.QUANTITY = quantity;
     }

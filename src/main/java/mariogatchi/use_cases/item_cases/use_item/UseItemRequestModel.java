@@ -4,6 +4,7 @@ import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.items.Item;
+import mariogatchi.entities.items.ItemFactory;
 
 public class UseItemRequestModel {
     private final Item ITEM_TO_USE;
@@ -19,8 +20,9 @@ public class UseItemRequestModel {
     @param inventory - the inventory that the item is to be used from
      */
 
-    public UseItemRequestModel(Item item, Env environment, Mariogatchi mariogatchi, Inventory inventory) {
-        this.ITEM_TO_USE = item;
+    public UseItemRequestModel(String itemName, Env environment, Mariogatchi mariogatchi, Inventory inventory) {
+        ItemFactory itemFactory = new ItemFactory();
+        this.ITEM_TO_USE = itemFactory.getItem(Item.Items.valueOf(itemName));
         this.CURRENT_ENVIRONMNENT = environment;
         this.GATCHI = mariogatchi;
         this.INVENTORY = inventory;

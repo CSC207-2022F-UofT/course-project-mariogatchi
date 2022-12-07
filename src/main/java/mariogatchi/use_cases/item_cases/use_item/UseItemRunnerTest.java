@@ -1,6 +1,7 @@
 package mariogatchi.use_cases.item_cases.use_item;
 
 import mariogatchi.entities.Inventory;
+
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.Statistics;
 import mariogatchi.entities.environments.Env;
@@ -8,9 +9,16 @@ import mariogatchi.entities.items.BadApple;
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.Leash;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +29,25 @@ Unit testing class for the UseItem use case
  */
 public class UseItemRunnerTest {
 
+    Map<Item.Items, Integer> itemToQuant;
+    Mariogatchi gatchi;
 
+    Env currentEnvironment;
+    @BeforeEach
+    void setup() throws IOException {
+
+        // creating default itemToQuantity map
+        this.itemToQuant = new HashMap<>();
+
+        // creating default currentEnvironment
+        this.currentEnvironment = Env.HOME;
+
+        // creating default Mariogatchi
+        String imagePath = "mariogatchi/use_cases/item_cases/use_item/mariogatchi_image.png";
+        BufferedImage mariogatchiImage = ImageIO.read(new File(imagePath));
+
+        this.gatchi = new Mariogatchi(0, "mario", mariogatchiImage, "common");
+    }
     /*
     For a non-reusable item for which there is at least one already
     existing in the user's inventory, when UseItemRunner is called, USE_ITEM_PRESENTER
@@ -49,26 +75,17 @@ public class UseItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item badApple = new BadApple();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
-        itemToQuant.put(Item.Items.APPLE, 2);
-        Inventory inventory = new Inventory(itemToQuant, 100);
-
-        // creating Mariogatchi
-        Mariogatchi gatchi = new Mariogatchi();
-
-        // creating currentEnvironment
-        Env home = Env.HOME;
+        this.itemToQuant.put(Item.Items.APPLE, 2);
+        Inventory inventory = new Inventory(this.itemToQuant, 100);
 
 
         // creating the UseItemInputBoundary
         UseItemInputBoundary useItemRunner = new UseItemRunner(USE_ITEM_PRESENTER);
 
         // creating the UseItemRequestModel (input data)
-        UseItemRequestModel useItemRequestModel = new UseItemRequestModel(badApple, home, gatchi, inventory);
+        UseItemRequestModel useItemRequestModel = new UseItemRequestModel("BAD_APPLE", this.currentEnvironment, this.gatchi, inventory);
 
         // run the use case
         useItemRunner.useItem(useItemRequestModel);
@@ -100,26 +117,16 @@ public class UseItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item leash = new Leash();
-
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
-        itemToQuant.put(new Leash().getName(), 1);
-        Inventory inventory = new Inventory(itemToQuant, 100);
-
-        // creating Mariogatchi
-        Mariogatchi gatchi = new Mariogatchi();
-
-        // creating currentEnvironment
-        Env home = Env.HOME;
+        this.itemToQuant.put(new Leash().getName(), 1);
+        Inventory inventory = new Inventory(this.itemToQuant, 100);
 
 
         // creating the UseItemInputBoundary
         UseItemInputBoundary useItemRunner = new UseItemRunner(USE_ITEM_PRESENTER);
 
         // creating the UseItemRequestModel (input data)
-        UseItemRequestModel useItemRequestModel = new UseItemRequestModel(leash, home, gatchi, inventory);
+        UseItemRequestModel useItemRequestModel = new UseItemRequestModel("LEASH", this.currentEnvironment, this.gatchi, inventory);
 
         // run the use case
         useItemRunner.useItem(useItemRequestModel);
@@ -147,26 +154,17 @@ public class UseItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
-        itemToQuant.put(new Apple().getName(), 0);
-        Inventory inventory = new Inventory(itemToQuant, 100);
-
-        // creating Mariogatchi
-        Mariogatchi gatchi = new Mariogatchi();
-
-        // creating currentEnvironment
-        Env home = Env.HOME;
+        this.itemToQuant.put(new Apple().getName(), 0);
+        Inventory inventory = new Inventory(this.itemToQuant, 100);
 
 
         // creating the UseItemInputBoundary
         UseItemInputBoundary useItemRunner = new UseItemRunner(USE_ITEM_PRESENTER);
 
         // creating the UseItemRequestModel (input data)
-        UseItemRequestModel useItemRequestModel = new UseItemRequestModel(apple, home, gatchi, inventory);
+        UseItemRequestModel useItemRequestModel = new UseItemRequestModel("APPLE", this.currentEnvironment, this.gatchi, inventory);
 
         // run the use case
         useItemRunner.useItem(useItemRequestModel);
@@ -193,25 +191,17 @@ public class UseItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Leash();
-
-        // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
-        itemToQuant.put(new Leash().getName(), 1);
-        Inventory inventory = new Inventory(itemToQuant, 100);
-
-        // creating Mariogatchi
-        Mariogatchi gatchi = new Mariogatchi();
+        this.itemToQuant.put(new Leash().getName(), 1);
+        Inventory inventory = new Inventory(this.itemToQuant, 100);
 
         // creating currentEnvironment
-        Env forest = Env.FOREST;
+        this.currentEnvironment = Env.FOREST;
 
         // creating the UseItemInputBoundary
         UseItemInputBoundary useItemRunner = new UseItemRunner(USE_ITEM_PRESENTER);
 
         // creating the UseItemRequestModel (input data)
-        UseItemRequestModel useItemRequestModel = new UseItemRequestModel(apple, forest, gatchi, inventory);
+        UseItemRequestModel useItemRequestModel = new UseItemRequestModel("LEASH", this.currentEnvironment, this.gatchi, inventory);
 
         // run the use case
         useItemRunner.useItem(useItemRequestModel);

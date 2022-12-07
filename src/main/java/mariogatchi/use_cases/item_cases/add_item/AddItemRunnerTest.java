@@ -36,9 +36,6 @@ public class AddItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
@@ -50,7 +47,7 @@ public class AddItemRunnerTest {
         AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(apple, inventory, quantityToAdd);
+        AddItemRequestModel addItemRequestModel = new AddItemRequestModel("APPLE", inventory, quantityToAdd);
 
         // run the use case
         addItemRunner.addItemToInv(addItemRequestModel);
@@ -76,8 +73,6 @@ public class AddItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
 
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
@@ -91,7 +86,7 @@ public class AddItemRunnerTest {
         AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(apple, inventory, quantityToAdd);
+        AddItemRequestModel addItemRequestModel = new AddItemRequestModel("APPLE", inventory, quantityToAdd);
 
         // run the use case
         addItemRunner.addItemToInv(addItemRequestModel);
@@ -117,8 +112,6 @@ public class AddItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
 
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
@@ -131,7 +124,7 @@ public class AddItemRunnerTest {
         AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(apple, inventory, quantityToAdd);
+        AddItemRequestModel addItemRequestModel = new AddItemRequestModel("APPLE", inventory, quantityToAdd);
 
         // run the use case
         addItemRunner.addItemToInv(addItemRequestModel);
@@ -159,9 +152,6 @@ public class AddItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item leash = new Leash();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
@@ -173,7 +163,7 @@ public class AddItemRunnerTest {
         AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(leash, inventory, quantityToAdd);
+        AddItemRequestModel addItemRequestModel = new AddItemRequestModel("LEASH", inventory, quantityToAdd);
 
         // run the use case
         addItemRunner.addItemToInv(addItemRequestModel);
@@ -200,9 +190,6 @@ public class AddItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item leash = new Leash();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Leash().getName(), 1);
@@ -215,7 +202,7 @@ public class AddItemRunnerTest {
         AddItemInputBoundary addItemRunner = new AddItemRunner(ADD_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(leash, inventory, quantityToAdd);
+        AddItemRequestModel addItemRequestModel = new AddItemRequestModel("LEASH", inventory, quantityToAdd);
 
         // run the use case
         addItemRunner.addItemToInv(addItemRequestModel);

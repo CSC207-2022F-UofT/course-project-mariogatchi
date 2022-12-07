@@ -36,9 +36,6 @@ public class RemoveItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Apple().getName(), 2);
@@ -51,7 +48,7 @@ public class RemoveItemRunnerTest {
         RemoveItemInputBoundary removeItemRunner = new RemoveItemRunner(REMOVE_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel(apple, inventory, quantityToRemove);
+        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel("APPLE", inventory, quantityToRemove);
 
         // run the use case
         removeItemRunner.removeItemFromInv(removeItemRequestModel);
@@ -77,9 +74,6 @@ public class RemoveItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Apple().getName(), 3);
@@ -92,7 +86,7 @@ public class RemoveItemRunnerTest {
         RemoveItemInputBoundary removeItemRunner = new RemoveItemRunner(REMOVE_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel(apple, inventory, quantityToRemove);
+        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel("APPLE", inventory, quantityToRemove);
 
         // run the use case
         removeItemRunner.removeItemFromInv(removeItemRequestModel);
@@ -118,9 +112,6 @@ public class RemoveItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Apple().getName(), 3);
@@ -133,7 +124,7 @@ public class RemoveItemRunnerTest {
         RemoveItemInputBoundary removeItemRunner = new RemoveItemRunner(REMOVE_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel(apple, inventory, quantityToRemove);
+        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel("APPLE", inventory, quantityToRemove);
 
         // run the use case
         removeItemRunner.removeItemFromInv(removeItemRequestModel);
@@ -161,9 +152,6 @@ public class RemoveItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item apple = new Apple();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Apple().getName(), 1);
@@ -176,7 +164,7 @@ public class RemoveItemRunnerTest {
         RemoveItemInputBoundary removeItemRunner = new RemoveItemRunner(REMOVE_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel(apple, inventory, quantityToRemove);
+        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel("APPLE", inventory, quantityToRemove);
 
         // run the use case
         removeItemRunner.removeItemFromInv(removeItemRequestModel);
@@ -204,9 +192,6 @@ public class RemoveItemRunnerTest {
             }
         };
 
-        // creating Item
-        Item leash = new Leash();
-
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Leash().getName(), 1);
@@ -219,7 +204,7 @@ public class RemoveItemRunnerTest {
         RemoveItemInputBoundary removeItemRunner = new RemoveItemRunner(REMOVE_ITEM_PRESENTER);
 
         // creating the RemoveItemRequestModel (input data)
-        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel(leash, inventory, quantityToRemove);
+        RemoveItemRequestModel removeItemRequestModel = new RemoveItemRequestModel("LEASH", inventory, quantityToRemove);
 
         // run the use case
         removeItemRunner.removeItemFromInv(removeItemRequestModel);

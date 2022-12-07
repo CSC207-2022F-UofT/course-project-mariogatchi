@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 public abstract class Item implements Serializable {
     // the name of the Item
     private final Items NAME;
@@ -19,6 +18,7 @@ public abstract class Item implements Serializable {
 
     // a mapping of Effects to their corresponding values
     private final Map<ItemEffects, Integer> EFFECT_TO_VALUES;
+
 
     public enum Items {
         /*
@@ -101,7 +101,7 @@ public abstract class Item implements Serializable {
     then return a mapping of the Mariogatchi statistics to their updated values.
     */
     protected Map<Statistics.Stats, Integer> updateStatistics(Mariogatchi gatchi) {
-        Statistics gatchiStats = gatchi.getGatchiStats();
+        Statistics gatchiStats = gatchi.getStats();
         Map<Statistics.Stats, Integer> statToValue = new HashMap<>();
 
         for (Map.Entry<ItemEffects, Integer> entry: this.EFFECT_TO_VALUES.entrySet()) {

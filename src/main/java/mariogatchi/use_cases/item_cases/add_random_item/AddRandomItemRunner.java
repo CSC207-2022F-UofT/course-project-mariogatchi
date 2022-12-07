@@ -24,7 +24,7 @@ public class AddRandomItemRunner implements AddRandomItemInputBoundary {
     @Override
     public AddRandomItemResponseModel addRandomItem(AddRandomItemRequestModel requestModel) {
         Item randomItem = this.randomItemGenerator.generateRandomItem();
-        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(randomItem, requestModel.getInventory(), 1);
+        AddItemRequestModel addItemRequestModel = new AddItemRequestModel(randomItem.getName().toString(), requestModel.getInventory(), 1);
         AddItemResponseModel addItemResponseModel = requestModel.getAddItemRunner().addItemToInv(addItemRequestModel);
         if (addItemResponseModel.getAdded()) {
             AddRandomItemResponseModel addRandomItemResponseModel = new AddRandomItemResponseModel(randomItem.getName(), requestModel.getInventory(), true);

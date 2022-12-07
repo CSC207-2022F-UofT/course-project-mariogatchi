@@ -2,6 +2,7 @@ package mariogatchi.use_cases.item_cases.add_item;
 
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.items.Item;
+import mariogatchi.entities.items.ItemFactory;
 
 public class AddItemRequestModel {
     private final Item ITEM; // item to add to inventory
@@ -15,8 +16,9 @@ public class AddItemRequestModel {
     @param quantity - the quantity of item to be added to the inventory
      */
 
-    public AddItemRequestModel (Item item, Inventory inventory, int quantity) {
-        this.ITEM = item;
+    public AddItemRequestModel (String itemName, Inventory inventory, int quantity) {
+        ItemFactory itemFactory = new ItemFactory();
+        this.ITEM = itemFactory.getItem(Item.Items.valueOf(itemName));
         this.INVENTORY = inventory;
         this.QUANTITY = quantity;
     }

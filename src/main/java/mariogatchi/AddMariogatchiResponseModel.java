@@ -1,5 +1,8 @@
 package mariogatchi;
 
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+
 public class AddMariogatchiResponseModel {
         private User user;
         private Mariogatchi mariogatchi;

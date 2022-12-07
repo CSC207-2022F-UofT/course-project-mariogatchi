@@ -1,5 +1,8 @@
 package mariogatchi;
 
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+
 public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
 
     private final AddMariogatchiPresenter PRESENTER;
@@ -25,7 +28,7 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
         }
     }
 
-    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){ return user.getMariogatchis().contains(mariogatchi)};
+    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){ return user.getMariogatchis().contains(mariogatchi);};
 
 
 

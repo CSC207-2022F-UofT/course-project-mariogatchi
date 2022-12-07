@@ -8,6 +8,7 @@ public class RemoveItemResponseModel {
     private final Inventory INVENTORY;
     private final int QUANTITY;
 
+
     /*
     The output data needed for the RemoveItem use case
     @param item - the item that was to be removed from the inventory
