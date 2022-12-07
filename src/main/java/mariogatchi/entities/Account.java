@@ -7,10 +7,12 @@ public class Account implements Serializable {
     private String username;
     private byte[] hashedPassword;
     private List<User> users;
+    private String friendCode;
 
-    public Account(String username, byte[] hashedPassword){
+    public Account(String username, byte[] hashedPassword, String friendCode){
         this.username = username;
         this.hashedPassword = hashedPassword;
+        this.friendCode = friendCode;
     }
 
     @Override
@@ -32,6 +34,10 @@ public class Account implements Serializable {
 
     public void setHashedPassword(byte[] hashedPassword){
         this.hashedPassword = hashedPassword;
+    }
+
+    public String getFriendCode() {
+        return this.friendCode;
     }
 
     public List<User> getUsers(){

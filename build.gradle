@@ -8,9 +8,16 @@ repositories {
 
 dependencies {
     implementation 'junit:junit:4.13.1'
-    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    implementation 'com.harium.supabase:core:0.0.1'
+        implementation('com.harium.database:postgrest'){
+            version {
+                strictly '0.0.2'
+            }
+        }
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'org.json:json:20220924'
 }
 
 test {
