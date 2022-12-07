@@ -6,7 +6,6 @@ package mariogatchi.entities.environments;
  */
 public abstract class Environment{
     private final Env NAME;
-
     /**
      * Constructor:
      * @param name the name of the environment as an enum
@@ -14,11 +13,6 @@ public abstract class Environment{
     protected Environment(Env name){
         this.NAME = name;
     }
-
-    /*
-     * Getter:
-     * return the name of the environment as the enum equivalent
-     */
     public Env getName(){
         return NAME;
     }

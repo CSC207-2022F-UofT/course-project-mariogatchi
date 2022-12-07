@@ -4,14 +4,14 @@ import mariogatchi.entities.items.Reusable;
 
 public class RemoveItemRunner implements RemoveItemInputBoundary{
 
-    private final RemoveItemPresenter presenter;
+    private final RemoveItemOutputBoundary REMOVE_ITEM_PRESENTER;
 
     /*
     The interactor for the UseItem use case
     @param presenter - the presenter for the RemoveItem use case
      */
-    public RemoveItemRunner(RemoveItemPresenter presenter) {
-        this.presenter = presenter;
+    public RemoveItemRunner(RemoveItemOutputBoundary presenter) {
+        this.REMOVE_ITEM_PRESENTER = presenter;
     }
 
     /*
@@ -21,15 +21,15 @@ public class RemoveItemRunner implements RemoveItemInputBoundary{
     @Override
     public RemoveItemResponseModel removeItemFromInv(RemoveItemRequestModel requestModel) {
         if (requestModel.getItem() instanceof Reusable) {
-            return presenter.prepareFailureView("Default item cannot be removed from inventory");
+            return REMOVE_ITEM_PRESENTER.removeItemPrepareFailureView("Default item cannot be removed from inventory");
         }
-        if (requestModel.getInventory().removeItem(requestModel.getItem(), requestModel.getQuantity())) {
+        if (requestModel.getInventory().removeItem(requestModel.getItem().getName(), requestModel.getQuantity())) {
             RemoveItemResponseModel responseModel = new RemoveItemResponseModel(requestModel.getItem(),
                     requestModel.getInventory(), requestModel.getQuantity());
-            return presenter.prepareSuccessView(responseModel);
+            return REMOVE_ITEM_PRESENTER.removeItemPrepareSuccessView(responseModel);
         }
         else {
-            return presenter.prepareFailureView("You do not have enough of this item to remove");
+            return REMOVE_ITEM_PRESENTER.removeItemPrepareFailureView("You do not have enough of this item to remove");
         }
     }
 

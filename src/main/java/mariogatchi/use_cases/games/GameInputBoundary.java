@@ -1,14 +1,16 @@
 package mariogatchi.use_cases.games;
 
+import mariogatchi.entities.Account;
+import mariogatchi.entities.User;
+import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
+
 public interface GameInputBoundary {
 
-    void createRequest(String name);
+    void saveRequest(Account account, User user);
 
-    void loadRequest(String name);
+    void exitRequest(Account account, User user);
 
-    void saveRequest();
+    public AuthenticationResponseModel requestAuth(GameRequestModel game, Account account);
 
-    void exitRequest();
-
-    void deleteRequest(String name);
+    public GameResponseModel requestGame(GameRequestModel game, Account account);
 }

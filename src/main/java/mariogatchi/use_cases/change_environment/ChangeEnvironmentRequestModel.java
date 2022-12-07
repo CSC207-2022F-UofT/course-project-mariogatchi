@@ -40,10 +40,4 @@ public class ChangeEnvironmentRequestModel{
     public Env getCURR_ENVIRONMENT(){
         return CURR_ENVIRONMENT;
     }
-
-    public Environment getEnvironmentInputEnvironment(){
-        EnvironmentFactory environmentFactory = new EnvironmentFactory();
-        return environmentFactory.getName(NEW_ENVIRONMENT);
-    }
-
 }
