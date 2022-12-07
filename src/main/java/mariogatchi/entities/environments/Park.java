@@ -7,6 +7,6 @@ public class Park extends Environment {
 
     // constructor for park, make a new park class with its given eligible actions
     public Park() {
-        super("Park");
+        super(Env.valueOf("Park"));
     }
 }

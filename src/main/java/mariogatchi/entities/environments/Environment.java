@@ -1,7 +1,7 @@
 package mariogatchi.entities.environments;
 
 public abstract class Environment{
-    private final String NAME; // the name of the environment as a string
+    private final Env NAME; // the name of the environment as a string
 
     /**
      * Construct an environment
@@ -10,12 +10,12 @@ public abstract class Environment{
      */
 
     // constructor
-    public Environment(String name){
+    public Environment(Env name){
         this.NAME = name;
     }
 
     // getter function for name, return name
-    public String getName(){
+    public Env getName(){
         return NAME;
     }
 }

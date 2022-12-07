@@ -38,6 +38,6 @@ public class ChangeEnvironmentRequestModel{
 
     // getter for the current user in-game environment as a string
     public String getCurrEnvironmentString() {
-        return CURRENVIRONMENT.getName();
+        return CURRENVIRONMENT.getName().toString();
     }
 }

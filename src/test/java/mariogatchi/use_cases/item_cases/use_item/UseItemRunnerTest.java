@@ -4,14 +4,14 @@ import mariogatchi.entities.Inventory;
 
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.Statistics;
-import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.items.BadApple;
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.Leash;
-import java.awt.Image;
+
 import java.awt.image.BufferedImage;
 
+import mariogatchi.entities.environments.Env;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
