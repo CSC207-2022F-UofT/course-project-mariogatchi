@@ -1,24 +1,29 @@
 package mariogatchi.use_cases.change_environment;
 
 import mariogatchi.entities.environments.Environment;
+import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.User;
+import mariogatchi.entities.environments.EnvironmentFactory;
 
+/*
+ * Output Boundary:
+ * Information collected from controller, converted to information that the response model needs
+ */
 public class ChangeEnvironmentRequestModel{
-    private final User USER; // the user who wants to change their environment
-    private final String ENVIRONMENTINPUT; // the input of the user, taken as a string
-    private final Environment CURRENVIRONMENT; // the users current in-game environment, pulled from the user class using user.environment
+    private final User USER;
+    private final Env CURR_ENVIRONMENT;
+    private final Env NEW_ENVIRONMENT;
 
     /**
      * Request model (input data) for the ChangeEnvironment use case.
      * @param user The user whose environment we want to change
-     * @param environmentInput The environment the user wants to go to
+     * @param environmentInput The environment the user wants to go to, as a string
      */
-
-    // constructor
     public ChangeEnvironmentRequestModel(User user, String environmentInput) {
+        EnvironmentFactory environmentFactory = new EnvironmentFactory();
         this.USER = user;
-        this.ENVIRONMENTINPUT = environmentInput;
-        this.CURRENVIRONMENT = user.getCurrentEnvironment();
+        this.CURR_ENVIRONMENT = user.getEnvironment().getName();
+        this.NEW_ENVIRONMENT = environmentFactory.getName(environmentInput).getName();
     }
 
     // getter function for the user, return user
@@ -27,17 +32,12 @@ public class ChangeEnvironmentRequestModel{
     }
 
     // getter for user environment input, return environmentInput
-    public String getEnvironmentInput(){
-        return ENVIRONMENTINPUT;
+    public Env getNEW_ENVIRONMENT(){
+        return NEW_ENVIRONMENT;
     }
 
     // getter for current user in-game environment
-    public Environment getCurrEnvironment(){
-        return CURRENVIRONMENT;
-    }
-
-    // getter for the current user in-game environment as a string
-    public String getCurrEnvironmentString() {
-        return CURRENVIRONMENT.getName().toString();
+    public Env getCURR_ENVIRONMENT(){
+        return CURR_ENVIRONMENT;
     }
 }

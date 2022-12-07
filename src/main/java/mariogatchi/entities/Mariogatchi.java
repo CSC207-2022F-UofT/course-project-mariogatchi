@@ -35,7 +35,6 @@ public class Mariogatchi {
     /* Gets the level of the mariogatchi */
     public int getLvl() { return this.lvl; }
 
-
     /* Gets the name of the mariogatchi */
     public String getName() { return this.name; }
 
