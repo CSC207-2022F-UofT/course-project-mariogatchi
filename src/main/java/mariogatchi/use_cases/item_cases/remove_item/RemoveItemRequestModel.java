@@ -2,39 +2,42 @@ package mariogatchi.use_cases.item_cases.remove_item;
 
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.items.Item;
+import mariogatchi.entities.items.ItemFactory;
 
 public class RemoveItemRequestModel {
-    private Item item;
-    private Inventory inventory;
+    private final Item ITEM;
+    private final Inventory INVENTORY;
+    private final int QUANTITY;
 
-    private int quantity;
 
     /*
     The input data for the RemoveItem use case
     @param item - The item to be removed from the inventory
     @param inventory - The inventory that the item is to be removed from
-    @param quantity - The amoutn of the specified item to be removed from the inventory
+    @param quantity - The amount of the specified item to be removed from the inventory
      */
 
 
-    public RemoveItemRequestModel(Item item, Inventory inventory) {
-        this.item = item;
-        this.inventory = inventory;
+    public RemoveItemRequestModel(String itemName, Inventory inventory, Integer quantity) {
+        ItemFactory itemFactory = new ItemFactory();
+        this.ITEM = itemFactory.getItem(Item.Items.valueOf(itemName));
+        this.INVENTORY = inventory;
+        this.QUANTITY = quantity;
     }
 
     // return item
     public Item getItem() {
-        return this.item;
+        return this.ITEM;
     }
 
     // return inventory
     public Inventory getInventory() {
-        return this.inventory;
+        return this.INVENTORY;
     }
 
     // return quantity
     public int getQuantity() {
-        return this.quantity;
+        return this.QUANTITY;
     }
 
 }

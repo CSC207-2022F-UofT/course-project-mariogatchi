@@ -117,3 +117,5 @@ hs_err_pid*
 replay_pid*
 .idea
 *.DS_Store
+/src/main/java/mariogatchi/use_cases/change_environment/
+/src/main/java/mariogatchi/entities/environments/

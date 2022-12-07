@@ -18,7 +18,7 @@ public class ChangeEnvironmentRequestModel{
     public ChangeEnvironmentRequestModel(User user, String environmentInput) {
         this.USER = user;
         this.ENVIRONMENTINPUT = environmentInput;
-        this.CURRENVIRONMENT = user.getEnvironment();
+        this.CURRENVIRONMENT = user.getCurrentEnvironment();
     }
 
     // getter function for the user, return user
@@ -38,6 +38,6 @@ public class ChangeEnvironmentRequestModel{
 
     // getter for the current user in-game environment as a string
     public String getCurrEnvironmentString() {
-        return CURRENVIRONMENT.getName();
+        return CURRENVIRONMENT.getName().toString();
     }
 }

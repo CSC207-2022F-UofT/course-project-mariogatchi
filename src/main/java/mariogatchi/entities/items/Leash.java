@@ -1,23 +1,22 @@
 package mariogatchi.entities.items;
 
+import mariogatchi.entities.Statistics;
 import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-
-import static java.util.Map.entry;
+import java.util.*;
 
 public class Leash extends Item implements Reusable{
 
     public Leash() {
-        super(Items.APPLE,
-                new HashSet<Env>(Arrays.asList(Env.HOME, Env.FOREST, Env.PARK)),
-                Map.ofEntries(
-                        entry(ItemEffects.INCREASE_HUNGER, 10),
-                        entry(ItemEffects.INCREASE_ENERGY, 5))
+        super(Items.LEASH,
+                new HashSet<>(List.of(Env.HOME)),
+                new HashMap<>() {{
+                    put(ItemEffects.HAPPINESS, 20);
+                    put(ItemEffects.ENERGY, -10);
+                    put(ItemEffects.CLEANLINESS, -10);
+                }}
         );
     }
 
@@ -25,8 +24,9 @@ public class Leash extends Item implements Reusable{
     Use the item.
      */
     @Override
-    public void useThisItem(Mariogatchi mariogatchi, Inventory inventory) {
+    public Map<Statistics.Stats, Integer> useThisItem(Mariogatchi gatchi, Inventory inventory) {
         // update energy, happiness, cleanliness, and hunger statistics
-        // TODO
+
+        return super.updateStatistics(gatchi);
     }
 }

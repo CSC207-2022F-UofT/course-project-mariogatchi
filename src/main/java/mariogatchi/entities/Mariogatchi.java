@@ -24,7 +24,7 @@ public class Mariogatchi {
     /* Each Mariogatchi posses their own statistics which are defined in the Statistics class*/
     private Statistics stats;
 
-    public void Mariogatchi(int level, String name, Image avatar, String rarity) {
+    public Mariogatchi(int level, String name, Image avatar, String rarity) {
         this.avatar = avatar;
         this.lvl = level;
         this.name = name;
@@ -44,6 +44,11 @@ public class Mariogatchi {
 
     /* Gets the avatar of the mariogatchi */
     public Image getAvatar() { return this.avatar; }
+
+    /* Gets the Statistics of the mariogatchi */
+    public Statistics getStats() {
+        return stats;
+    }
 
     @Override
     public String toString() {

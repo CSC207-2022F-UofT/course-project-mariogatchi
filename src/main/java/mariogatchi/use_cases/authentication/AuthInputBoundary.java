@@ -1,11 +1,29 @@
 package mariogatchi.use_cases.authentication;
 
+import mariogatchi.entities.Account;
+import mariogatchi.entities.Inventory;
+import mariogatchi.entities.Statistics;
+import mariogatchi.entities.User;
+import mariogatchi.entities.environments.Environment;
+
 public interface AuthInputBoundary {
-    void loginRequest(String username, String password);
+     public AuthenticationResponseModel logoutRequest(Account account);
 
-    void signupRequest(String username, String password);
+    public AuthenticationResponseModel deleteRequest(Account account);
 
-    void logoutRequest();
+    public AuthenticationResponseModel authenticationRequest(AuthenticationRequestModel requestModel);
 
-    void deleteRequest();
+    public Account getCurrAccount();
+
+    public User getCurrUser();
+
+    public void setCurrAccount(Account account);
+
+    public void setCurrUser(User user);
+
+    public Inventory getCurrUserInventory();
+
+    public Environment getCurrUserEnvironment();
+
+    public Statistics getCurrUserStatistics();
 }

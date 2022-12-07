@@ -1,4 +1,10 @@
-package mariogatchi;
+package mariogatchi.use_cases.add_mariogatchi;
+
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
 
 public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
 
@@ -25,7 +31,7 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
         }
     }
 
-    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){ return user.getMariogatchis().contains(mariogatchi)};
+    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){ return user.getMariogatchis().contains(mariogatchi);};
 
 
 

@@ -170,7 +170,7 @@ public class Statistics implements Serializable {
                     break;
             }
         }
-        if(operate == Operator.SUBTRACT && factor > 0){
+        if(operate == Operator.ADD && factor > 0){
             switch (stat){
                 case HUNGER:
                     if(this.hunger<= this.maxLevel-((factor)))
