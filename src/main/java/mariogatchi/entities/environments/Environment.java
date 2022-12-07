@@ -19,7 +19,7 @@ public abstract class Environment{
      * Getter:
      * return the name of the environment as the enum equivalent
      */
-    protected Env getName(){
+    public Env getName(){
         return NAME;
     }
 }

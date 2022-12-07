@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 
-
 public class Inventory implements Serializable {
     private Map<Item, Integer> itemToQuantity;
 

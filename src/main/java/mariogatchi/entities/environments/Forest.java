@@ -50,14 +50,11 @@ public class Forest extends Environment implements MariogatchiGeneratable {
 
         List<Mariogatchi> generatedMariogatchis = new ArrayList<>();
         for (int i = 0; i < randomNumber; i++) {
+            Mariogatchi newMariogatchi = mariogatchiFactory.getRarity(rarityTypes.get(i));
             if (i == 4){
-                Mariogatchi newMariogatchi = mariogatchiFactory.getRarity(rarityTypes.get(i));
                 newMariogatchi.increaselvl();
-                generatedMariogatchis.add(newMariogatchi);
-            } else {
-                Mariogatchi newMariogatchi = mariogatchiFactory.getRarity(rarityTypes.get(i));
-                generatedMariogatchis.add(newMariogatchi);
             }
+            generatedMariogatchis.add(newMariogatchi);
         }
         return generatedMariogatchis;
     }
