@@ -1,12 +1,13 @@
 package mariogatchi.use_cases.change_environment;
 
 import mariogatchi.entities.environments.Environment;
+import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.User;
 
 public class ChangeEnvironmentRequestModel{
-    private final User USER; // the user who wants to change their environment
-    private final String ENVIRONMENTINPUT; // the input of the user, taken as a string
-    private final Environment CURRENVIRONMENT; // the users current in-game environment, pulled from the user class using user.environment
+    private final User USER;
+    private final Env CURR_ENVIRONMENT;
+    private final Env NEWENVIRONMENT;
 
     /**
      * Request model (input data) for the ChangeEnvironment use case.
@@ -16,9 +17,10 @@ public class ChangeEnvironmentRequestModel{
 
     // constructor
     public ChangeEnvironmentRequestModel(User user, String environmentInput) {
+        EnvironmentFactory environmentFactory = new EnvironmentFactory();
         this.USER = user;
-        this.ENVIRONMENTINPUT = environmentInput;
-        this.CURRENVIRONMENT = user.getEnvironment();
+        this.CURR_ENVIRONMENT = user.getEnvironment().getName();
+        this.NEWENVIRONMENT = environmentFactory.getName(environmentInput).getName();
     }
 
     // getter function for the user, return user
@@ -27,17 +29,23 @@ public class ChangeEnvironmentRequestModel{
     }
 
     // getter for user environment input, return environmentInput
-    public String getEnvironmentInput(){
-        return ENVIRONMENTINPUT;
+    public Env getEnvironmentInput(){
+        return NEWENVIRONMENT;
     }
 
     // getter for current user in-game environment
-    public Environment getCurrEnvironment(){
-        return CURRENVIRONMENT;
+    public Env getCurrEnvironment(){
+        return CURR_ENVIRONMENT;
     }
 
-    // getter for the current user in-game environment as a string
-    public String getCurrEnvironmentString() {
-        return CURRENVIRONMENT.getName();
+    public Environment getEnvironmentInputEnvironment(){
+        if (NEWENVIRONMENT.equals(Env.HOME)){
+            return new Environment(Env.HOME) {};
+        } else if (NEWENVIRONMENT.equals(Env.PARK)) {
+            return new Environment(Env.PARK) {};
+        } else {
+            return new Environment(Env.FOREST) {};
+        }
     }
+
 }

@@ -1,4 +1,6 @@
 package mariogatchi.use_cases.change_environment;
+import mariogatchi.entities.environments.Env;
+import mariogatchi.entities.environments.Environment;
 
 public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
     private final ChangeEnvironmentPresenter ENVIRONMENTPRESENTER; // presenter
@@ -22,26 +24,27 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
 
     @Override
     public ChangeEnvironmentResponseModel environmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
-        String lowerEnvironment = environmentRequestModel.getEnvironmentInput().toLowerCase(); // lowerEnvironment is the input of the user as a lower case string
-        if (isSame(environmentRequestModel)){ // checks to see whether the user is already in the environment they which to change to
-            return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: You are already in that environment!"); // sends error message to FailView
-        } else if (isLegalEnvironment(environmentRequestModel)) { // checks to see whether the input is a valid environment
-            environmentRequestModel.getUser().setEnvironment(lowerEnvironment); // changing the environment of the user by using the request model user and user input
-            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(environmentRequestModel.getUser().getEnvironment()); // use the request models changed environment as the new environment for the response model
-            return ENVIRONMENTPRESENTER.prepareSuccessView(environmentResponseModel); // the environment was changed, SuccessView
-        } else { // the environment is not a valid environment input
-            return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: That is not a valid environment input!"); // sends error message to FailView
+        if (isSame(environmentRequestModel)){
+            // checks to see whether the user is already in the environment they which to change to
+            return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: You are already in that environment!");
+            // if the user is already in the environment they chose, send error message to FailView notifying them of this
+        } else {
+            // if the user has not selected the environment they are currently in, change the users environment
+            Environment newEnvironment = environmentRequestModel.getEnvironmentInputEnvironment();
+            // newEnvironment is the users environment input as an Environment
+            environmentRequestModel.getUser().setEnvironment(newEnvironment);
+            // set the users environment to be the input from the request model
+            Env changedEnvironment = environmentRequestModel.getUser().getEnvironment().getName();
+            // changedEnvironment is the users new environment (after the change) as an Env enum
+            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironment);
+            // use the request models changed environment as the new environment for the response model
+            return ENVIRONMENTPRESENTER.prepareSuccessView(environmentResponseModel);
+            // the environment was changed, SuccessView
         }
     }
 
     // check to see weather the user is already in the environment they want to change to (given the information from the request model), return whether input = current environment
     private boolean isSame(ChangeEnvironmentRequestModel environmentRequestModel){
-        return environmentRequestModel.getEnvironmentInput().equalsIgnoreCase(environmentRequestModel.getCurrEnvironmentString());
-    }
-
-    // check to see weather the users environment input is an environment that exists (given the information from the request model), return whether input = park or home or forest
-    private boolean isLegalEnvironment(ChangeEnvironmentRequestModel environmentRequestModel){
-        String lower = environmentRequestModel.getEnvironmentInput();
-        return lower.equalsIgnoreCase("park") || lower.equalsIgnoreCase("home") || lower.equalsIgnoreCase("forest");
+        return environmentRequestModel.getEnvironmentInput().equals(environmentRequestModel.getCurrEnvironment());
     }
 }
