@@ -2,15 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.mavenproject1;
+package mariogatchi.presenter;
 
 import java.awt.CardLayout;
+import java.util.List;
+
+import mariogatchi.controllers.InputController;
+import mariogatchi.use_cases.authentication.AuthenticationPresenter;
+import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
 
 /**
  *
  * @author Samuel
  */
-public class DisplayPresenter extends javax.swing.JFrame {
+public class DisplayPresenter extends javax.swing.JFrame implements AuthenticationPresenter {
 
     /**
      * Creates new form NewJFrame
@@ -41,6 +46,11 @@ public class DisplayPresenter extends javax.swing.JFrame {
         friendCodeTxt = new javax.swing.JLabel();
         friendCodeContinueBtn = new javax.swing.JButton();
         friendCodeV = new javax.swing.JLabel();
+        errorDialog = new javax.swing.JDialog();
+        errorTxt = new javax.swing.JLabel();
+        errorContinueBtn = new javax.swing.JButton();
+        errorS = new javax.swing.JScrollPane();
+        errorF = new javax.swing.JTextArea();
         startScreen = new javax.swing.JPanel();
         loginBtn = new javax.swing.JButton();
         signupBtn = new javax.swing.JButton();
@@ -221,7 +231,6 @@ public class DisplayPresenter extends javax.swing.JFrame {
         friendCodeDialog.setFocusableWindowState(false);
         friendCodeDialog.setLocation(new java.awt.Point(0, 0));
         friendCodeDialog.setMinimumSize(new java.awt.Dimension(300, 200));
-        friendCodeDialog.setPreferredSize(new java.awt.Dimension(300, 200));
         friendCodeDialog.setResizable(false);
 
         friendCodeTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
@@ -264,6 +273,55 @@ public class DisplayPresenter extends javax.swing.JFrame {
                 .addComponent(friendCodeV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(friendCodeContinueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+
+        errorDialog.setFocusableWindowState(false);
+        errorDialog.setLocation(new java.awt.Point(0, 0));
+        errorDialog.setMinimumSize(new java.awt.Dimension(300, 200));
+        errorDialog.setResizable(false);
+
+        errorTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
+        errorTxt.setText("Error");
+
+        errorContinueBtn.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
+        errorContinueBtn.setText("Continue");
+        errorContinueBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                errorContinueBtnActionPerformed(evt);
+            }
+        });
+
+        errorF.setColumns(20);
+        errorF.setRows(5);
+        errorS.setViewportView(errorF);
+
+        javax.swing.GroupLayout errorDialogLayout = new javax.swing.GroupLayout(errorDialog.getContentPane());
+        errorDialog.getContentPane().setLayout(errorDialogLayout);
+        errorDialogLayout.setHorizontalGroup(
+            errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorDialogLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(errorContinueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(errorDialogLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(errorTxt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, errorDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errorS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+        errorDialogLayout.setVerticalGroup(
+            errorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(errorTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errorS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorContinueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
@@ -1145,8 +1203,13 @@ public class DisplayPresenter extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void loginAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAcceptBtnActionPerformed
-        changeScreen("Games");
-        clearLoginFields();
+        InputController.LoginActions la;
+        if(isLogin){
+            la = InputController.LoginActions.LOGIN;
+        }else{
+            la = InputController.LoginActions.SIGNUP;
+        }
+        ic.loginRequest(la, List.of(usernameField.getText(), new String(passwordField.getPassword())));
     }//GEN-LAST:event_loginAcceptBtnActionPerformed
 
     private void loginBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBackBtnActionPerformed
@@ -1263,7 +1326,6 @@ public class DisplayPresenter extends javax.swing.JFrame {
             changeScreen("Inventory");
             updatePreviousScreen("Home");
         }
-        
     }//GEN-LAST:event_homeInventoryBtnActionPerformed
 
     private void parkInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parkInventoryBtnActionPerformed
@@ -1271,7 +1333,6 @@ public class DisplayPresenter extends javax.swing.JFrame {
             changeScreen("Inventory");
             updatePreviousScreen("Park");
         }
-        
     }//GEN-LAST:event_parkInventoryBtnActionPerformed
 
     private void forrestInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forrestInventoryBtnActionPerformed
@@ -1279,7 +1340,6 @@ public class DisplayPresenter extends javax.swing.JFrame {
             changeScreen("Inventory");
             updatePreviousScreen("Forrest");
         }
-        
     }//GEN-LAST:event_forrestInventoryBtnActionPerformed
 
     private void friendInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendInventoryBtnActionPerformed
@@ -1287,7 +1347,6 @@ public class DisplayPresenter extends javax.swing.JFrame {
             changeScreen("Inventory");
             updatePreviousScreen("Friend");
         }
-        
     }//GEN-LAST:event_friendInventoryBtnActionPerformed
 
     private void friendFriendCodeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendFriendCodeBtnActionPerformed
@@ -1297,6 +1356,10 @@ public class DisplayPresenter extends javax.swing.JFrame {
     private void friendCodeContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendCodeContinueBtnActionPerformed
         friendCodeDialog.setVisible(false);
     }//GEN-LAST:event_friendCodeContinueBtnActionPerformed
+
+    private void errorContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_errorContinueBtnActionPerformed
+        errorDialog.setVisible(false);
+    }//GEN-LAST:event_errorContinueBtnActionPerformed
     
     private String previousScreen = "Start";
     
@@ -1319,49 +1382,71 @@ public class DisplayPresenter extends javax.swing.JFrame {
     }
     
     private Boolean isDialogOpen(){
-        return friendCodeDialog.isVisible() || deadDialog.isVisible() || useItemDialog.isVisible();
+        return friendCodeDialog.isVisible() || deadDialog.isVisible() || useItemDialog.isVisible() || errorDialog.isVisible();
+    }
+
+    private Boolean isLogin = false;
+    private InputController ic;
+
+    @Override
+    public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel){
+        changeScreen("Games");
+        clearLoginFields();
+        return responseModel;
+    }
+
+    @Override
+    public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel){
+        errorDialog.setVisible(true);
+        errorF.setText("Invalid credentials");
+        return responseModel;
     }
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    // public static void main(String args[]) {
+    //     /* Set the Nimbus look and feel */
+    //     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    //     /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    //      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+    //      */
+    //     try {
+    //         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+    //             if ("Nimbus".equals(info.getName())) {
+    //                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
+    //                 break;
+    //             }
+    //         }
+    //     } catch (ClassNotFoundException ex) {
+    //         java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    //     } catch (InstantiationException ex) {
+    //         java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    //     } catch (IllegalAccessException ex) {
+    //         java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    //     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+    //         java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    //     }
+    //     //</editor-fold>
+    //     //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DisplayPresenter().setVisible(true);
-            }
-        });
-    }
+    //     /* Create and display the form */
+    //     java.awt.EventQueue.invokeLater(new Runnable() {
+    //         public void run() {
+    //             new DisplayPresenter().setVisible(true);
+    //         }
+    //     });
+    // }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton continueBtn;
     private javax.swing.JDialog deadDialog;
     private javax.swing.JLabel deadTxt;
+    private javax.swing.JButton errorContinueBtn;
+    private javax.swing.JDialog errorDialog;
+    private javax.swing.JTextArea errorF;
+    private javax.swing.JScrollPane errorS;
+    private javax.swing.JLabel errorTxt;
     private javax.swing.JButton exitBtn;
     private javax.swing.JButton forrestAcceptBtn;
     private javax.swing.JButton forrestInventoryBtn;
