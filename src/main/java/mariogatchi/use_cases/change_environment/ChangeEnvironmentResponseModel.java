@@ -1,22 +1,26 @@
 package mariogatchi.use_cases.change_environment;
 
-import mariogatchi.entities.environments.Environment;
+import mariogatchi.entities.environments.Env;
 
+/**
+ * ChangeEnvironmentResponseModel: the information the use case sends back to the controller
+ */
 public class ChangeEnvironmentResponseModel{
-    private final Environment NEWENVIRONMENT; // the environment of the user after it has been changed
+    private final Env NEW_ENVIRONMENT;
 
     /**
-     * Response model (output data) for the ChangeEnvironment use case.
-     * @param newEnvironment The environment the user is now in
+     * Constructs a response model
+     * @param newEnvironment the environment the user is now in
      */
-
-    // constructor
-    public ChangeEnvironmentResponseModel(Environment newEnvironment){
-        this.NEWENVIRONMENT = newEnvironment;
+    public ChangeEnvironmentResponseModel(Env newEnvironment){
+        this.NEW_ENVIRONMENT = newEnvironment;
     }
 
-    // getter for current users changed in-game environment, return newEnvironment
-    public Environment getNewEnvironment(){
-        return NEWENVIRONMENT;
+    /**
+     * Returns the environment the response model provides
+     * @return the environment the response model provides
+     */
+    public Env getNewEnvironment(){
+        return NEW_ENVIRONMENT;
     }
 }

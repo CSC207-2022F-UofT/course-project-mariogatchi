@@ -48,8 +48,8 @@ public class Statistics implements Serializable {
      * The starting level for rare mariogatchi
      */
     private final int STARTING_LEVEL_RARE = 75;
-    
-    
+
+
     public enum Operator{
          ADD,
          SUBTRACT
@@ -115,7 +115,7 @@ public class Statistics implements Serializable {
         return this.lastCheckTime;
     }
     
-    public void LevelUp(){
+    public void levelUp(){
         this.maxLevel += 10;
     }
     

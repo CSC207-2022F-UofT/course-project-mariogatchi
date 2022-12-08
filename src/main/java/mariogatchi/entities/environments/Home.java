@@ -1,12 +1,16 @@
 package mariogatchi.entities.environments;
+import static mariogatchi.entities.environments.Env.HOME;
 
+/**
+ * Entity
+ * Home subclass of environment
+ */
 public class Home extends Environment{
-    /**
-     * Home subclass of environment.
+    /*
+     * Constructor:
+     * create an instance of the home subclass using the parent constructor
      */
-
-    // constructor for home, make a new home class with its given eligible actions
     public Home() {
-        super(Env.valueOf("Home"));
+        super(HOME);
     }
 }

@@ -4,6 +4,7 @@ import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Use case to manage a Mariogatchi entity
@@ -13,7 +14,7 @@ public class MariogatchiManager {
      * Removes a Mariogatchi from a users collection of Mariogatchis List<Mariogatchi>
      *
      * @param user        a user
-     * @param mariogatchi a Mariogatchi entity
+     * @param mariogatchi a name of a Mariogatchi entity
      * @return boolean true if the mariogatchi is successfully deleted from the users list and false otherwise
      */
     public boolean ReleaseMariogatchi(User user, Mariogatchi mariogatchi) {
@@ -44,6 +45,7 @@ public class MariogatchiManager {
         }
         return false;
     }
+
 
 
 }

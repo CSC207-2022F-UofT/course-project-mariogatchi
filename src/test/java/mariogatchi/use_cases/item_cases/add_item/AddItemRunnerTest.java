@@ -39,7 +39,6 @@ public class AddItemRunnerTest {
         // creating Inventory
         Map<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
-
         // creating quantity
         int quantityToAdd = 1;
 
