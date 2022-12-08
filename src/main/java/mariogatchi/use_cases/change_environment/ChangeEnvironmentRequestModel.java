@@ -27,7 +27,7 @@ public class ChangeEnvironmentRequestModel{
     }
 
     // getter function for the user, return user
-    public User getUser() {
+    public User getUser(){
         return USER;
     }
 

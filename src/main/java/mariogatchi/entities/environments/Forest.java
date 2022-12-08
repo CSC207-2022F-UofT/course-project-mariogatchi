@@ -1,7 +1,7 @@
 package mariogatchi.entities.environments;
 
-import mariogatchi.entities.Mariogatchi;
-import mariogatchi.use_cases.manager.add_mariogatchi.MariogatchiFactory;
+import mariogatchi.entities.mariogatchi.Mariogatchi;
+import mariogatchi.entities.mariogatchi.MariogatchiFactory;
 import static mariogatchi.entities.environments.Env.FOREST;
 
 import java.util.ArrayList;
@@ -26,7 +26,6 @@ public class Forest extends Environment implements MariogatchiGeneratable {
         super(FOREST);
         List<Mariogatchi> generatedMariogatchis = createMariogacthis();
     }
-
     @Override
     public List<Mariogatchi> createMariogacthis() {
         /*
@@ -38,7 +37,7 @@ public class Forest extends Environment implements MariogatchiGeneratable {
          *
          * Notes:
          * - the probability of generating 1, 2, 3, 4, or 5 Mariogatchis is 2/15, 4/15, 6/15, 2/15, and 1/15 respectively
-         * - the first three Mariogatchis will be common, the fouth and fifth Mariogatchi will be rare
+         * - the first three Mariogatchis will be common, the fourth and fifth Mariogatchi will be rare
          * - the fifth Mariogatchi will be rare and leveled up
          */
         MariogatchiFactory mariogatchiFactory = new MariogatchiFactory();

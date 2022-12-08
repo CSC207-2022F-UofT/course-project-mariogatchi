@@ -4,7 +4,7 @@ import mariogatchi.entities.environments.Environment;
 import mariogatchi.entities.environments.EnvironmentFactory;
 
 public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
-    private final ChangeEnvironmentPresenter ENVIRONMENTPRESENTER; // presenter
+    private final ChangeEnvironmentPresenter ENVIRONMENT_PRESENTER; // presenter
 
     /**
      * Request model (input data) for the ChangeEnvironment use case.
@@ -13,7 +13,7 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
      */
 
     public ChangeEnvironmentRunner(ChangeEnvironmentPresenter environmentPresenter) {
-        this.ENVIRONMENTPRESENTER = environmentPresenter;
+        this.ENVIRONMENT_PRESENTER = environmentPresenter;
     }
 
     /*
@@ -26,7 +26,7 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
     @Override
     public ChangeEnvironmentResponseModel environmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
         if (isSame(environmentRequestModel)){
-            return ENVIRONMENTPRESENTER.prepareFailView("Cannot change environment: You are already in that environment!");
+            return ENVIRONMENT_PRESENTER.prepareFailView("Cannot change environment: You are already in that environment!");
         } else {
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
             Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNEW_ENVIRONMENT());
@@ -34,7 +34,7 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
             Env changedEnvironment = environmentRequestModel.getUser().getEnvironment().getName();
             ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironment);
 
-            return ENVIRONMENTPRESENTER.prepareSuccessView(environmentResponseModel);
+            return ENVIRONMENT_PRESENTER.prepareSuccessView(environmentResponseModel);
         }
     }
     private boolean isSame(ChangeEnvironmentRequestModel environmentRequestModel){
