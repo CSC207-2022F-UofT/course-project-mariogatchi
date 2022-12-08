@@ -73,16 +73,4 @@ public class Mariogatchi {
     public String toString() {
         return "Your mariogatchi.Mariogatchi " + this.name + " is level " + this.lvl + "... No wonder why he's" + this.rarity;
     }
-
-    public boolean increaselvl() {
-        if (this.stats.getAgility() >= this.stats.getMaxLevel() && this.stats.getMaxLevel() >= this.stats.getStrategy()) {     /* This function upgrades the mariogatchi.Mariogatchi Level only if the XP level passes the level cap*/
-            this.stats.levelUp();
-            this.stats.ResetAgility();
-            return true;
-        } else {
-            return false;
-        }
-
-
-    }
 }
