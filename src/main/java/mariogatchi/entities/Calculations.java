@@ -4,6 +4,7 @@ import java.util.*;
 
 
 public class Calculations {
+    
     public enum sortOrder{
         FORWARDS,
         REVERSE
@@ -78,7 +79,7 @@ public class Calculations {
 
         /**
          * Sorting Method for mariogatchis
-         * Takes the mariogatchi list input and compareby string as the input
+         * Takes the mariogatchi list input, compareby as a string, and enum order of the return sorted list. 
          */
         List<Mariogatchi> returnList = new ArrayList<Mariogatchi>();
         returnList.addAll(mariogatchiList);
