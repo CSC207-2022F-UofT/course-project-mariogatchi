@@ -1,8 +1,6 @@
-package mariogatchi.entities.items.environments;
+package mariogatchi.entities.environments;
 
 import mariogatchi.entities.Mariogatchi;
-
-import static mariogatchi.entities.items.environments.Env.FOREST;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +23,7 @@ public class Forest extends Environment implements MariogatchiGeneratable {
      * which it does and stores in the instance attribute
      */
     public Forest() {
-        super(FOREST);
+        super(Env.FOREST);
         this.GENERATED_MARIOGATCHIS = createMariogacthis();
     }
 
