@@ -3,21 +3,19 @@ package mariogatchi.use_cases.authentication;
 import mariogatchi.entities.Account;
 
 public class AuthenticationResponseModel {
-    private Account account;
-
-    private String message;
+    private final Account ACCOUNT;
+    private final String MESSAGE;
 
     public AuthenticationResponseModel(Account account, String message){
-        this.account = account;
-        this.message = message;
-
+        this.ACCOUNT = account;
+        this.MESSAGE = message;
     }
 
     public Account getAccount() {
-        return this.account;
+        return this.ACCOUNT;
     }
 
     public String getMessage() {
-        return this.message;
+        return this.MESSAGE;
     }
 }

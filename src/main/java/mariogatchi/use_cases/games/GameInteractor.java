@@ -11,8 +11,6 @@ import mariogatchi.entities.items.Item;
 import mariogatchi.use_cases.authentication.AuthenticationPresenter;
 import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
 
-import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +53,8 @@ public class GameInteractor implements GameInputBoundary{
     public AuthenticationResponseModel requestAuth(GameRequestModel game, Account account) {
         DataAccess data = new DataAccess();
         List<User> users = account.getUsers(); // Gets the games in the account
-        String name = game.getName();
-        switch(game.getType()) {
+        String name = game.getNAME();
+        switch(game.getTYPE()) {
             case CREATE:
                 List<String> names = new ArrayList<>();
                 for (User u : users) {
@@ -91,13 +89,10 @@ public class GameInteractor implements GameInputBoundary{
 
     @Override
     public GameResponseModel requestGame(GameRequestModel game, Account account) {
-        String name = game.getName();
-        boolean user_exists = false;
-        DataAccess data = new DataAccess();
+        String name = game.getNAME();
         List<User> users = account.getUsers(); // Gets the games in the account
         for (User u: users) {
             if (u.getName().equals(name)) {
-                user_exists = true;
                 u.setCurrentEnvironment(new Home());
                 account.delUser(u);
                 GameResponseModel response = new GameResponseModel(u, "Loaded game");

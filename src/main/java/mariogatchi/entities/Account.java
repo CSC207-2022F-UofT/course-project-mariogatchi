@@ -1,23 +1,24 @@
 package mariogatchi.entities;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 public class Account implements Serializable {
     private String username;
     private byte[] hashedPassword;
     private List<User> users;
-    private String friendCode;
+    private final String FRIEND_CODE;
 
     public Account(String username, byte[] hashedPassword, String friendCode){
         this.username = username;
         this.hashedPassword = hashedPassword;
-        this.friendCode = friendCode;
+        this.FRIEND_CODE = friendCode;
     }
 
     @Override
     public String toString(){
-        return username + " " + hashedPassword;
+        return username + " " + Arrays.toString(hashedPassword);
     }
 
     public String getUsername(){
@@ -36,8 +37,8 @@ public class Account implements Serializable {
         this.hashedPassword = hashedPassword;
     }
 
-    public String getFriendCode() {
-        return this.friendCode;
+    public String getFRIEND_CODE() {
+        return this.FRIEND_CODE;
     }
 
     public List<User> getUsers(){

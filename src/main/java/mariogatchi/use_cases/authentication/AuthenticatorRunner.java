@@ -18,13 +18,17 @@ import java.util.UUID;
 
 public class AuthenticatorRunner implements AuthInputBoundary{
     private final Charset CHARS = StandardCharsets.UTF_8;
-    private final String HASHTYPE = "SHA-256";
 
     private final AuthenticationPresenter presenter;
 
     private Account currAccount = null;
-
+    /**
+     * The currently logged in Account instance
+     */
     private User currUser = null;
+    /**
+     * The currently logged in User instance
+     */
 
     public AuthenticatorRunner(AuthenticationPresenter presenter) {
         this.presenter = presenter;
@@ -47,16 +51,15 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         if (data.deleteFile(account_data_file)) { // deletes the data account file
             AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Logged out and deleted account");
             return presenter.prepareLoginFailure(response);
-        } else {
-            // this case should never happen, but if it does there is a problem
         }
         return null;
     }
 
     @Override
     public AuthenticationResponseModel authenticationRequest(AuthenticationRequestModel requestModel) {
-        String username = requestModel.getUsername();
+        String username = requestModel.getUSERNAME();
         String password = requestModel.getPassword();
+        String HASHTYPE = "SHA-256";
         switch (requestModel.getType()) {
             case LOGIN:
                 //DisplayPresenter display = new DisplayPresenter();
@@ -206,4 +209,10 @@ public class AuthenticatorRunner implements AuthInputBoundary{
     public Statistics getMariogatchiStatisticsFromUser(String mariogatchiName) {
         return this.currUser.getMariogatchiStatsFromUser(mariogatchiName);
     }
+
+    @Override
+    public String getFriendCodeFromAccount() {
+        return this.currAccount.getFRIEND_CODE();
+    }
+
 }

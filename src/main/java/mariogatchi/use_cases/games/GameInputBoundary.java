@@ -10,7 +10,7 @@ public interface GameInputBoundary {
 
     void exitRequest(Account account, User user);
 
-    public AuthenticationResponseModel requestAuth(GameRequestModel game, Account account);
+    AuthenticationResponseModel requestAuth(GameRequestModel game, Account account);
 
-    public GameResponseModel requestGame(GameRequestModel game, Account account);
+    GameResponseModel requestGame(GameRequestModel game, Account account);
 }

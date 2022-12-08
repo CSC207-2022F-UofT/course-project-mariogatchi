@@ -9,13 +9,12 @@ public class AddItemRequestModel {
     private final Inventory INVENTORY; // inventory that item is to be added to
     private final int QUANTITY; // quantity to add of item to inventory
 
-    /*
+    /**
     The input data needed for the AddItem use case
-    @param item - the item to be added
+    @param itemName - the name of the item to be added
     @param inventory - the inventory that the item is to be added to
     @param quantity - the quantity of item to be added to the inventory
      */
-
     public AddItemRequestModel (String itemName, Inventory inventory, int quantity) {
         ItemFactory itemFactory = new ItemFactory();
         this.ITEM = itemFactory.getItem(Item.Items.valueOf(itemName));
