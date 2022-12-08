@@ -68,7 +68,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -110,7 +110,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -147,7 +147,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 System.out.println(error + ": This was supposed to happen");
                 return null;
             }
@@ -184,7 +184,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 System.out.println(error + ": This was supposed to happen");
                 return null;
             }
