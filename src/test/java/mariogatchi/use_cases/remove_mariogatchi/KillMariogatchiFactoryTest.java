@@ -1,7 +1,8 @@
+package mariogatchi.use_cases.remove_mariogatchi;
+
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 import mariogatchi.use_cases.manager.MariogatchiManager;
-import mariogatchi.use_cases.remove_mariogatchi.*;
 import mariogatchi.use_cases.remove_mariogatchi.factories.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

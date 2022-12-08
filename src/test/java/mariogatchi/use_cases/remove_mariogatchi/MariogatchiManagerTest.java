@@ -1,3 +1,5 @@
+package mariogatchi.use_cases.remove_mariogatchi;
+
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 import mariogatchi.use_cases.manager.MariogatchiManager;
