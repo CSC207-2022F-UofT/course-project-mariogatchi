@@ -1,5 +1,4 @@
 package mariogatchi.entities.environments;
-import mariogatchi.entities.environments.*;
 /*
  * Use Case:
  * Concrete factory for the creation of new environment instances

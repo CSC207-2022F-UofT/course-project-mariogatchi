@@ -1,5 +1,7 @@
 package mariogatchi.entities;
 
+import mariogatchi.entities.Statistics;
+
 import java.awt.Image;
 
 public class Mariogatchi {
@@ -13,8 +15,8 @@ public class Mariogatchi {
     private int lvl;
 
 
-    /* Rarety represents the rarety of the  mariogatchi.Mariogatchi,
-       rarety can be either uncommon, common, rare and legendary*/
+    /* Rarity represents the rarity of the  mariogatchi.Mariogatchi,
+       rarity can be either uncommon, common, rare and legendary*/
     private String rarity;
 
 
@@ -66,3 +68,4 @@ public class Mariogatchi {
 
     }
 }
+
