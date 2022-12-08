@@ -1,8 +1,8 @@
 package mariogatchi.entities.environments;
 import static mariogatchi.entities.environments.Env.HOME;
 
-/*
- * Entity:
+/**
+ * Entity
  * Home subclass of environment
  */
 public class Home extends Environment{
