@@ -20,7 +20,7 @@ public class ChangeEnvironmentResponseModel{
      * Returns the environment the response model provides
      * @return the environment the response model provides
      */
-    public Env getNewEnvironment(){
+    public Env getNewEnvironment() {
         return NEW_ENVIRONMENT;
     }
 }
