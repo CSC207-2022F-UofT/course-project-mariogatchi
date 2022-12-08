@@ -40,11 +40,11 @@ import mariogatchi.use_cases.item_cases.use_item.UseItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.use_item.UseItemRequestModel;
 import mariogatchi.use_cases.item_cases.use_item.UseItemRunner;
 import mariogatchi.use_cases.manager.MariogatchiManager;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
-import mariogatchi.use_cases.manager.remove_mariogatchi.factories.KillMariogatchiFactory;
-import mariogatchi.use_cases.manager.remove_mariogatchi.factories.RemoveMariogatchiFactory;
-import mariogatchi.use_cases.manager.remove_mariogatchi.factories.TransferMariogatchiFactory;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
+import mariogatchi.use_cases.remove_mariogatchi.factories.KillMariogatchiFactory;
+import mariogatchi.use_cases.remove_mariogatchi.factories.RemoveMariogatchiFactory;
+import mariogatchi.use_cases.remove_mariogatchi.factories.TransferMariogatchiFactory;
 import mariogatchi.use_cases.playdate.PlaydateInputBoundary;
 import mariogatchi.use_cases.playdate.PlaydatePresenter;
 import mariogatchi.use_cases.playdate.PlaydateRequestModel;
@@ -208,7 +208,7 @@ public class InputController {
      * @param inputs The list of inputs for the action
      */
     public void request(Actions action, List<String> inputs) {
-        TimeRequestModel timeReq = new TimeRequestModel((int) Instant.now().getEpochSecond(), AUTH.getMariogatchiStatisticsFromUser(inputs.get(0)));
+        TimeRequestModel timeReq = new TimeRequestModel((int) Instant.now().getEpochSecond(), AUTH.getCurrUser());
         TIME.checkPassedTime(timeReq);
 
         switch (action) {
@@ -222,17 +222,35 @@ public class InputController {
             case ADD_ITEM: // pass in nothing
                 double rand = Math.random();
                 if (rand > 0.99) {
-                    int cause = (int) (Math.random() * 4);
-                    // get a random mariogatchi
+                    int cause = (int) (Math.random() * 5);
                     // Kill the random mariogatchi
                     switch(cause) {
                         case 0:
+                            KILL_FACTORY.getAction("blown away").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
                             break;
                         case 1:
+                            KILL_FACTORY.getAction("drown").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
                             break;
                         case 2:
+                            KILL_FACTORY.getAction("illness").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
                             break;
                         case 3:
+                            KILL_FACTORY.getAction("old age").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
+                            break;
+                        case 4:
+                            KILL_FACTORY.getAction("over care").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
+                            break;
+                        case 5:
+                            KILL_FACTORY.getAction("predators").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
+                            break;
+                        case 6:
+                            KILL_FACTORY.getAction("problem set").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
+                            break;
+                        case 7:
+                            KILL_FACTORY.getAction("starvation").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
+                            break;
+                        case 8:
+                            KILL_FACTORY.getAction("ufo abduction").execute(AUTH.getCurrUser(), AUTH.getRandomMariogatchiFromUser(), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
                             break;
                     }
                 }
@@ -260,7 +278,7 @@ public class InputController {
                 MOVE.changeEnvironment(parkReq);
                 break;
             case INFO: // pass the stat name and the mariogatchi name
-                InfoAccessRequestModel infoReq = new InfoAccessRequestModel(AUTH.getMariogatchiStatisticsFromUser(inputs.get(0)), inputs.get(1));
+                InfoAccessRequestModel infoReq = new InfoAccessRequestModel(inputs.get(0), AUTH.getCurrUser());
                 INFO.checkStatistic(infoReq);
                 break;
             case FIND_MARIO: // Pass in the choice, either "deny", "accept" or "find mariogatchi"

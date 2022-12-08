@@ -36,7 +36,7 @@ public class GameInteractorRunnerTest {
                 return responseModel;
             }
         };
-        Account account = new Account("username", "Password1*".getBytes(), "friendcode");
+        Account account = new Account("TestGame", "Password1*".getBytes(), "friendcode");
         User user = null;
 
         GameInteractor game = new GameInteractor(authenticationPresenter, gamePresenter);
@@ -72,7 +72,8 @@ public class GameInteractorRunnerTest {
         AuthenticationResponseModel responseDeleteSuccess = game.requestAuth(deleteReq, account);
         assertEquals("Game Deleted", responseDeleteSuccess.getMessage());
 
-
     }
+
+
 }
 

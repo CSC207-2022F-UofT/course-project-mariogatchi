@@ -16,11 +16,11 @@ public class UseItemRequestModel {
     The input data needed for the use item use case
     @param itemName - the name of the item to use
     @param environment - the current environment that the item is to be used in
-    @param gatchi - the mariogatchi that the item is to be used on
+    @param mario - the mariogatchi that the item is to be used on
     @param inventory - the inventory that the item is to be used from
      */
 
-    public UseItemRequestModel(String itemName, Env environment, Mariogatchi gatchi, Inventory inventory) {
+    public UseItemRequestModel(String itemName, Env environment, Mariogatchi mario, Inventory inventory) {
         /*
         Factory design pattern
          */
@@ -30,9 +30,9 @@ public class UseItemRequestModel {
         Dependency Injection design pattern: does not create Items directly (using the new keyword)
          */
         this.ITEM_TO_USE = itemFactory.getItem(Item.Items.valueOf(itemName));
+        this.GATCHI = mario;
 
         this.CURRENT_ENVIRONMENT = environment;
-        this.GATCHI = gatchi;
         this.INVENTORY = inventory;
     }
 

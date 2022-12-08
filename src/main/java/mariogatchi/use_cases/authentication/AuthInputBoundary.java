@@ -27,6 +27,8 @@ public interface AuthInputBoundary {
 
     Mariogatchi getMariogatchiFromUser(String mariogatchiName);
 
+    Mariogatchi getRandomMariogatchiFromUser();
+
     Statistics getMariogatchiStatisticsFromUser(String mariogatchiName);
 
     String getFriendCodeFromAccount();
