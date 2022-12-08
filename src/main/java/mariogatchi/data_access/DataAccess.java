@@ -19,6 +19,13 @@ public class DataAccess implements DataAccessInterface{
     private SupabaseClient supabaseClient;
 
     private final String DIR = System.getProperty("user.dir") + "\\src\\main\\java\\mariogatchi\\";
+
+
+    /**
+     * Used for serializing objects
+     * @param filename the Directory and name of the file
+     * @param obj the object to be serialized
+     */
     @Override
     public void saveObject(final String filename, Serializable obj){
         try{
@@ -37,6 +44,11 @@ public class DataAccess implements DataAccessInterface{
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5Y2ZwanFxa3R3YXlqbG9qcGN1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2OTM0MjgwMSwiZXhwIjoxOTg0OTE4ODAxfQ.uGQIakc4-WnrA5fmdy8nDuYsTQYhUP2yBO_GOLuMAkM");
     }
 
+    /**
+     * Loads a serialized object
+     * @param filename the Directory and name of the file
+     * @return the object
+     */
     @Override
     public Serializable loadObject(final String filename){
         Serializable obj = null;
@@ -56,11 +68,21 @@ public class DataAccess implements DataAccessInterface{
         return obj;
     }
 
+    /**
+     *
+     * @param filepath The file Directory and name
+     * @return the File object
+     */
     @Override
     public File loadFile(String filepath) {
         return new File(DIR + filepath);
     }
 
+    /**
+     * Deletes a file
+     * @param file the file to delete
+     * @return returns if the file was deleted
+     */
     @Override
     public boolean deleteFile(File file) {
         return file.delete();
