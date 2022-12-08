@@ -6,6 +6,7 @@ package mariogatchi.presenter;
 
 import java.awt.CardLayout;
 import java.util.List;
+import java.lang.Math;
 
 import mariogatchi.controllers.InputController;
 import mariogatchi.use_cases.authentication.AuthenticationPresenter;
@@ -1195,7 +1196,8 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }// </editor-fold>//GEN-END:initComponents
     
     private void initDynamicComponents(){
-        
+        inventoryItemLeashV.setVisible(false);
+        friendCodeV.setText("i2o3diwfd90ipjondo");
     }
     
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -1224,8 +1226,25 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void forrestNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forrestNextBtnActionPerformed
-        
+        updateNewM();
     }//GEN-LAST:event_forrestNextBtnActionPerformed
+
+    private int ran(int scale){
+        return (int) Math.random()* scale;
+    }
+    
+    private void updateNewM(){
+        if(ran(5) == 0){
+            mariogatchiRarityVTxt.setText("Rare");
+        }else{
+            mariogatchiRarityVTxt.setText("Common");
+        }
+        mariogatchiCleanlinessVTxt.setText(String.valueOf(ran(30)));
+        mariogatchiEnergyVTxt.setText(String.valueOf(ran(30)));
+        mariogatchiHungerVTxt.setText(String.valueOf(ran(30)));
+        mariogatchiStrategyVTxt.setText(String.valueOf(ran(30)));
+        mariogatchiAgilityVTxt.setText(String.valueOf(ran(30)));
+    }
 
     private void forrestAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forrestAcceptBtnActionPerformed
         changeScreen("Home");
@@ -1233,6 +1252,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     private void gameNewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameNewBtnActionPerformed
         changeScreen("Forrest");
+        updateNewM();
     }//GEN-LAST:event_gameNewBtnActionPerformed
 
     private void forrestViewMariogatchiStatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forrestViewMariogatchiStatsBtnActionPerformed
@@ -1247,12 +1267,27 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     private void toParkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toParkBtnActionPerformed
         if(!isDialogOpen()){
             changeScreen("Park");
+            if(ran(2) == 0){
+                int temp = ran(1);
+                String more = null;
+                if(temp == 0){
+                    inventoryItemAppleV.setText(String.valueOf(Integer.parseInt(inventoryItemAppleV.getText()) + 1));
+                    more = "Apple";
+                }else{
+                    inventoryItemBadAppleV.setText(String.valueOf(Integer.parseInt(inventoryItemBadAppleV.getText()) + 1));
+                    more = "Bad Apple";
+                }
+                errorTxt.setText("");
+                errorF.setText("You got 1 " + more);
+                errorDialog.setVisible(true);
+            }
         }
     }//GEN-LAST:event_toParkBtnActionPerformed
 
     private void toForrestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toForrestBtnActionPerformed
         if(!isDialogOpen()){
             changeScreen("Forrest");
+            updateNewM();
         }
     }//GEN-LAST:event_toForrestBtnActionPerformed
 
@@ -1278,7 +1313,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     private void continueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueBtnActionPerformed
         deadDialog.setVisible(false);
-        this.setFocusable(true);
     }//GEN-LAST:event_continueBtnActionPerformed
 
     private void toHomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toHomeBtnActionPerformed
@@ -1289,22 +1323,29 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     private void useItemAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useItemAcceptBtnActionPerformed
         useItemDialog.setVisible(false);
-        this.setFocusable(true);
+        remove1();
     }//GEN-LAST:event_useItemAcceptBtnActionPerformed
+
+    private void remove1(){
+        if(useItemItemTxt.getText() == "Apple"){
+            inventoryItemAppleV.setText(String.valueOf(Integer.parseInt(inventoryItemAppleV.getText()) - 1));
+        }else if(useItemTxt.getText() == "Bad Apple"){
+            inventoryItemBadAppleV.setText(String.valueOf(Integer.parseInt(inventoryItemBadAppleV.getText()) - 1));
+        }
+    }
 
     private void useItemDeclineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useItemDeclineBtnActionPerformed
         useItemDialog.setVisible(false);
-        this.setFocusable(true);
     }//GEN-LAST:event_useItemDeclineBtnActionPerformed
 
     private void inventoryItemAppleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemAppleBtnActionPerformed
-        if(!isDialogOpen()){
+        if(!isDialogOpen() && Integer.parseInt(inventoryItemAppleV.getText()) > 0){
             useItem("Apple");
         }
     }//GEN-LAST:event_inventoryItemAppleBtnActionPerformed
 
     private void inventoryItemBadAppleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemBadAppleBtnActionPerformed
-        if(!isDialogOpen()){
+        if(!isDialogOpen() && Integer.parseInt(inventoryItemBadAppleV.getText()) > 0){
             useItem("Bad Apple");
         }
     }//GEN-LAST:event_inventoryItemBadAppleBtnActionPerformed
@@ -1398,6 +1439,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     @Override
     public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel){
         errorDialog.setVisible(true);
+        errorTxt.setText("Error");
         errorF.setText("Invalid credentials");
         return responseModel;
     }
