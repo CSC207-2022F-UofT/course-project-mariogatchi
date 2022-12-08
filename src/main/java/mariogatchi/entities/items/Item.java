@@ -131,14 +131,29 @@ public abstract class Item implements Serializable {
                 value = value * -1;
             }
 
-            Statistics.Stats statEnum = switch (itemEffect) {
-                case HUNGER -> Statistics.Stats.HUNGER;
-                case ENERGY -> Statistics.Stats.ENERGY;
-                case CLEANLINESS -> Statistics.Stats.CLEANLINESS;
-                case HAPPINESS -> Statistics.Stats.HAPPINESS;
-                case AGILITY -> Statistics.Stats.AGILITY;
-                case STRATEGY -> Statistics.Stats.STRATEGY;
-            };
+            Statistics.Stats statEnum;
+            switch (itemEffect) {
+                case HUNGER:
+                    statEnum = Statistics.Stats.HUNGER;
+                    break;
+                case ENERGY:
+                    statEnum = Statistics.Stats.ENERGY;
+                    break;
+                case CLEANLINESS:
+                    statEnum = Statistics.Stats.CLEANLINESS;
+                    break;
+                case HAPPINESS:
+                    statEnum = Statistics.Stats.HAPPINESS;
+                    break;
+                case AGILITY:
+                    statEnum = Statistics.Stats.AGILITY;
+                    break;
+                case STRATEGY:
+                    statEnum = Statistics.Stats.STRATEGY;
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
             gatchiStats.changeStat(statEnum, value, operate);
             }
 

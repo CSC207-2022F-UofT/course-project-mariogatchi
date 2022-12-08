@@ -1,6 +1,7 @@
 package mariogatchi.entities.items.environments;
 
 import mariogatchi.entities.Mariogatchi;
+import mariogatchi.use_cases.change_environment.MariogatchiGeneratable;
 
 import static mariogatchi.entities.items.environments.Env.FOREST;
 
@@ -15,7 +16,7 @@ import java.util.Random;
  * upon initialization and stored them in generatedMariogatchis
  */
 public class Forest extends Environment implements MariogatchiGeneratable {
-    private final List<Mariogatchi> GENERATED_MARIOGATCHIS;
+    private List<Mariogatchi> generatedMariogatchis;
 
     /**
      * Constructor:
@@ -26,7 +27,7 @@ public class Forest extends Environment implements MariogatchiGeneratable {
      */
     public Forest() {
         super(FOREST);
-        this.GENERATED_MARIOGATCHIS = createMariogacthis();
+        this.generatedMariogatchis = createMariogacthis();
     }
 
     /**
@@ -34,7 +35,11 @@ public class Forest extends Environment implements MariogatchiGeneratable {
      * @return the iterable list of Mariogatchis stored in the forest
      */
     public List<Mariogatchi> getGeneratedMariogatchis(){
-        return this.GENERATED_MARIOGATCHIS;
+        return this.generatedMariogatchis;
+    }
+
+    public void setGeneratedMariogatchis(List<Mariogatchi> generatedMariogatchis){
+        this.generatedMariogatchis = generatedMariogatchis;
     }
 
     /**

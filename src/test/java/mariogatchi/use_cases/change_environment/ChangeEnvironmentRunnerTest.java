@@ -1,17 +1,15 @@
 package mariogatchi.use_cases.change_environment;
 
 import mariogatchi.entities.User;
-import mariogatchi.entities.environments.EnvironmentFactory;
+
 import static mariogatchi.entities.environments.Env.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class ChangeEnvironmentRunnerTest {
     @Test
-    @Order(1)
-    void changeEnvironmentFailRequest(){
+    public void changeEnvironmentFailRequest(){
         ChangeEnvironmentOutputBoundary changeEnvironmentOutputBoundary = new ChangeEnvironmentOutputBoundary() {
             @Override
             public ChangeEnvironmentResponseModel changeEnvPrepareSuccessView(ChangeEnvironmentResponseModel changeEnvironmentResponseModel) {
@@ -34,8 +32,7 @@ public class ChangeEnvironmentRunnerTest {
     }
 
     @Test
-    @Order(2)
-    void changeEnvironmentSuccessRequest(){
+    public void changeEnvironmentSuccessRequest(){
         ChangeEnvironmentOutputBoundary changeEnvironmentOutputBoundary = new ChangeEnvironmentOutputBoundary() {
             @Override
             public ChangeEnvironmentResponseModel changeEnvPrepareSuccessView(ChangeEnvironmentResponseModel changeEnvironmentResponseModel) {

@@ -2,7 +2,6 @@ package mariogatchi.use_cases.change_environment;
 
 import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.User;
-import mariogatchi.entities.environments.EnvironmentFactory;
 
 /**
  * ChangeEnvironmentRequestModel: the information the use case requests from the controller

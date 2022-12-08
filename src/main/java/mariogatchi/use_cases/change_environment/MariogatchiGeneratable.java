@@ -1,4 +1,4 @@
-package mariogatchi.entities.environments;
+package mariogatchi.use_cases.change_environment;
 
 import mariogatchi.entities.Mariogatchi;
 import java.util.List;
