@@ -25,6 +25,6 @@ class InformationAccessRunnerTest {
         });
 
         infoAccessRunner.checkStatistic(new InfoAccessRequestModel(new Statistics("common"),
-                Statistics.Stats.AGILITY.toString()));
+                "AGILITY"));
     }
 }
