@@ -1,4 +1,4 @@
-import mariogatchi.RemoveMariogatchiDisplayer;
+import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiDisplayer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

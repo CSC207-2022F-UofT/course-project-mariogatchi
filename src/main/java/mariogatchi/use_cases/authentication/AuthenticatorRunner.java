@@ -246,6 +246,12 @@ public class AuthenticatorRunner implements AuthInputBoundary{
     }
 
     @Override
+    public Mariogatchi getRandomMariogatchiFromUser() {
+        return this.currUser.getMariogatchis().get((int) (Math.random() * this.currUser.getMariogatchis().size()));
+    }
+
+
+    @Override
     public Statistics getMariogatchiStatisticsFromUser(String mariogatchiName) {
         return this.currUser.getMariogatchiStatsFromUser(mariogatchiName);
     }

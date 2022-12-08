@@ -48,6 +48,7 @@ public class Mariogatchi {
         this.rarity = rarity;
     }
 
+
     /* Gets the level of the mariogatchi */
     public int getLvl() { return this.lvl; }
 
