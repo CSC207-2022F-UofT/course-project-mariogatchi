@@ -1,14 +1,14 @@
-package mariogatchi.entities.items.environments;
+package mariogatchi.entities.environments;
 
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.use_cases.change_environment.MariogatchiGeneratable;
-
-import static mariogatchi.entities.items.environments.Env.FOREST;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import static mariogatchi.entities.environments.Env.FOREST;
 
 /**
  * Entity Subclass
