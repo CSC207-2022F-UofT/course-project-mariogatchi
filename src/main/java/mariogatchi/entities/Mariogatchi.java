@@ -67,7 +67,7 @@ public class Mariogatchi {
 
     public boolean increaselvl() {
         if (this.stats.getAgility() >= this.stats.getMaxLevel() && this.stats.getMaxLevel() >= this.stats.getStrategy()) {     /* This function upgrades the mariogatchi.Mariogatchi Level only if the XP level passes the level cap*/
-            this.stats.LevelUp();
+            this.stats.levelUp();
             this.stats.ResetAgility();
             return true;
         } else {
