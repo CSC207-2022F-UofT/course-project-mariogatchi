@@ -1,16 +1,22 @@
 package mariogatchi.controllers;
 
+import mariogatchi.entities.Mariogatchi;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiInputBoundary;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiPresenter;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRequestModel;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRunner;
 import mariogatchi.use_cases.authentication.AuthInputBoundary;
 import mariogatchi.use_cases.authentication.AuthenticationPresenter;
 import mariogatchi.use_cases.authentication.AuthenticationRequestModel;
 import mariogatchi.use_cases.authentication.AuthenticatorRunner;
 import mariogatchi.use_cases.change_environment.ChangeEnvironmentInputBoundary;
-import mariogatchi.use_cases.change_environment.ChangeEnvironmentPresenter;
+import mariogatchi.use_cases.change_environment.ChangeEnvironmentOutputBoundary;
 import mariogatchi.use_cases.change_environment.ChangeEnvironmentRequestModel;
 import mariogatchi.use_cases.change_environment.ChangeEnvironmentRunner;
+import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiOutputBoundary;
+import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiRequestModel;
+import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiResponseModel;
+import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiRunner;
 import mariogatchi.use_cases.games.GameInputBoundary;
 import mariogatchi.use_cases.games.GameInteractor;
 import mariogatchi.use_cases.games.GamePresenter;
@@ -54,6 +60,7 @@ import static mariogatchi.use_cases.games.GameRequestModel.GameActions.*;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The controller for all inputs to the program
@@ -75,16 +82,18 @@ public class InputController {
     private final RemoveMariogatchiDisplayerInterface REMOVE_MARIOGATCHI_DISPLAYER;
     private final RemoveMariogatchiFactory TRANSFER_FACTORY;
     private final RemoveMariogatchiFactory KILL_FACTORY;
+    private final FindMariogatchiRunner FIND_MARIOGATCHI;
+    private Mariogatchi mariogatchiOutput;
 
 
     public InputController(AuthenticationPresenter authPresenter, GamePresenter gamePresenter,
                            AddItemOutputBoundary addPresenter, RemoveItemOutputBoundary removePresenter,
                            UseItemOutputBoundary usePresenter, TimePresenter timePresenter,
-                           InfoAccessPresenter infoPresenter, ChangeEnvironmentPresenter movePresenter,
+                           InfoAccessPresenter infoPresenter, ChangeEnvironmentOutputBoundary movePresenter,
                            AddMariogatchiPresenter addMarioPresenter, AddRandomItemOutputBoundary addRandomPresenter,
                            RemoveMariogatchiPresenterInterface removeMariogatchiPresenter,
                            RemoveMariogatchiDisplayerInterface removeMariogatchiDisplayer,
-                           PlaydatePresenter playdatePresenter) {
+                           PlaydatePresenter playdatePresenter, FindMariogatchiOutputBoundary findPresenter) {
         this.AUTH = new AuthenticatorRunner(authPresenter);
         this.GAME = new GameInteractor(authPresenter, gamePresenter);
         this.TIME = new TimeRunner(timePresenter);
@@ -100,6 +109,8 @@ public class InputController {
         this.REMOVE_MARIOGATCHI_DISPLAYER = removeMariogatchiDisplayer;
         this.TRANSFER_FACTORY = new TransferMariogatchiFactory();
         this.KILL_FACTORY = new KillMariogatchiFactory();
+        this.FIND_MARIOGATCHI = new FindMariogatchiRunner(findPresenter);
+        this.mariogatchiOutput = null;
     }
 
     /**
@@ -242,23 +253,39 @@ public class InputController {
                 break;
             case HOME: // pass in nothing
                 ChangeEnvironmentRequestModel homeReq = new ChangeEnvironmentRequestModel(AUTH.getCurrUser(), "home");
-                MOVE.environmentResponseModel(homeReq);
+                MOVE.changeEnvironment(homeReq);
                 break;
             case FOREST: // pass in nothing
                 ChangeEnvironmentRequestModel forestReq = new ChangeEnvironmentRequestModel(AUTH.getCurrUser(), "forest");
-                MOVE.environmentResponseModel(forestReq);
+                MOVE.changeEnvironment(forestReq);
                 break;
             case PARK: // pass in nothing
                 ChangeEnvironmentRequestModel parkReq = new ChangeEnvironmentRequestModel(AUTH.getCurrUser(), "park");
-                MOVE.environmentResponseModel(parkReq);
+                MOVE.changeEnvironment(parkReq);
                 break;
             case INFO: // pass the stat name and the mariogatchi name
                 InfoAccessRequestModel infoReq = new InfoAccessRequestModel(AUTH.getMariogatchiStatisticsFromUser(inputs.get(0)), inputs.get(1));
                 INFO.checkStatistic(infoReq);
                 break;
-            case FIND_MARIO:
-                //AddMariogatchiRequestModel addMarioReq = new AddMariogatchiRequestModel(auth.getCurrUser(), mariogatchi);
-                //addMario.addMariogatchiToList(addMarioReq);
+            case FIND_MARIO: // Pass in the choice, either "deny", "accept" or "find mariogatchi"
+                if (Objects.equals(inputs.get(0), "deny")) {
+                    FindMariogatchiRequestModel denyReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), "deny", this.mariogatchiOutput);
+                    this.mariogatchiOutput = FIND_MARIOGATCHI.findMariogatchi(denyReq).getMariogatchi();
+                } else {
+                    FindMariogatchiRequestModel acceptFindReq;
+                    if (Objects.equals(inputs.get(0), "accept")) {
+                        acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), this.mariogatchiOutput);
+                    } else { // "find mariogatchi"
+                        acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), null);
+                    }
+                    FindMariogatchiResponseModel responseAcceptFind = FIND_MARIOGATCHI.findMariogatchi(acceptFindReq);
+                    this.mariogatchiOutput = responseAcceptFind.getMariogatchi();
+                    if (responseAcceptFind.getCatchTrigger()) {
+                        AddMariogatchiRequestModel addMarioReq = new AddMariogatchiRequestModel(AUTH.getCurrUser(), responseAcceptFind.getMariogatchi());
+                        ADD_MARIO.addMariogatchiToList(addMarioReq);
+                    }
+                }
+
                 break;
             case REMOVE_MARIO: // Pass in the Mariogatchi name
                 MariogatchiManager manager = new MariogatchiManager();

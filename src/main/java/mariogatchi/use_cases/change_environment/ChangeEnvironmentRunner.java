@@ -34,13 +34,13 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
                     ("Cannot change environment: You are already in that environment!", environmentResponseModel);
         } else {
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
-            Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNEW_ENVIRONMENT());
+            Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNewEnvironment());
                 environmentRequestModel.getUser().setCurrentEnvironment(newEnvironment);
             Env changedEnvironment = environmentRequestModel.getUser().getCurrentEnvironment().getName();
-            Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNewEnvironment());
-                environmentRequestModel.getUser().setEnvironment(newEnvironment);
-            Env changedEnvironment = environmentRequestModel.getUser().getEnvironment().getName();
-            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironment);
+            Environment newEnvironmentTwo = environmentFactory.getName(environmentRequestModel.getNewEnvironment());
+                environmentRequestModel.getUser().setCurrentEnvironment(newEnvironmentTwo);
+            Env changedEnvironmentTwo = environmentRequestModel.getUser().getCurrentEnvironment().getName();
+            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironmentTwo);
             return ENVIRONMENT_OUTPUT_BOUNDARY.changeEnvPrepareSuccessView(environmentResponseModel);
         }
     }

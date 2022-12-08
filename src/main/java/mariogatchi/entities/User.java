@@ -66,4 +66,5 @@ public class User implements Serializable{
     public Statistics getMariogatchiStatsFromUser(String name) {
         return getMariogatchiFromUser(name, this.getMariogatchis()).getStats();
     }
+
 }
