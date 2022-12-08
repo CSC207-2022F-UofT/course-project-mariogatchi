@@ -1,4 +1,4 @@
-package mariogatchi.use_cases.manager.remove_mariogatchi;
+package mariogatchi.use_cases.remove_mariogatchi;
 
 /**
  * Presenter

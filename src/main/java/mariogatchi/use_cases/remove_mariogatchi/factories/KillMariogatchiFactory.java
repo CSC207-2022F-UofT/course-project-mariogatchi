@@ -1,6 +1,6 @@
-package mariogatchi.use_cases.manager.remove_mariogatchi.factories;
+package mariogatchi.use_cases.remove_mariogatchi.factories;
 
-import mariogatchi.use_cases.manager.remove_mariogatchi.killmariogatchi.*;
+import mariogatchi.use_cases.remove_mariogatchi.killmariogatchi.*;
 
 /**
  * Use case

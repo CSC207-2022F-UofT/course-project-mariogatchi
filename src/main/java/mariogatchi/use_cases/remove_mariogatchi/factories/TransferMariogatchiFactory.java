@@ -1,10 +1,10 @@
-package mariogatchi.use_cases.manager.remove_mariogatchi.factories;
+package mariogatchi.use_cases.remove_mariogatchi.factories;
 
 
-import mariogatchi.use_cases.manager.remove_mariogatchi.transfermariogatchi.ErrorExecution;
-import mariogatchi.use_cases.manager.remove_mariogatchi.transfermariogatchi.Merge;
-import mariogatchi.use_cases.manager.remove_mariogatchi.transfermariogatchi.Release;
-import mariogatchi.use_cases.manager.remove_mariogatchi.transfermariogatchi.TransferMariogatchi;
+import mariogatchi.use_cases.remove_mariogatchi.transfermariogatchi.ErrorExecution;
+import mariogatchi.use_cases.remove_mariogatchi.transfermariogatchi.Merge;
+import mariogatchi.use_cases.remove_mariogatchi.transfermariogatchi.Release;
+import mariogatchi.use_cases.remove_mariogatchi.transfermariogatchi.TransferMariogatchi;
 
 /**
  * Use case

@@ -1,9 +1,9 @@
-package mariogatchi.use_cases.manager.remove_mariogatchi.killmariogatchi;
+package mariogatchi.use_cases.remove_mariogatchi.killmariogatchi;
 
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
 
 /**
  * Use case

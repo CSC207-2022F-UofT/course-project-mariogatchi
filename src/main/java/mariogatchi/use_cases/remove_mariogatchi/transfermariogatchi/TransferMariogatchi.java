@@ -1,9 +1,9 @@
-package mariogatchi.use_cases.manager.remove_mariogatchi.transfermariogatchi;
+package mariogatchi.use_cases.remove_mariogatchi.transfermariogatchi;
 
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 import mariogatchi.use_cases.manager.MariogatchiManager;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchi;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchi;
 
 /**
  * Use case

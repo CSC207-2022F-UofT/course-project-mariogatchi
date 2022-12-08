@@ -1,8 +1,8 @@
-package mariogatchi.entities.environments;
+package mariogatchi.entities.items.environments;
 
 import mariogatchi.entities.Mariogatchi;
 
-import static mariogatchi.entities.environments.Env.FOREST;
+import static mariogatchi.entities.items.environments.Env.FOREST;
 
 import java.util.ArrayList;
 import java.util.Arrays;
