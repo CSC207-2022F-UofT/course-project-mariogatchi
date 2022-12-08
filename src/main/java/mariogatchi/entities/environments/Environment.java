@@ -1,7 +1,7 @@
 package mariogatchi.entities.environments;
 
-/*
- * Entity:
+/**
+ * Entity
  * This class is used for the simple creation of the subclass environments
  */
 public abstract class Environment{
@@ -13,6 +13,10 @@ public abstract class Environment{
     protected Environment(Env name){
         this.NAME = name;
     }
+    /**
+     * Returns the name of the environment as an enum
+     * @return the name of the environment as an enum
+     */
     public Env getName(){
         return NAME;
     }

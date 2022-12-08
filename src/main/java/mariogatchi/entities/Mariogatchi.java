@@ -32,6 +32,14 @@ public class Mariogatchi {
         stats = new Statistics(rarity);
     }
 
+    public Mariogatchi(String rarity) {
+        this.avatar = null;
+        this.lvl = 1;
+        this.name = null;
+        this.rarity = rarity;
+        stats = new Statistics(rarity);
+    }
+
     /* Gets the level of the mariogatchi */
     public int getLvl() { return this.lvl; }
 
@@ -47,6 +55,10 @@ public class Mariogatchi {
     /* Gets the Statistics of the mariogatchi */
     public Statistics getStats() {
         return stats;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     @Override
