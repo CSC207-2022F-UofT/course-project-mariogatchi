@@ -1,27 +1,34 @@
 package mariogatchi.use_cases.authentication;
 
 
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AuthenticatorRunnerTest {
+
+    AuthenticationPresenter AUTHENTICATION_PRESENTER;
+
+    @BeforeEach
+    public void setup() {
+            this.AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
+                @Override
+                public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
+                    return responseModel;
+                }
+
+                @Override
+                public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
+                    return responseModel;
+                }
+            };
+    }
 
     @Test
     @Order(1)
-    void authenticationSignupPasswordFailRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationSignupPasswordFailRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel signupReq = new AuthenticationRequestModel("test", "abc1234*", AuthenticationRequestModel.AuthActions.SIGNUP);
@@ -31,42 +38,18 @@ class AuthenticatorRunnerTest {
     }
     @Test
     @Order(2)
-    void authenticationSignupRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationSignupRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel signupReq = new AuthenticationRequestModel("test", "Abc1234*", AuthenticationRequestModel.AuthActions.SIGNUP);
         AuthenticationResponseModel response = auth.authenticationRequest(signupReq);
         auth.setCurrAccount(response.getAccount());
         assertEquals("Signed up and Logged in", response.getMessage());
-
-
     }
 
     @Test
     @Order(3)
-    void authenticationSignupAccountFailRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationSignupAccountFailRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel signupReq = new AuthenticationRequestModel("test", "Abc1234*", AuthenticationRequestModel.AuthActions.SIGNUP);
@@ -78,18 +61,7 @@ class AuthenticatorRunnerTest {
 
     @Test
     @Order(4)
-    void authenticationLoginPasswordFailRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationLoginPasswordFailRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel loginReq = new AuthenticationRequestModel("test", "AbC1234*", AuthenticationRequestModel.AuthActions.LOGIN);
@@ -100,18 +72,7 @@ class AuthenticatorRunnerTest {
 
     @Test
     @Order(5)
-    void authenticationLoginAccountFailRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationLoginAccountFailRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel loginReq = new AuthenticationRequestModel("test1", "Abc1234*", AuthenticationRequestModel.AuthActions.LOGIN);
@@ -122,18 +83,7 @@ class AuthenticatorRunnerTest {
 
     @Test
     @Order(6)
-    void authenticationLoginLogoutRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationLoginLogoutRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel loginReq = new AuthenticationRequestModel("test", "Abc1234*", AuthenticationRequestModel.AuthActions.LOGIN);
@@ -144,18 +94,7 @@ class AuthenticatorRunnerTest {
 
     @Test
     @Order(7)
-    void authenticationLoginDeleteRequest() {
-        AuthenticationPresenter AUTHENTICATION_PRESENTER = new AuthenticationPresenter() {
-            @Override
-            public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
+    public void authenticationLoginDeleteRequest() {
 
         AuthenticatorRunner auth = new AuthenticatorRunner(AUTHENTICATION_PRESENTER);
         AuthenticationRequestModel loginReq = new AuthenticationRequestModel("test", "Abc1234*", AuthenticationRequestModel.AuthActions.LOGIN);
