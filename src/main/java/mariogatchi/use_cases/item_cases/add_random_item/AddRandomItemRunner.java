@@ -19,10 +19,10 @@ public class AddRandomItemRunner implements AddRandomItemInputBoundary {
         this.randomItemGenerator = new RandomItemGenerator();
     }
 
-    /*
-    Returns an instance of the add random item response model
-
-    @param requestModel an instance of the add random item request model
+    /**
+     * Adds a random item to a players inventory.
+     * @param requestModel an instance of the Add Random Item use case input boundary
+     * @return an instance of the Add Random Item use case output boundary (AddRandomItemResponseModel)
      */
     @Override
     public AddRandomItemResponseModel addRandomItem(AddRandomItemRequestModel requestModel) {

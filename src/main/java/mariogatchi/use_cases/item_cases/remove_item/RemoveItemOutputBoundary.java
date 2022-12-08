@@ -6,5 +6,5 @@ public interface RemoveItemOutputBoundary {
      */
     RemoveItemResponseModel removeItemPrepareSuccessView(RemoveItemResponseModel responseModel);
 
-    RemoveItemResponseModel removeItemPrepareFailureView(String error);
+    RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel);
 }

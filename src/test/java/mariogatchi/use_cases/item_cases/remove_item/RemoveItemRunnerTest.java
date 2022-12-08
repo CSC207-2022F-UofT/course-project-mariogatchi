@@ -30,7 +30,7 @@ public class RemoveItemRunnerTest {
             }
 
             @Override
-            public RemoveItemResponseModel removeItemPrepareFailureView(String error) {
+            public RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -68,7 +68,7 @@ public class RemoveItemRunnerTest {
             }
 
             @Override
-            public RemoveItemResponseModel removeItemPrepareFailureView(String error) {
+            public RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -106,7 +106,7 @@ public class RemoveItemRunnerTest {
             }
 
             @Override
-            public RemoveItemResponseModel removeItemPrepareFailureView(String error) {
+            public RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -146,7 +146,7 @@ public class RemoveItemRunnerTest {
             }
 
             @Override
-            public RemoveItemResponseModel removeItemPrepareFailureView(String error) {
+            public RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel) {
                 assertSame("You do not have enough of this item to remove", error);
                 return null;
             }
@@ -186,7 +186,7 @@ public class RemoveItemRunnerTest {
             }
 
             @Override
-            public RemoveItemResponseModel removeItemPrepareFailureView(String error) {
+            public RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel) {
                 assertSame("Default item cannot be removed from inventory", error);
                 return null;
             }
