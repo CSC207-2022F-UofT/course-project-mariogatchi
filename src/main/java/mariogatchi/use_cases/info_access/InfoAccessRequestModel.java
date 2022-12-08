@@ -16,7 +16,7 @@ public class InfoAccessRequestModel {
     /**
      The input data needed for the InfoAccess use case
      @param stats - the stats to check
-     @param statsName - the name of the statistic to check
+     @param statName - the name of the statistic to check
       */
 
     public InfoAccessRequestModel (Statistics stats, String statName) {

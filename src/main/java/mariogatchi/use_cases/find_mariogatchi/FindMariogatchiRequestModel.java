@@ -23,7 +23,7 @@ public class FindMariogatchiRequestModel {
      */
     public FindMariogatchiRequestModel(User user, String choice, Mariogatchi mariogatchi) {
         USER = user;
-        List<Mariogatchi> userMariogatchis = ((Forest) user.getEnvironment()).getGeneratedMariogatchis();
+        List<Mariogatchi> userMariogatchis = ((Forest) user.getCurrentEnvironment()).getGeneratedMariogatchis();
         GeneratedMariogatchis generatedMariogatchis = new GeneratedMariogatchis();
         for (Mariogatchi m: userMariogatchis){
             generatedMariogatchis.addMariogatchi(m);

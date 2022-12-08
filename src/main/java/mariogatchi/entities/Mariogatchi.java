@@ -24,6 +24,13 @@ public class Mariogatchi {
     /* Each Mariogatchi posses their own statistics which are defined in the Statistics class*/
     private Statistics stats;
 
+    /**
+     * Big constructor for mariogatchi
+     * @param level The mariogatchi's level
+     * @param name The mariogatchi's name
+     * @param avatar The mariogatchi's avatar
+     * @param rarity The mariogatchi's rarity
+     */
     public Mariogatchi(int level, String name, Image avatar, String rarity) {
         this.avatar = avatar;
         this.lvl = level;
@@ -38,6 +45,7 @@ public class Mariogatchi {
         this.name = null;
         this.rarity = rarity;
         stats = new Statistics(rarity);
+        this.rarity = rarity;
     }
 
     /* Gets the level of the mariogatchi */
@@ -68,7 +76,7 @@ public class Mariogatchi {
 
     public boolean increaselvl() {
         if (this.stats.getAgility() >= this.stats.getMaxLevel() && this.stats.getMaxLevel() >= this.stats.getStrategy()) {     /* This function upgrades the mariogatchi.Mariogatchi Level only if the XP level passes the level cap*/
-            this.stats.LevelUp();
+            this.stats.levelUp();
             this.stats.ResetAgility();
             return true;
         } else {
@@ -76,5 +84,9 @@ public class Mariogatchi {
         }
 
 
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

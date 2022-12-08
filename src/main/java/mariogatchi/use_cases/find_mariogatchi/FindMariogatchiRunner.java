@@ -10,12 +10,15 @@ import java.util.Iterator;
 public class FindMariogatchiRunner implements FindMariogatchiInputBoundary {
     private final FindMariogatchiOutputBoundary MARIOGATCHI_OUTPUT_BOUNDARY;
 
+    private Mariogatchi mariogatchiOutput;
+
     /**
      * Constructs a runner
      * @param mariogatchiOutputBoundary the output boundary the input boundary is connected to
      */
     public FindMariogatchiRunner(FindMariogatchiOutputBoundary mariogatchiOutputBoundary) {
         this.MARIOGATCHI_OUTPUT_BOUNDARY = mariogatchiOutputBoundary;
+        this.mariogatchiOutput = null;
     }
 
     /**
@@ -57,6 +60,14 @@ public class FindMariogatchiRunner implements FindMariogatchiInputBoundary {
             return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareFailureView
                     ("This Mariogatchi was added to your collection!", mariogatchiResponseModel);
         }
+    }
+
+    public Mariogatchi getMariogatchiOutput() {
+        return this.mariogatchiOutput;
+    }
+
+    public void setMariogatchiOutput(Mariogatchi mariogatchiOutput) {
+        this.mariogatchiOutput = mariogatchiOutput;
     }
 }
 

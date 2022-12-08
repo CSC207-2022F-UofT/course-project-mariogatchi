@@ -20,7 +20,7 @@ public class ChangeEnvironmentRequestModel{
     public ChangeEnvironmentRequestModel(User user, String environmentInput) {
         EnvironmentFactory environmentFactory = new EnvironmentFactory();
         this.USER = user;
-        this.CURR_ENVIRONMENT = user.getEnvironment().getName();
+        this.CURR_ENVIRONMENT = user.getCurrentEnvironment().getName();
         this.NEW_ENVIRONMENT = environmentFactory.getName(environmentInput).getName();
     }
 

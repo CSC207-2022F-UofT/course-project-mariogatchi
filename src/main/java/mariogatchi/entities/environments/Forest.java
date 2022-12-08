@@ -30,7 +30,7 @@ public class Forest extends Environment implements MariogatchiGeneratable {
     }
 
     /**
-     * Returns the iterable list of Mariogatchis stored in the forest
+     * creates up to 5 random mariogatchis
      * @return the iterable list of Mariogatchis stored in the forest
      */
     public List<Mariogatchi> getGeneratedMariogatchis(){
