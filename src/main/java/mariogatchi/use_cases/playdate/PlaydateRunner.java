@@ -102,12 +102,13 @@ public class PlaydateRunner implements PlaydateInputBoundary {
                 String type = entries.getJSONObject(i).getString("type");
                 String mariogatchi = entries.getJSONObject(i).getString("creature");
                 if(type.equals("request")){
-                    return this.PRESENTER.prepareSuccessView(new PlaydateResponseModel(true, "Request found", mariogatchi));
+                    String from = entries.getJSONObject(i).getString("from");
+                    return this.PRESENTER.prepareSuccessView(new PlaydateResponseModel(true, "Request found: " + from, mariogatchi));
                 } else {
                     String from = entries.getJSONObject(i).getString("from");
                     data.deleteDBRow("playdates",  Condition.and(Condition.eq("from", from),
                             Condition.eq("to", requestModel.getUsername())));
-                    return this.PRESENTER.prepareSuccessView(new PlaydateResponseModel(true, "Acceptance found", mariogatchi));
+                    return this.PRESENTER.prepareSuccessView(new PlaydateResponseModel(true, "Acceptance found: " + from, mariogatchi));
                 }
             }
         }

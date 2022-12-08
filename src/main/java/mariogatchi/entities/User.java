@@ -1,21 +1,23 @@
 package mariogatchi.entities;
 
-import mariogatchi.entities.environments.*;
 import mariogatchi.entities.environments.Environment;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class User implements Serializable{
     private String name;
+
     private Inventory inventory;
     private List<Mariogatchi> mariogatchis;
 
-    private List<User> friends;
-    private Environment environment;
-
     private Environment currentEnvironment;
-    private Statistics statistics;
+
+    /**
+     * Default user constructor
+     * @param name the name of the user
+     */
     public User(String name){
         this.name = name;
     }
@@ -27,6 +29,7 @@ public class User implements Serializable{
     public void setName(String name){
         this.name = name;
     }
+
 
     public Inventory getInventory(){
         return inventory;
@@ -44,10 +47,6 @@ public class User implements Serializable{
         this.mariogatchis = mariogatchis;
     }
 
-    public Statistics getStatistics() {
-        return statistics;
-    }
-
     public Environment getCurrentEnvironment() {
         return this.currentEnvironment;
     }
@@ -56,19 +55,16 @@ public class User implements Serializable{
         this.currentEnvironment = environment;
     }
 
-    public Environment getEnvironment() {
-        return environment;
-    }
-
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
-
-    public void setEnvironment(Env environment){
-        switch (environment){
-            case HOME -> this.environment = new Home();
-            case PARK -> this.environment = new Park();
-            case FOREST -> this.environment = new Forest();
+    public Mariogatchi getMariogatchiFromUser(String name, List<Mariogatchi> mariogatchis) {
+        for (Mariogatchi m: mariogatchis) {
+            if (Objects.equals(m.getName(), name)) {
+                return m;
+            }
         }
+        return null;
     }
+    public Statistics getMariogatchiStatsFromUser(String name) {
+        return getMariogatchiFromUser(name, this.getMariogatchis()).getStats();
+    }
+
 }

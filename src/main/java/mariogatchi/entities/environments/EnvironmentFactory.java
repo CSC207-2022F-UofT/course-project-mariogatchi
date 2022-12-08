@@ -1,15 +1,13 @@
 package mariogatchi.entities.environments;
-import mariogatchi.entities.environments.*;
-/*
- * Use Case:
+
+/**
+ * Entity (factory)
  * Concrete factory for the creation of new environment instances
  */
 public class EnvironmentFactory {
     /**
-     * uses getAction method to get the specified use case to transfer a Mariogatchi
-     *
+     * Simple Factory
      * @param environment inputs an environment name as an enum/string
-     * @return environment class equivalent of the input
      */
     public Environment getName(Env environment){
         return switch (environment) {

@@ -1,29 +1,31 @@
 package mariogatchi.use_cases.games;
 
-import mariogatchi.use_cases.authentication.AuthenticationRequestModel;
-
 public class GameRequestModel {
 
-    private String name = new String();
-    private GameRequestModel.GameActions type;
+    private final String NAME;
+    private final GameRequestModel.GameActions TYPE;
 
     public enum GameActions {
         CREATE,
         DELETE,
-
-        LOAD;
+        LOAD
     }
 
+    /**
+     The input data needed for the Playdate use case
+     @param name- the name of the User to act on
+     @param type - what to do with that username
+     */
     public GameRequestModel(String name, GameRequestModel.GameActions type) {
-        this.name = new String();
-        this.type = type;
+        this.NAME = name;
+        this.TYPE = type;
     }
 
-    public GameActions getType(){
-        return this.type;
+    public GameActions getTYPE(){
+        return this.TYPE;
     }
 
-    public String getName(){
-        return this.name;
+    public String getNAME(){
+        return this.NAME;
     }
 }

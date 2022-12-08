@@ -2,12 +2,9 @@ package mariogatchi.use_cases.item_cases.use_item;
 
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
-import mariogatchi.entities.User;
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.ItemFactory;
 import mariogatchi.entities.environments.Env;
-
-import java.util.Objects;
 
 public class UseItemRequestModel {
     private final Item ITEM_TO_USE;
@@ -15,31 +12,34 @@ public class UseItemRequestModel {
     private final Mariogatchi GATCHI;
     private final Inventory INVENTORY;
 
-    /*
+    /**
     The input data needed for the use item use case
-    @param itemToUse - the item to use
-    @param currentEnvironment - the current environment that the item is to be used in
-    @param mariogatchi - the mariogatchi that the item is to be used on
+    @param itemName - the name of the item to use
+    @param environment - the current environment that the item is to be used in
+    @param mario - the mariogatchi that the item is to be used on
     @param inventory - the inventory that the item is to be used from
      */
 
-    public UseItemRequestModel(String itemName, Env environment, String mariogatchi_name, Inventory inventory, User user) {
+    public UseItemRequestModel(String itemName, Env environment, Mariogatchi gatchi, Inventory inventory) {
+        /*
+        Factory design pattern
+         */
+    public UseItemRequestModel(String itemName, Env environment, Mariogatchi mario, Inventory inventory) {
         ItemFactory itemFactory = new ItemFactory();
+
+        /*
+        Dependency Injection design pattern: does not create Items directly (using the new keyword)
+         */
         this.ITEM_TO_USE = itemFactory.getItem(Item.Items.valueOf(itemName));
+
         this.CURRENT_ENVIRONMNENT = environment;
-        this.GATCHI = getMariogatchiFromUser(user, mariogatchi_name);
+        this.GATCHI = gatchi;
         this.INVENTORY = inventory;
     }
 
-    private Mariogatchi getMariogatchiFromUser(User user, String name) {
-        for (Mariogatchi m: user.getMariogatchis()) {
-            if (Objects.equals(m.getName(), name)) {
-                return m;
-            }
-        }
-        return null;
+        this.GATCHI = mario;
+        this.INVENTORY = inventory;
     }
-
 
     // returns item
     public Item getItemToUse() {

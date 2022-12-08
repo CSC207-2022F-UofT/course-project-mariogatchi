@@ -48,8 +48,8 @@ public class Statistics implements Serializable {
      * The starting level for rare mariogatchi
      */
     private final int STARTING_LEVEL_RARE = 75;
-    
-    
+
+
     public enum Operator{
          ADD,
          SUBTRACT
@@ -73,7 +73,7 @@ public class Statistics implements Serializable {
         if(mariogatchiKind.equals("rare")){
             startingValue = STARTING_LEVEL_RARE;
         }
-        this.maxLevel = startingValue;
+        this.maxLevel = startingValue * 2;
         this.hunger = startingValue;
         this.energy = startingValue;
         this.cleanliness = startingValue;
@@ -115,26 +115,12 @@ public class Statistics implements Serializable {
         return this.lastCheckTime;
     }
     
-    public void LevelUp(){
+    public void levelUp(){
         this.maxLevel += 10;
-    }
-    
-    public void ResetAgility(){
-        if(this.agility > this.maxLevel){
-            this.agility = this.agility - this.maxLevel;
-        }
-        else{
-            this.agility = 0;
-        }
-    }
-
-    public void ResetStrategy(){
-        if(this.strategy > this.maxLevel){
-            this.strategy = this.strategy - this.maxLevel;
-        }
-        else{
-            this.strategy = 0;
-        }
+        int newMaxLevel = this.maxLevel + 10;
+        this.maxLevel = newMaxLevel;
+        this.agility = newMaxLevel / 2;
+        this.strategy = newMaxLevel / 2;
     }
 
     public boolean changeStat(Stats stat, int factor, Operator operate){
@@ -213,20 +199,27 @@ public class Statistics implements Serializable {
         else
             changed = false;
 
-
+        checkLevelUp();
         return changed;
     }
 
     public int getStat(Stats stat){
-        return switch (stat) {
-            case HUNGER -> this.hunger;
-            case ENERGY-> this.energy;
-            case CLEANLINESS-> this.cleanliness;
-            case HAPPINESS -> this.happiness;
-            case AGILITY -> this.agility;
-            case STRATEGY -> this.strategy;
-            default -> 0;
-        };
+        switch (stat) {
+            case HUNGER:
+                return this.hunger;
+            case ENERGY:
+                return this.energy;
+            case CLEANLINESS:
+                return this.cleanliness;
+            case HAPPINESS:
+                return this.happiness;
+            case AGILITY:
+                return this.agility;
+            case STRATEGY:
+                return this.strategy;
+            default:
+                return 0;
+        }
 
     }
 
@@ -248,6 +241,12 @@ public class Statistics implements Serializable {
         changeStat(Stats.HAPPINESS, reduceBy, Operator.SUBTRACT);
         this.lastCheckTime = currentTime;
         return elapsedTime;
+    }
+
+    private void checkLevelUp(){
+        if(this.agility == this.maxLevel && this.strategy == this.maxLevel){
+            this.levelUp();
+        }
     }
 
 }

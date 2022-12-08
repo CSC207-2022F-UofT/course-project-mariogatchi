@@ -1,28 +1,25 @@
 package mariogatchi.use_cases.item_cases.use_item;
 
 import mariogatchi.entities.Inventory;
-
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.Statistics;
+import mariogatchi.entities.environments.Env;
+import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.BadApple;
 import mariogatchi.entities.items.Item;
-import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.Leash;
-
-import java.awt.image.BufferedImage;
-
-import mariogatchi.entities.environments.Env;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /*
 Unit testing class for the UseItem use case
@@ -30,9 +27,11 @@ Unit testing class for the UseItem use case
 public class UseItemRunnerTest {
 
     Map<Item.Items, Integer> itemToQuant;
-    Mariogatchi gatchi;
 
     Env currentEnvironment;
+
+    Mariogatchi gatchi;
+
     @BeforeEach
     void setup() throws IOException {
 
