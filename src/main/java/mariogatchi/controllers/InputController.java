@@ -1,6 +1,5 @@
 package mariogatchi.controllers;
 
-import mariogatchi.entities.Mariogatchi;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiInputBoundary;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiPresenter;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRequestModel;
@@ -83,8 +82,6 @@ public class InputController {
     private final RemoveMariogatchiFactory TRANSFER_FACTORY;
     private final RemoveMariogatchiFactory KILL_FACTORY;
     private final FindMariogatchiRunner FIND_MARIOGATCHI;
-    private Mariogatchi mariogatchiOutput;
-
 
     public InputController(AuthenticationPresenter authPresenter, GamePresenter gamePresenter,
                            AddItemOutputBoundary addPresenter, RemoveItemOutputBoundary removePresenter,
@@ -110,7 +107,6 @@ public class InputController {
         this.TRANSFER_FACTORY = new TransferMariogatchiFactory();
         this.KILL_FACTORY = new KillMariogatchiFactory();
         this.FIND_MARIOGATCHI = new FindMariogatchiRunner(findPresenter);
-        this.mariogatchiOutput = null;
     }
 
     /**
@@ -269,17 +265,17 @@ public class InputController {
                 break;
             case FIND_MARIO: // Pass in the choice, either "deny", "accept" or "find mariogatchi"
                 if (Objects.equals(inputs.get(0), "deny")) {
-                    FindMariogatchiRequestModel denyReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), "deny", this.mariogatchiOutput);
-                    this.mariogatchiOutput = FIND_MARIOGATCHI.findMariogatchi(denyReq).getMariogatchi();
+                    FindMariogatchiRequestModel denyReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), "deny", FIND_MARIOGATCHI.getMariogatchiOutput());
+                    FIND_MARIOGATCHI.setMariogatchiOutput(FIND_MARIOGATCHI.findMariogatchi(denyReq).getMariogatchi());
                 } else {
                     FindMariogatchiRequestModel acceptFindReq;
                     if (Objects.equals(inputs.get(0), "accept")) {
-                        acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), this.mariogatchiOutput);
+                        acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), FIND_MARIOGATCHI.getMariogatchiOutput());
                     } else { // "find mariogatchi"
                         acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), null);
                     }
                     FindMariogatchiResponseModel responseAcceptFind = FIND_MARIOGATCHI.findMariogatchi(acceptFindReq);
-                    this.mariogatchiOutput = responseAcceptFind.getMariogatchi();
+                    FIND_MARIOGATCHI.setMariogatchiOutput(responseAcceptFind.getMariogatchi());
                     if (responseAcceptFind.getCatchTrigger()) {
                         AddMariogatchiRequestModel addMarioReq = new AddMariogatchiRequestModel(AUTH.getCurrUser(), responseAcceptFind.getMariogatchi());
                         ADD_MARIO.addMariogatchiToList(addMarioReq);
