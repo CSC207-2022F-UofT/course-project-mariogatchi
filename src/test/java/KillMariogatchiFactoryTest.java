@@ -1,7 +1,8 @@
-import mariogatchi.*;
-import mariogatchi.User;
-import mariogatchi.removemariogatchi.factories.KillMariogatchiFactory;
-import mariogatchi.removemariogatchi.factories.RemoveMariogatchiFactory;
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+import mariogatchi.use_cases.manager.MariogatchiManager;
+import mariogatchi.use_cases.remove_mariogatchi.*;
+import mariogatchi.use_cases.remove_mariogatchi.factories.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +20,8 @@ public class KillMariogatchiFactoryTest {
     RemoveMariogatchiFactory killFactory = new KillMariogatchiFactory();
     User user = new User("Test User");
     User mariogatchiless = new User("No Mariogatchis");
-    Mariogatchi mariogatchi = new Mariogatchi();
-    Mariogatchi mario = new Mariogatchi();
+    Mariogatchi mariogatchi = new Mariogatchi(10, "Nishigatchi", null, "Rare");
+    Mariogatchi mario = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
     MariogatchiManager manager = new MariogatchiManager();
 
     /**

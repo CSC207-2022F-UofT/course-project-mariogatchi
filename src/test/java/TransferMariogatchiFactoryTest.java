@@ -1,7 +1,12 @@
-import mariogatchi.*;
-import mariogatchi.User;
-import mariogatchi.removemariogatchi.factories.RemoveMariogatchiFactory;
-import mariogatchi.removemariogatchi.factories.TransferMariogatchiFactory;
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+import mariogatchi.use_cases.manager.MariogatchiManager;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiDisplayer;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiPresenter;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
+import mariogatchi.use_cases.remove_mariogatchi.factories.RemoveMariogatchiFactory;
+import mariogatchi.use_cases.remove_mariogatchi.factories.TransferMariogatchiFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +24,8 @@ public class TransferMariogatchiFactoryTest {
     RemoveMariogatchiFactory transferFactory = new TransferMariogatchiFactory();
     User user = new User("Test User");
     User mariogatchiless = new User("No Mariogatchis");
-    Mariogatchi mariogatchi = new Mariogatchi();
-    Mariogatchi mario = new Mariogatchi();
+    Mariogatchi mariogatchi = new Mariogatchi(10, "Nishigatchi", null, "Rare");
+    Mariogatchi mario = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
     MariogatchiManager manager = new MariogatchiManager();
 
     /**
