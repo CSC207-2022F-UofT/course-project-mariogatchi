@@ -2,39 +2,36 @@ package mariogatchi.use_cases.info_access;
 
 import mariogatchi.entities.Statistics;
 import mariogatchi.entities.Statistics.Stats;
+import mariogatchi.entities.User;
 
 public class InfoAccessRequestModel {
     /**
-     * Stats object this request is about
+     * Mariogatchi to access the stats before
      */
-    private Statistics stats;
+    private String mariogatchi;
     /**
-     * Specific stat to check
+     * The user
      */
-    private Stats statToCheck;
+    private User user;
 
     /**
      The input data needed for the InfoAccess use case
-     @param stats - the stats to check
-     @param statName - the name of the statistic to check
+     @param mariogatchi - the stats to check
       */
 
-    public InfoAccessRequestModel (Statistics stats, String statName) {
-        this.stats = stats;
-        this.statToCheck = Stats.valueOf("statName");
-
+    public InfoAccessRequestModel (String mariogatchi, User user) {
+        this.mariogatchi = mariogatchi;
+        this.user = user;
     }
 
-    // return stats
-    public Statistics getStats() {
-        return this.stats;
+    // return mariogatchi
+    public String getMariogatchi() {
+        return this.mariogatchi;
     }
 
-    // return statToCheck
-    public Stats getStatToCheck() {
-        return this.statToCheck;
+    // return user
+    public User getUser() {
+        return this.user;
     }
-
-
 
 }

@@ -1,33 +1,23 @@
 package mariogatchi.use_cases.info_access;
 
-import mariogatchi.entities.Statistics.Stats;
+import mariogatchi.entities.Statistics;
 
 public class InfoAccessResponseModel {
     /**
-     * What stat this response is about
+     * The statistics object
      */
-    private Stats statType;
-    /**
-     * The current value of that stat
-     */
-    private int currentValue;
+    private Statistics stats;
 
     /**
      The Response Model (output data) for the InfoAccess Use Case
-     @param type - The type of stat we're returning info for
-     @param value - the value of that stat
+     @param stats - The statistics object
       */
 
-    public InfoAccessResponseModel(Stats type, int value) {
-        this.statType = type;
-        this.currentValue = value;
+    public InfoAccessResponseModel(Statistics stats) {
+        this.stats = stats;
     }
 
-    public Stats getStatType(){
-        return this.statType;
-    }
-
-    public int getCurrentValue(){
-        return this.currentValue;
+    public Statistics getStats(){
+        return this.stats;
     }
 }
