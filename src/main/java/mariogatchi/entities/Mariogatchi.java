@@ -85,8 +85,4 @@ public class Mariogatchi {
 
 
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

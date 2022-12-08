@@ -8,7 +8,7 @@ import mariogatchi.entities.environments.Env;
 
 public class UseItemRequestModel {
     private final Item ITEM_TO_USE;
-    private final Env CURRENT_ENVIRONMNENT;
+    private final Env CURRENT_ENVIRONMENT;
     private final Mariogatchi GATCHI;
     private final Inventory INVENTORY;
 
@@ -16,7 +16,7 @@ public class UseItemRequestModel {
     The input data needed for the use item use case
     @param itemName - the name of the item to use
     @param environment - the current environment that the item is to be used in
-    @param mario - the mariogatchi that the item is to be used on
+    @param gatchi - the mariogatchi that the item is to be used on
     @param inventory - the inventory that the item is to be used from
      */
 
@@ -24,7 +24,6 @@ public class UseItemRequestModel {
         /*
         Factory design pattern
          */
-    public UseItemRequestModel(String itemName, Env environment, Mariogatchi mario, Inventory inventory) {
         ItemFactory itemFactory = new ItemFactory();
 
         /*
@@ -32,12 +31,8 @@ public class UseItemRequestModel {
          */
         this.ITEM_TO_USE = itemFactory.getItem(Item.Items.valueOf(itemName));
 
-        this.CURRENT_ENVIRONMNENT = environment;
+        this.CURRENT_ENVIRONMENT = environment;
         this.GATCHI = gatchi;
-        this.INVENTORY = inventory;
-    }
-
-        this.GATCHI = mario;
         this.INVENTORY = inventory;
     }
 
@@ -48,7 +43,7 @@ public class UseItemRequestModel {
 
     //returns the currentEnvironment
     public Env getCurrentEnvironment() {
-        return this.CURRENT_ENVIRONMNENT;
+        return this.CURRENT_ENVIRONMENT;
     }
 
     //returns mariogatchi

@@ -1,21 +1,23 @@
 package mariogatchi.entities.items;
 
-import mariogatchi.entities.Statistics;
-import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.Statistics;
+import mariogatchi.entities.environments.Env;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
-public class Leash extends Item implements Reusable{
+public class Comb extends Item implements Reusable{
 
-    public Leash() {
-        super(Items.LEASH,
-                new HashSet<>(List.of(Env.PARK)),
+    public Comb() {
+        super(Items.COMB,
+                new HashSet<>(List.of(Env.HOME)),
                 new HashMap<>() {{
-                    put(ItemEffects.HAPPINESS, 20);
-                    put(ItemEffects.ENERGY, -10);
-                    put(ItemEffects.CLEANLINESS, -10);
+                    put(ItemEffects.CLEANLINESS, 50);
+                    put(ItemEffects.HAPPINESS, 2);
                 }}
         );
     }
@@ -30,3 +32,4 @@ public class Leash extends Item implements Reusable{
         return super.updateStatistics(gatchi);
     }
 }
+
