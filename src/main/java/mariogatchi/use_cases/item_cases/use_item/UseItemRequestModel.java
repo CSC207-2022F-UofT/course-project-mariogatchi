@@ -2,12 +2,9 @@ package mariogatchi.use_cases.item_cases.use_item;
 
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.Mariogatchi;
-import mariogatchi.entities.User;
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.ItemFactory;
 import mariogatchi.entities.environments.Env;
-
-import java.util.Objects;
 
 public class UseItemRequestModel {
     private final Item ITEM_TO_USE;
@@ -22,14 +19,27 @@ public class UseItemRequestModel {
     @param mario - the mariogatchi that the item is to be used on
     @param inventory - the inventory that the item is to be used from
      */
+
+    public UseItemRequestModel(String itemName, Env environment, Mariogatchi gatchi, Inventory inventory) {
+        /*
+        Factory design pattern
+         */
     public UseItemRequestModel(String itemName, Env environment, Mariogatchi mario, Inventory inventory) {
         ItemFactory itemFactory = new ItemFactory();
+
+        /*
+        Dependency Injection design pattern: does not create Items directly (using the new keyword)
+         */
         this.ITEM_TO_USE = itemFactory.getItem(Item.Items.valueOf(itemName));
+
         this.CURRENT_ENVIRONMNENT = environment;
-        this.GATCHI = mario;
+        this.GATCHI = gatchi;
         this.INVENTORY = inventory;
     }
 
+        this.GATCHI = mario;
+        this.INVENTORY = inventory;
+    }
 
     // returns item
     public Item getItemToUse() {

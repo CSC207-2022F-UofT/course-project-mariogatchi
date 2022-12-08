@@ -17,8 +17,16 @@ public class RemoveItemRequestModel {
     @param quantity - The amount of the specified item to be removed from the inventory
      */
     public RemoveItemRequestModel(String itemName, Inventory inventory, Integer quantity) {
+        /*
+        Factory design pattern
+         */
         ItemFactory itemFactory = new ItemFactory();
+
+        /*
+        Dependency Injection design pattern: does not create Items directly (using the new keyword)
+         */
         this.ITEM = itemFactory.getItem(Item.Items.valueOf(itemName));
+
         this.INVENTORY = inventory;
         this.QUANTITY = quantity;
     }
