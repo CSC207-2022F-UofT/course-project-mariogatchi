@@ -55,7 +55,9 @@ import static mariogatchi.use_cases.games.GameRequestModel.GameActions.*;
 import java.time.Instant;
 import java.util.List;
 
-
+/**
+ * The controller for all inputs to the program
+ */
 public class InputController {
 
     private final AuthInputBoundary AUTH;
@@ -73,6 +75,7 @@ public class InputController {
     private final RemoveMariogatchiDisplayerInterface REMOVE_MARIOGATCHI_DISPLAYER;
     private final RemoveMariogatchiFactory TRANSFER_FACTORY;
     private final RemoveMariogatchiFactory KILL_FACTORY;
+
 
     public InputController(AuthenticationPresenter authPresenter, GamePresenter gamePresenter,
                            AddItemOutputBoundary addPresenter, RemoveItemOutputBoundary removePresenter,
@@ -99,11 +102,18 @@ public class InputController {
         this.KILL_FACTORY = new KillMariogatchiFactory();
     }
 
+    /**
+     * Actions that can be used from the login screen
+     */
     public enum LoginActions {
         LOGIN,
         SIGNUP,
         EXIT
     }
+
+    /**
+     * Actions that can be used from the game selector screen
+     */
     public enum GamesActions {
         LOGOUT,
         DELETE_ACCOUNT,
@@ -112,6 +122,9 @@ public class InputController {
         DELETE_GAME
     }
 
+    /**
+     * Actions that can be used from in the game
+     */
     public enum Actions {
         SAVE,
         EXIT,
@@ -124,14 +137,17 @@ public class InputController {
         INFO,
         REMOVE_MARIO,
         FIND_MARIO,
-
         PLAYDATE_REQUEST,
         PLAYDATE_ACCEPT,
         PLAYDATE_CHECK
     }
 
+    /**
+     * Sends the request for login screen actions
+     * @param action The action to perform
+     * @param inputs The list of inputs for the action
+     */
     public void loginRequest(LoginActions action, List<String> inputs) {
-
         switch (action) {
             case LOGIN: // Pass in username and password
                 AuthenticationRequestModel loginReq = new AuthenticationRequestModel(inputs.get(0), inputs.get(1), LOGIN);
@@ -149,6 +165,11 @@ public class InputController {
         }
     }
 
+    /**
+     * Sends the request for Game Selector screen actions
+     * @param action The action to perform
+     * @param inputs The list of inputs for the action
+     */
     public void requestGames(GamesActions action, List<String> inputs) {
         switch(action) {
             case LOGOUT: // Pass in nothing
@@ -174,6 +195,11 @@ public class InputController {
         }
     }
 
+    /**
+     * Sends the request for in game actions
+     * @param action The action to perform
+     * @param inputs The list of inputs for the action
+     */
     public void request(Actions action, List<String> inputs) {
         TimeRequestModel timeReq = new TimeRequestModel((int) Instant.now().getEpochSecond(), AUTH.getMariogatchiStatisticsFromUser(inputs.get(0)));
         TIME.checkPassedTime(timeReq);

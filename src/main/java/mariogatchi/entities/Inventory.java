@@ -16,7 +16,11 @@ public class Inventory implements Serializable {
     // the amount of space occupied in this inventory. The sum of quantities of each item in itemToQuantity.
     private int occupied;
 
-
+    /**
+     * An inventory instance for a user
+     * @param defaultItemToQuantity A map of item instances to their quantity
+     * @param defaultCapacity The capacity of the inventory
+     */
     public Inventory(Map<Item.Items, Integer> defaultItemToQuantity, int defaultCapacity) {
         this.itemToQuantity = defaultItemToQuantity;
         this.capacity = defaultCapacity;
@@ -24,9 +28,12 @@ public class Inventory implements Serializable {
     }
 
 
-    /*
-    Decrement the quantity of item in itemToQuantity by the given quantityToRemove.
-    Return true if this is successfully done, return false otherwise.
+
+    /**
+     *  Decrement the quantity of item in itemToQuantity by the given quantityToRemove.
+     * @param itemName name of the item to remove
+     * @param quantityToRemove how many to remove
+     * @return Return true if this is successfully done, return false otherwise.
      */
     public boolean removeItem(Item.Items itemName, int quantityToRemove) {
         if (itemToQuantity.containsKey(itemName) && quantityToRemove <= itemToQuantity.get(itemName)){
@@ -44,11 +51,11 @@ public class Inventory implements Serializable {
     }
 
 
-
-
-    /*
-    Increments the quantity of item in itemToQuantity by quantityToAdd.
-    Return true if this is successfully done, return false otherwise.
+    /**
+     * Increments the quantity of item in itemToQuantity by quantityToAdd.
+     * @param itemName The name of the item to add
+     * @param quantityToAdd how many to add
+     * @return Return true if this is successfully done, return false otherwise.
      */
     public boolean addItem(Item.Items itemName, int quantityToAdd) {
         if ((quantityToAdd + this.occupied) > this.capacity) {

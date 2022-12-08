@@ -2,25 +2,13 @@ package mariogatchi.use_cases.games;
 
 import mariogatchi.entities.Account;
 import mariogatchi.entities.User;
-import mariogatchi.entities.environments.Home;
 import mariogatchi.use_cases.authentication.AuthenticationPresenter;
 import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameInteractorRunnerTest {
-    Account account;
-
-    @Before
-    public void setup() {
-        this.account = new Account("username", "Password1*".getBytes());
-    }
 
     @Test
     void gameInteractorCreateLoadExitDeleteRequest() {
@@ -29,50 +17,62 @@ public class GameInteractorRunnerTest {
 
             @Override
             public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel) {
-                assertTrue(Objects.equals(responseModel.getMessage(), "Game Created")
-                        | Objects.equals(responseModel.getMessage(), "Game Deleted") |
-                        Objects.equals(responseModel.getMessage(), "Game already exists"));
-                return null;
+                return responseModel;
             }
 
             @Override
             public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return null;
+                return responseModel;
             }
         };
         GamePresenter gamePresenter = new GamePresenter() {
             @Override
             public GameResponseModel prepareExitGame(GameResponseModel responseModel) {
-                assertEquals(responseModel.getMessage(), "exited game");
-                return null;
+                return responseModel;
             }
 
             @Override
             public GameResponseModel prepareLoadGame(GameResponseModel responseModel) {
-                assertEquals(responseModel.getMessage(),  "Loaded game");
-                return null;
+                return responseModel;
             }
         };
+        Account account = new Account("username", "Password1*".getBytes(), "friendcode");
         User user = null;
+
         GameInteractor game = new GameInteractor(authenticationPresenter, gamePresenter);
+
         GameRequestModel createReq = new GameRequestModel("GameTest", GameRequestModel.GameActions.CREATE);
-        game.requestAuth(createReq, account);
-        game.requestAuth(createReq, account); // Duplicate account gets rejected.
-        List<User> users = account.getUsers(); // Gets the games in the account
-        for (User u: users) {
+        AuthenticationResponseModel responseCreateSuccess = game.requestAuth(createReq, account);
+        assertEquals("Game Created", responseCreateSuccess.getMessage());
+
+
+        AuthenticationResponseModel responseCreateFail = game.requestAuth(createReq, account); // Duplicate account gets rejected.
+        assertEquals("Game already exists", responseCreateFail.getMessage());
+
+
+        for (User u : account.getUsers()) { // Gets the games in the account
             if (u.getName().equals("GameTest")) {
                 user = u;
-                u.setCurrentEnvironment(new Home());
-                account.delUser(u);
+
+                break;
             }
         }
 
+
         GameRequestModel loadReq = new GameRequestModel("GameTest", GameRequestModel.GameActions.LOAD);
-        game.requestGame(loadReq, account);
+        GameResponseModel responseLoadSuccess = game.requestGame(loadReq, account);
+        assertEquals("Loaded game", responseLoadSuccess.getMessage());
+
         game.saveRequest(account, user);
-        game.exitRequest(account, user);
+
+        GameResponseModel responseExitSuccess = game.exitRequest(account, user);
+        assertEquals("exited game", responseExitSuccess.getMessage());
+
         GameRequestModel deleteReq = new GameRequestModel("GameTest", GameRequestModel.GameActions.DELETE);
-        game.requestAuth(deleteReq, account);
+        AuthenticationResponseModel responseDeleteSuccess = game.requestAuth(deleteReq, account);
+        assertEquals("Game Deleted", responseDeleteSuccess.getMessage());
+
+
     }
 }
 

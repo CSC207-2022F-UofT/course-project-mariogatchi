@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Used for handling all Authentication related requests.
+ */
 public class AuthenticatorRunner implements AuthInputBoundary{
     private final Charset CHARS = StandardCharsets.UTF_8;
 
@@ -27,13 +30,23 @@ public class AuthenticatorRunner implements AuthInputBoundary{
      */
     private User currUser = null;
     /**
-     * The currently logged in User instance
+     * The currently loaded User instance
      */
 
+    /**
+     * The main constructor for the class
+     * @param presenter The presenter instance to be passed in
+     */
     public AuthenticatorRunner(AuthenticationPresenter presenter) {
         this.presenter = presenter;
     }
 
+
+    /**
+     *  Used to log out of the current account
+     * @param account the account to log out of
+     * @return the response model containing the result of the request
+     */
     @Override
     public AuthenticationResponseModel logoutRequest(Account account) {
         DataAccess data = new DataAccess();
@@ -43,6 +56,11 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         return presenter.prepareLoginFailure(response);
     }
 
+    /**
+     * Used to delete the current account
+     * @param account the account to be deleted
+     * @return The response model containing the result of the request
+     */
     @Override
     public AuthenticationResponseModel deleteRequest(Account account) {
         DataAccess data = new DataAccess();
@@ -55,6 +73,11 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         return null;
     }
 
+    /**
+     * Used for Signup and Login to accounts.
+     * @param requestModel the request model containing the information for the request
+     * @return The response model containing the result of the request
+     */
     @Override
     public AuthenticationResponseModel authenticationRequest(AuthenticationRequestModel requestModel) {
         String username = requestModel.getUSERNAME();
@@ -113,13 +136,17 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                     AuthenticationResponseModel response = new AuthenticationResponseModel(null, "Username is Already In Use");
                     return presenter.prepareLoginFailure(response);
                 }
+            default:
+                return new AuthenticationResponseModel(new Account("b", "b".getBytes(), "b"), "");
         }
-
-        return null;
     }
 
 
-
+    /**
+     Checks whether a password meets the minimum security specification
+     @param password - the password to be checked
+     @return a boolean whether or not the password is valid
+     */
     private boolean validPassword(String password) { // Checks if a password is secure
         boolean containsNumber = false;
         boolean containsSymbol = false;
@@ -139,9 +166,15 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                 break;
             }
         }
-        return (password.length() > 8 && containsNumber && containsSymbol && containsUpper && containsLower); // returns if all are true
+        return (password.length() >= 8 && containsNumber && containsSymbol && containsUpper && containsLower); // returns if all are true
 
     }
+
+    /**
+     * Checks whether a username is in use
+     * @param username the username input from user
+     * @return a boolean whether that username is in user
+     */
     private boolean uniqueUsername(String username) { // Checks whether a given username is unique
         DataAccess data = new DataAccess();
         File folder = data.loadFile("data\\"); // Loads the data folder
@@ -158,6 +191,13 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         return true;
 
     }
+
+    /**
+     * Used to hash passwords
+     * @param txt The input to be hased.
+     * @param hashType Essentially a constant
+     * @return the hashed string
+     */
     private byte[] hasher(final String txt, final String hashType){
         MessageDigest digest;
         byte[] encodedHash = null;

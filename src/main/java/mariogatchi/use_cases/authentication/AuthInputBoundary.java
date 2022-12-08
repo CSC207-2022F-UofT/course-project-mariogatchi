@@ -3,6 +3,9 @@ package mariogatchi.use_cases.authentication;
 import mariogatchi.entities.*;
 import mariogatchi.entities.environments.Environment;
 
+/**
+ * Contains the abstract request methods and getter methods for the entity instances in AuthenticatorRunner
+ */
 public interface AuthInputBoundary {
     AuthenticationResponseModel logoutRequest(Account account);
 

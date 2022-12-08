@@ -24,12 +24,23 @@ public class Mariogatchi {
     /* Each Mariogatchi posses their own statistics which are defined in the Statistics class*/
     private Statistics stats;
 
+    /**
+     * Big constructor for mariogatchi
+     * @param level The mariogatchi's level
+     * @param name The mariogatchi's name
+     * @param avatar The mariogatchi's avatar
+     * @param rarity The mariogatchi's rarity
+     */
     public Mariogatchi(int level, String name, Image avatar, String rarity) {
         this.avatar = avatar;
         this.lvl = level;
         this.name = name;
         this.rarity = rarity;
         stats = new Statistics(rarity);
+    }
+
+    public Mariogatchi(String rarity) {
+        this.rarity = rarity;
     }
 
     /* Gets the level of the mariogatchi */

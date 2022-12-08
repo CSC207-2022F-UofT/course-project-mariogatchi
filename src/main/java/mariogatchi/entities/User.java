@@ -13,6 +13,11 @@ public class User implements Serializable{
     private List<Mariogatchi> mariogatchis;
 
     private Environment currentEnvironment;
+
+    /**
+     * Default user constructor
+     * @param name the name of the user
+     */
     public User(String name){
         this.name = name;
     }

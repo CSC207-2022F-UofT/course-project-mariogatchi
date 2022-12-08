@@ -1,6 +1,7 @@
 package mariogatchi.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,10 +11,17 @@ public class Account implements Serializable {
     private List<User> users;
     private final String FRIEND_CODE;
 
+    /**
+     * An instance of an account
+     * @param username the username of the account
+     * @param hashedPassword the already hashed password
+     * @param friendCode the unique friendcode
+     */
     public Account(String username, byte[] hashedPassword, String friendCode){
         this.username = username;
         this.hashedPassword = hashedPassword;
         this.FRIEND_CODE = friendCode;
+        this.users = new ArrayList<>();
     }
 
     @Override

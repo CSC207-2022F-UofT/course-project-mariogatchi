@@ -1,5 +1,8 @@
 package mariogatchi.use_cases.authentication;
 
+/**
+ * The request model for Authentication Requests
+ */
 public class AuthenticationRequestModel {
     private final String USERNAME;
     private final String PASSWORD ;
