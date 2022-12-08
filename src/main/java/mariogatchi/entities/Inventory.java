@@ -8,10 +8,10 @@ import java.util.Map;
 
 
 public class Inventory implements Serializable {
-    private Map<Item.Items, Integer> itemToQuantity;
+    private final Map<Item.Items, Integer> ITEM_TO_QUANTITY;
 
     // max capacity of the Inventory. The sum of quantities of each item in itemToQuantity should not exceed this amount
-    private int capacity;
+    private final int CAPACITY;
 
 
     // the amount of space occupied in this inventory. The sum of quantities of each item in itemToQuantity.
@@ -19,9 +19,9 @@ public class Inventory implements Serializable {
 
 
     public Inventory(Map<Item.Items, Integer> defaultItemToQuantity, int defaultCapacity) {
-        this.itemToQuantity = defaultItemToQuantity;
-        this.capacity = defaultCapacity;
-        this.occupied = getInitialOccupied(defaultItemToQuantity, defaultCapacity);
+        this.ITEM_TO_QUANTITY = defaultItemToQuantity;
+        this.CAPACITY = defaultCapacity;
+        this.occupied = getInitialOccupied(defaultItemToQuantity);
     }
 
 
@@ -30,11 +30,11 @@ public class Inventory implements Serializable {
     Return true if this is successfully done, return false otherwise.
      */
     public boolean removeItem(Item.Items itemName, int quantityToRemove) {
-        if (itemToQuantity.containsKey(itemName) && quantityToRemove <= itemToQuantity.get(itemName)){
-            int newQuantity = itemToQuantity.get(itemName) - quantityToRemove;
-            itemToQuantity.replace(itemName, newQuantity);
+        if (ITEM_TO_QUANTITY.containsKey(itemName) && quantityToRemove <= ITEM_TO_QUANTITY.get(itemName)){
+            int newQuantity = ITEM_TO_QUANTITY.get(itemName) - quantityToRemove;
+            ITEM_TO_QUANTITY.replace(itemName, newQuantity);
             if (newQuantity == 0) {
-                itemToQuantity.remove(itemName);
+                ITEM_TO_QUANTITY.remove(itemName);
             }
             this.occupied = this.occupied - quantityToRemove;
             return true;
@@ -52,17 +52,18 @@ public class Inventory implements Serializable {
     Return true if this is successfully done, return false otherwise.
      */
     public boolean addItem(Item.Items itemName, int quantityToAdd) {
-        if ((quantityToAdd + this.occupied) > this.capacity) {
+        if (quantityToAdd > this.getAvailableSpace()) {
             return false;
         }
         else {
-            if (itemToQuantity.containsKey(itemName)) {
-                int new_quantity = itemToQuantity.get(itemName) + quantityToAdd;
-                itemToQuantity.replace(itemName, new_quantity);
+            if (this.ITEM_TO_QUANTITY.containsKey(itemName)) {
+                int new_quantity = this.ITEM_TO_QUANTITY.get(itemName) + quantityToAdd;
+                this.ITEM_TO_QUANTITY.replace(itemName, new_quantity);
             }
             else {
-                itemToQuantity.put(itemName, quantityToAdd);
+                this.ITEM_TO_QUANTITY.put(itemName, quantityToAdd);
             }
+            this.occupied = this.occupied + quantityToAdd;
             return true;
         }
     }
@@ -72,7 +73,7 @@ public class Inventory implements Serializable {
     returns whether item exists in itemToQuantity
      */
     public boolean itemExists(Item.Items itemName) {
-        return itemToQuantity.containsKey(itemName);
+        return this.ITEM_TO_QUANTITY.containsKey(itemName);
     }
 
 
@@ -81,7 +82,7 @@ public class Inventory implements Serializable {
     returns null if item is not a key in itemToQuantity.
      */
     public int getQuantity(Item.Items itemName) {
-        return itemToQuantity.get(itemName);
+        return this.ITEM_TO_QUANTITY.get(itemName);
     }
 
 
@@ -89,13 +90,13 @@ public class Inventory implements Serializable {
     returns the available space in this mariogatchi.entities.Inventory
      */
     public int getAvailableSpace() {
-        return this.capacity - this.occupied;
+        return this.CAPACITY - this.occupied;
     }
 
     /*
     This method assumes that the size of initialItemToQuantity does not exceed the initialCapacity
      */
-    private int getInitialOccupied(Map<Item.Items, Integer> initialItemToQuantity, int initialCapacity) {
+    private int getInitialOccupied(Map<Item.Items, Integer> initialItemToQuantity) {
         int sum = 0;
         for (Map.Entry<Item.Items, Integer> entry: initialItemToQuantity.entrySet()) {
             sum += entry.getValue();

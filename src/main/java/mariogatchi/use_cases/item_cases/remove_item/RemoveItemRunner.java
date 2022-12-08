@@ -2,14 +2,13 @@ package mariogatchi.use_cases.item_cases.remove_item;
 
 import mariogatchi.entities.items.Reusable;
 
+/*
+Interactor for the remove item use case
+ */
 public class RemoveItemRunner implements RemoveItemInputBoundary{
 
     private final RemoveItemOutputBoundary REMOVE_ITEM_PRESENTER;
 
-    /*
-    The interactor for the UseItem use case
-    @param presenter - the presenter for the RemoveItem use case
-     */
     public RemoveItemRunner(RemoveItemOutputBoundary presenter) {
         this.REMOVE_ITEM_PRESENTER = presenter;
     }
@@ -17,6 +16,8 @@ public class RemoveItemRunner implements RemoveItemInputBoundary{
     /*
     Removes a specified amount of an item from an inventory
     returns an instance of RemoveItemResponseModel
+
+    @param requestModel an instance of the request model for the use item use case
      */
     @Override
     public RemoveItemResponseModel removeItemFromInv(RemoveItemRequestModel requestModel) {

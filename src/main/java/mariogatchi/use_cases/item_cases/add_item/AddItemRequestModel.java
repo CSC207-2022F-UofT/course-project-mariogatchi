@@ -17,8 +17,16 @@ public class AddItemRequestModel {
      */
 
     public AddItemRequestModel (String itemName, Inventory inventory, int quantity) {
+        /*
+        Factory design pattern
+         */
         ItemFactory itemFactory = new ItemFactory();
+
+        /*
+        Dependency Injection design pattern: does not create Items directly (using the new keyword)
+         */
         this.ITEM = itemFactory.getItem(Item.Items.valueOf(itemName));
+
         this.INVENTORY = inventory;
         this.QUANTITY = quantity;
     }
