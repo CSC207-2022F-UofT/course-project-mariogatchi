@@ -1,9 +1,6 @@
 package mariogatchi.use_cases.authentication;
 
-import mariogatchi.entities.Account;
-import mariogatchi.entities.Inventory;
-import mariogatchi.entities.Statistics;
-import mariogatchi.entities.User;
+import mariogatchi.entities.*;
 import mariogatchi.entities.environments.Environment;
 
 public interface AuthInputBoundary {
@@ -25,5 +22,7 @@ public interface AuthInputBoundary {
 
     public Environment getCurrUserEnvironment();
 
-    public Statistics getCurrUserStatistics();
+    public Mariogatchi getMariogatchiFromUser(String mariogatchiName);
+
+    public Statistics getMariogatchiStatisticsFromUser(String mariogatchiName);
 }

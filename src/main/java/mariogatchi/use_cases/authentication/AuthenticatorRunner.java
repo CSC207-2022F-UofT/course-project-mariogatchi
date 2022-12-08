@@ -2,10 +2,7 @@ package mariogatchi.use_cases.authentication;
 
 import com.harium.postgrest.Insert;
 import mariogatchi.data_access.DataAccess;
-import mariogatchi.entities.Account;
-import mariogatchi.entities.Inventory;
-import mariogatchi.entities.Statistics;
-import mariogatchi.entities.User;
+import mariogatchi.entities.*;
 import mariogatchi.entities.environments.Environment;
 
 import java.io.File;
@@ -199,10 +196,14 @@ public class AuthenticatorRunner implements AuthInputBoundary{
     public Environment getCurrUserEnvironment() {
         return this.currUser.getCurrentEnvironment();
     }
+
     @Override
-    public Statistics getCurrUserStatistics() {
-        return this.currUser.getStatistics();
+    public Mariogatchi getMariogatchiFromUser(String mariogatchiName) {
+        return this.currUser.getMariogatchiFromUser(mariogatchiName, currUser.getMariogatchis());
     }
 
-
+    @Override
+    public Statistics getMariogatchiStatisticsFromUser(String mariogatchiName) {
+        return this.currUser.getMariogatchiStatsFromUser(mariogatchiName);
+    }
 }

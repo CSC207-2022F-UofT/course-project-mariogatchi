@@ -1,5 +1,6 @@
 package mariogatchi.controllers;
 
+import mariogatchi.entities.Mariogatchi;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiInputBoundary;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiPresenter;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRequestModel;
@@ -36,10 +37,17 @@ import mariogatchi.use_cases.item_cases.use_item.UseItemInputBoundary;
 import mariogatchi.use_cases.item_cases.use_item.UseItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.use_item.UseItemRequestModel;
 import mariogatchi.use_cases.item_cases.use_item.UseItemRunner;
+import mariogatchi.use_cases.manager.MariogatchiManager;
+import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
+import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
+import mariogatchi.use_cases.manager.remove_mariogatchi.factories.KillMariogatchiFactory;
+import mariogatchi.use_cases.manager.remove_mariogatchi.factories.RemoveMariogatchiFactory;
+import mariogatchi.use_cases.manager.remove_mariogatchi.factories.TransferMariogatchiFactory;
 import mariogatchi.use_cases.time.TimeInputBoundary;
 import mariogatchi.use_cases.time.TimePresenter;
 import mariogatchi.use_cases.time.TimeRequestModel;
 import mariogatchi.use_cases.time.TimeRunner;
+import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiPresenter;
 
 
 import java.time.Instant;
@@ -51,52 +59,43 @@ import static mariogatchi.use_cases.games.GameRequestModel.GameActions.*;
 
 
 public class InputController {
-    private final AuthenticationPresenter authPresenter;
-    private final GamePresenter gamePresenter;
-    private final AddRandomItemOutputBoundary addRandomPresenter;
-    private final AddItemOutputBoundary addPresenter;
-    private final RemoveItemOutputBoundary removePresenter;
-    private final UseItemOutputBoundary usePresenter;
-    private final TimePresenter timePresenter;
-    private final InfoAccessPresenter infoPresenter;
-    private final ChangeEnvironmentPresenter movePresenter;
-    private final AddMariogatchiPresenter addMarioPresenter;
-    private final AuthInputBoundary auth;
-    private final GameInputBoundary game;
-    private final TimeInputBoundary time;
-    private final AddRandomItemInputBoundary addRandom;
-    private final AddItemInputBoundary add;
-    private final RemoveItemInputBoundary remove;
-    private final UseItemInputBoundary use;
-    private final InfoAccessInputBoundary info;
-    private final ChangeEnvironmentInputBoundary move;
-    private final AddMariogatchiInputBoundary addMario;
+
+    private final AuthInputBoundary AUTH;
+    private final GameInputBoundary GAME;
+    private final TimeInputBoundary TIME;
+    private final AddRandomItemInputBoundary ADDRANDOM;
+    private final AddItemInputBoundary ADD;
+    private final RemoveItemInputBoundary REMOVE;
+    private final UseItemInputBoundary USE;
+    private final InfoAccessInputBoundary INFO;
+    private final ChangeEnvironmentInputBoundary MOVE;
+    private final AddMariogatchiInputBoundary ADD_MARIO;
+    private final RemoveMariogatchiPresenterInterface REMOVE_MARIOGATCHI_PRESENTER;
+    private final RemoveMariogatchiDisplayerInterface REMOVE_MARIOGATCHI_DISPLAYER;
+    private final RemoveMariogatchiFactory TRANSFER_FACTORY;
+    private final RemoveMariogatchiFactory KILL_FACTORY;
 
     public InputController(AuthenticationPresenter authPresenter, GamePresenter gamePresenter,
                            AddItemOutputBoundary addPresenter, RemoveItemOutputBoundary removePresenter,
                            UseItemOutputBoundary usePresenter, TimePresenter timePresenter,
                            InfoAccessPresenter infoPresenter, ChangeEnvironmentPresenter movePresenter,
-                           AddMariogatchiPresenter addMarioPresenter, AddRandomItemOutputBoundary addRandomPresenter) {
-        this.authPresenter = authPresenter;
-        this.gamePresenter = gamePresenter;
-        this.addPresenter = addPresenter;
-        this.addRandomPresenter = addRandomPresenter;
-        this.removePresenter = removePresenter;
-        this.usePresenter = usePresenter;
-        this.timePresenter = timePresenter;
-        this.infoPresenter = infoPresenter;
-        this.movePresenter = movePresenter;
-        this.addMarioPresenter = addMarioPresenter;
-        this.auth = new AuthenticatorRunner(authPresenter);
-        this.game = new GameInteractor(authPresenter, gamePresenter);
-        this.time = new TimeRunner(timePresenter);
-        this.addRandom = new AddRandomItemRunner(addRandomPresenter);
-        this.add = new AddItemRunner(addPresenter);
-        this.remove = new RemoveItemRunner(removePresenter);
-        this.use = new UseItemRunner(usePresenter);
-        this.info = new InformationAccessRunner(infoPresenter);
-        this.move = new ChangeEnvironmentRunner(movePresenter);
-        this.addMario = new AddMariogatchiRunner(addMarioPresenter);
+                           AddMariogatchiPresenter addMarioPresenter, AddRandomItemOutputBoundary addRandomPresenter,
+                           RemoveMariogatchiPresenterInterface removeMariogatchiPresenter,
+                           RemoveMariogatchiDisplayerInterface removeMariogatchiDisplayer) {
+        this.AUTH = new AuthenticatorRunner(authPresenter);
+        this.GAME = new GameInteractor(authPresenter, gamePresenter);
+        this.TIME = new TimeRunner(timePresenter);
+        this.ADDRANDOM = new AddRandomItemRunner(addRandomPresenter);
+        this.ADD = new AddItemRunner(addPresenter);
+        this.REMOVE = new RemoveItemRunner(removePresenter);
+        this.USE = new UseItemRunner(usePresenter);
+        this.INFO = new InformationAccessRunner(infoPresenter);
+        this.MOVE = new ChangeEnvironmentRunner(movePresenter);
+        this.ADD_MARIO = new AddMariogatchiRunner(addMarioPresenter);
+        this.REMOVE_MARIOGATCHI_PRESENTER = removeMariogatchiPresenter;
+        this.REMOVE_MARIOGATCHI_DISPLAYER = removeMariogatchiDisplayer;
+        this.TRANSFER_FACTORY = new TransferMariogatchiFactory();
+        this.KILL_FACTORY = new KillMariogatchiFactory();
     }
 
     public enum LoginActions {
@@ -123,7 +122,11 @@ public class InputController {
         PARK,
         INFO,
         REMOVE_MARIO,
-        ADD_MARIO;
+        FIND_MARIO,
+
+        PLAYDATE_REQUEST,
+        PLAYDATE_ACCEPT,
+        PLAYDATE_CHECK;
     }
 
     public void loginRequest(LoginActions action, List<String> inputs) {
@@ -131,11 +134,11 @@ public class InputController {
         switch(action) {
             case LOGIN:
                 AuthenticationRequestModel loginReq = new AuthenticationRequestModel(inputs.get(0), inputs.get(1), LOGIN);
-                auth.setCurrAccount(auth.authenticationRequest(loginReq).getAccount());
+                AUTH.setCurrAccount(AUTH.authenticationRequest(loginReq).getAccount());
                 break;
             case SIGNUP:
                 AuthenticationRequestModel signupReq = new AuthenticationRequestModel(inputs.get(0), inputs.get(1), SIGNUP);
-                auth.setCurrAccount(auth.authenticationRequest(signupReq).getAccount());
+                AUTH.setCurrAccount(AUTH.authenticationRequest(signupReq).getAccount());
                 break;
             case EXIT:
                 System.exit(0);
@@ -148,39 +151,39 @@ public class InputController {
     public void requestGames(GamesActions action, List<String> inputs) {
         switch(action) {
             case LOGOUT:
-                auth.logoutRequest(auth.getCurrAccount());
-                auth.setCurrAccount(null);
+                AUTH.logoutRequest(AUTH.getCurrAccount());
+                AUTH.setCurrAccount(null);
                 break;
             case DELETE_ACCOUNT:
-                auth.deleteRequest(auth.getCurrAccount());
-                auth.setCurrAccount(null);
+                AUTH.deleteRequest(AUTH.getCurrAccount());
+                AUTH.setCurrAccount(null);
                 break;
             case CREATE_GAME:
                 GameRequestModel createReq = new GameRequestModel(inputs.get(0), CREATE);
-                game.requestAuth(createReq, auth.getCurrAccount());
+                GAME.requestAuth(createReq, AUTH.getCurrAccount());
                 break;
             case LOAD_GAME:
                 GameRequestModel loadReq = new GameRequestModel(inputs.get(0), LOAD);
-                auth.setCurrUser(game.requestGame(loadReq, auth.getCurrAccount()).getUser());
+                AUTH.setCurrUser(GAME.requestGame(loadReq, AUTH.getCurrAccount()).getUser());
             case DELETE_GAME:
                 GameRequestModel deleteReq = new GameRequestModel(inputs.get(0), DELETE);
-                game.requestAuth(deleteReq, auth.getCurrAccount());
+                GAME.requestAuth(deleteReq, AUTH.getCurrAccount());
             default:
                 // error
         }
     }
 
     public void requestHome(Actions action, List<String> inputs) {
-        TimeRequestModel timeReq = new TimeRequestModel((int) Instant.now().getEpochSecond(), auth.getCurrUserStatistics());
-        time.checkPassedTime(timeReq);
+        TimeRequestModel timeReq = new TimeRequestModel((int) Instant.now().getEpochSecond(), AUTH.getCurrUser().getMariogatchiStatsFromUser(inputs.get(0)));
+        TIME.checkPassedTime(timeReq);
 
         switch (action) {
             case SAVE:
-                game.saveRequest(auth.getCurrAccount(), auth.getCurrUser());
+                GAME.saveRequest(AUTH.getCurrAccount(), AUTH.getCurrUser());
                 break;
             case EXIT:
-                game.exitRequest(auth.getCurrAccount(), auth.getCurrUser());
-                auth.setCurrUser(null);
+                GAME.exitRequest(AUTH.getCurrAccount(), AUTH.getCurrUser());
+                AUTH.setCurrUser(null);
                 break;
             case ADD_ITEM:
                 double rand = Math.random();
@@ -199,39 +202,47 @@ public class InputController {
                             break;
                     }
                 }
-                AddRandomItemRequestModel addReq = new AddRandomItemRequestModel(auth.getCurrUserInventory(), add);
-                addRandom.addRandomItem(addReq);
+                AddRandomItemRequestModel addReq = new AddRandomItemRequestModel(AUTH.getCurrUserInventory(), ADD);
+                ADDRANDOM.addRandomItem(addReq);
                 break;
             case REMOVE_ITEM:
-                RemoveItemRequestModel removeReq = new RemoveItemRequestModel(inputs.get(0), auth.getCurrUserInventory(), Integer.parseInt(inputs.get(1)));
-                remove.removeItemFromInv(removeReq);
+                RemoveItemRequestModel removeReq = new RemoveItemRequestModel(inputs.get(0), AUTH.getCurrUserInventory(), Integer.parseInt(inputs.get(1)));
+                REMOVE.removeItemFromInv(removeReq);
                 break;
             case USE_ITEM:
-                UseItemRequestModel useReq = new UseItemRequestModel(inputs.get(0), auth.getCurrUserEnvironment().getName(), inputs.get(1), auth.getCurrUserInventory(), auth.getCurrUser());
-                use.useItem(useReq);
+                UseItemRequestModel useReq = new UseItemRequestModel(inputs.get(0), AUTH.getCurrUserEnvironment().getName(), AUTH.getMariogatchiFromUser(inputs.get(0)), AUTH.getCurrUserInventory());
+                USE.useItem(useReq);
                 break;
             case HOME:
-                ChangeEnvironmentRequestModel homeReq = new ChangeEnvironmentRequestModel(auth.getCurrUser(), "home");
-                move.environmentResponseModel(homeReq);
+                ChangeEnvironmentRequestModel homeReq = new ChangeEnvironmentRequestModel(AUTH.getCurrUser(), "home");
+                MOVE.environmentResponseModel(homeReq);
                 break;
             case FOREST:
-                ChangeEnvironmentRequestModel forestReq = new ChangeEnvironmentRequestModel(auth.getCurrUser(), "forest");
-                move.environmentResponseModel(forestReq);
+                ChangeEnvironmentRequestModel forestReq = new ChangeEnvironmentRequestModel(AUTH.getCurrUser(), "forest");
+                MOVE.environmentResponseModel(forestReq);
                 break;
             case PARK:
-                ChangeEnvironmentRequestModel parkReq = new ChangeEnvironmentRequestModel(auth.getCurrUser(), "park");
-                move.environmentResponseModel(parkReq);
+                ChangeEnvironmentRequestModel parkReq = new ChangeEnvironmentRequestModel(AUTH.getCurrUser(), "park");
+                MOVE.environmentResponseModel(parkReq);
                 break;
             case INFO:
-                InfoAccessRequestModel infoReq = new InfoAccessRequestModel(auth.getCurrUserStatistics(), inputs.get(0));
-                info.checkStatistic(infoReq);
+                InfoAccessRequestModel infoReq = new InfoAccessRequestModel(AUTH.getCurrUser().getMariogatchiStatsFromUser(inputs.get(0)), inputs.get(1));
+                INFO.checkStatistic(infoReq);
                 break;
-            case ADD_MARIO:
+            case FIND_MARIO:
                 //AddMariogatchiRequestModel addMarioReq = new AddMariogatchiRequestModel(auth.getCurrUser(), mariogatchi);
                 //addMario.addMariogatchiToList(addMarioReq);
                 break;
             case REMOVE_MARIO:
-
+                MariogatchiManager manager = new MariogatchiManager();
+                manager.ReleaseMariogatchi(AUTH.getCurrUser(), AUTH.getMariogatchiFromUser(inputs.get(0)));
+                TRANSFER_FACTORY.getAction("release").execute(AUTH.getCurrUser(), AUTH.getMariogatchiFromUser(inputs.get(0)), REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER);
+                break;
+            case PLAYDATE_CHECK:
+                break;
+            case PLAYDATE_REQUEST:
+                break;
+            case PLAYDATE_ACCEPT:
                 break;
         }
     }
