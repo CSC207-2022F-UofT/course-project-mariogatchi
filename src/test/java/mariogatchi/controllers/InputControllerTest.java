@@ -19,9 +19,8 @@ import mariogatchi.use_cases.item_cases.remove_item.RemoveItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.remove_item.RemoveItemResponseModel;
 import mariogatchi.use_cases.item_cases.use_item.UseItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.use_item.UseItemResponseModel;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiPresenter;
-import mariogatchi.use_cases.manager.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
+import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
 import mariogatchi.use_cases.playdate.PlaydatePresenter;
 import mariogatchi.use_cases.playdate.PlaydateResponseModel;
 import mariogatchi.use_cases.time.TimePresenter;
@@ -88,7 +87,7 @@ public class InputControllerTest {
             }
 
             @Override
-            public RemoveItemResponseModel removeItemPrepareFailureView(String error) {
+            public RemoveItemResponseModel removeItemPrepareFailureView(String error, RemoveItemResponseModel responseModel) {
                 return null;
             }
         };
@@ -99,7 +98,7 @@ public class InputControllerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 return null;
             }
         };
