@@ -1,5 +1,6 @@
 package mariogatchi.use_cases.authentication;
 
+import com.harium.postgrest.Insert;
 import mariogatchi.data_access.DataAccess;
 import mariogatchi.entities.Account;
 import mariogatchi.entities.Inventory;
@@ -16,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class AuthenticatorRunner implements AuthInputBoundary{
     private final Charset CHARS = StandardCharsets.UTF_8;
@@ -89,8 +91,10 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                 if (uniqueUsername(username)) {
                     if (validPassword(password)) {
                         DataAccess data = new DataAccess();
-                        Account account = new Account(username, hasher(password, HASHTYPE));
+                        String randomFriendCode = UUID.randomUUID().toString();
+                        Account account = new Account(username, hasher(password, HASHTYPE), randomFriendCode);
                         data.saveObject("data\\" + username + ".ser", account); // saves the account
+                        data.insertDBRow("users", Insert.row().column("code", randomFriendCode));
                         // return a saved account and login by calling a method from alert boundary
                         AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Signed up and Logged in");
                         return presenter.prepareLoginSuccess(response);
