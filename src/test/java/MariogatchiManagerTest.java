@@ -1,6 +1,6 @@
-import mariogatchi.Mariogatchi;
-import mariogatchi.MariogatchiManager;
-import mariogatchi.User;
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+import mariogatchi.use_cases.manager.MariogatchiManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class MariogatchiManagerTest {
      */
     @Test
     public void ReleaseMariogatchi_thenisFalse() {
-        Mariogatchi mariogatchi = new Mariogatchi();
+        Mariogatchi mariogatchi = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
         MariogatchiManager manager = new MariogatchiManager();
         User user = new User("Test User");
         user.setMariogatchis(new ArrayList<>() {
@@ -32,7 +32,7 @@ public class MariogatchiManagerTest {
      */
     @Test
     public void AddMariogatchi_thenisTrue() {
-        Mariogatchi mariogatchi = new Mariogatchi();
+        Mariogatchi mariogatchi = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
         MariogatchiManager manager = new MariogatchiManager();
         User user = new User("Test User");
         user.setMariogatchis(new ArrayList<>());
@@ -45,7 +45,7 @@ public class MariogatchiManagerTest {
      */
     @Test
     public void ReleaseMariogatchi_thenisTrue() {
-        Mariogatchi mariogatchi = new Mariogatchi();
+        Mariogatchi mariogatchi = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
         MariogatchiManager manager = new MariogatchiManager();
         User user = new User("Test User");
         user.setMariogatchis(new ArrayList<>());
@@ -59,8 +59,8 @@ public class MariogatchiManagerTest {
      */
     @Test
     public void ReleaseWrongMariogatchi_thenisFalse(){
-        Mariogatchi mariogatchi = new Mariogatchi();
-        Mariogatchi mariogatchi2 = new Mariogatchi();
+        Mariogatchi mariogatchi = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
+        Mariogatchi mariogatchi2 = new Mariogatchi(10, "Nishigatchi", null, "Rare");
         MariogatchiManager manager = new MariogatchiManager();
         User user = new User("Test User");
         user.setMariogatchis(new ArrayList<>());
@@ -74,17 +74,17 @@ public class MariogatchiManagerTest {
      */
     @Test
     public void AddEleventhMariogatchi_thenisFalse(){
-        Mariogatchi one = new Mariogatchi();
-        Mariogatchi two = new Mariogatchi();
-        Mariogatchi three = new Mariogatchi();
-        Mariogatchi four = new Mariogatchi();
-        Mariogatchi five = new Mariogatchi();
-        Mariogatchi six = new Mariogatchi();
-        Mariogatchi seven = new Mariogatchi();
-        Mariogatchi eight = new Mariogatchi();
-        Mariogatchi nine = new Mariogatchi();
-        Mariogatchi ten = new Mariogatchi();
-        Mariogatchi mariogatchi = new Mariogatchi();
+        Mariogatchi one = new Mariogatchi(1, "Nicolegatchi", null, "Rare");
+        Mariogatchi two = new Mariogatchi(2, "Nicolegatchi", null, "Rare");
+        Mariogatchi three = new Mariogatchi(3, "Nicolegatchi", null, "Rare");
+        Mariogatchi four = new Mariogatchi(4, "Nicolegatchi", null, "Rare");
+        Mariogatchi five = new Mariogatchi(5, "Nicolegatchi", null, "Rare");
+        Mariogatchi six = new Mariogatchi(6, "Nicolegatchi", null, "Rare");
+        Mariogatchi seven = new Mariogatchi(7, "Nicolegatchi", null, "Rare");
+        Mariogatchi eight = new Mariogatchi(8, "Nicolegatchi", null, "Rare");
+        Mariogatchi nine = new Mariogatchi(9, "Nicolegatchi", null, "Rare");
+        Mariogatchi ten = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
+        Mariogatchi mariogatchi = new Mariogatchi(11, "Nicolegatchi", null, "Rare");
 
         MariogatchiManager manager = new MariogatchiManager();
         User user = new User("Test User");
@@ -112,16 +112,16 @@ public class MariogatchiManagerTest {
      */
     @Test
     public void AddTenthMariogatchi_thenisFalse(){
-        Mariogatchi one = new Mariogatchi();
-        Mariogatchi two = new Mariogatchi();
-        Mariogatchi three = new Mariogatchi();
-        Mariogatchi four = new Mariogatchi();
-        Mariogatchi five = new Mariogatchi();
-        Mariogatchi six = new Mariogatchi();
-        Mariogatchi seven = new Mariogatchi();
-        Mariogatchi eight = new Mariogatchi();
-        Mariogatchi nine = new Mariogatchi();
-        Mariogatchi mariogatchi = new Mariogatchi();
+        Mariogatchi one = new Mariogatchi(1, "Nicolegatchi", null, "Rare");
+        Mariogatchi two = new Mariogatchi(2, "Nicolegatchi", null, "Rare");
+        Mariogatchi three = new Mariogatchi(3, "Nicolegatchi", null, "Rare");
+        Mariogatchi four = new Mariogatchi(4, "Nicolegatchi", null, "Rare");
+        Mariogatchi five = new Mariogatchi(5, "Nicolegatchi", null, "Rare");
+        Mariogatchi six = new Mariogatchi(6, "Nicolegatchi", null, "Rare");
+        Mariogatchi seven = new Mariogatchi(7, "Nicolegatchi", null, "Rare");
+        Mariogatchi eight = new Mariogatchi(8, "Nicolegatchi", null, "Rare");
+        Mariogatchi nine = new Mariogatchi(9, "Nicolegatchi", null, "Rare");
+        Mariogatchi mariogatchi = new Mariogatchi(11, "Nicolegatchi", null, "Rare");
 
         MariogatchiManager manager = new MariogatchiManager();
         User user = new User("Test User");
