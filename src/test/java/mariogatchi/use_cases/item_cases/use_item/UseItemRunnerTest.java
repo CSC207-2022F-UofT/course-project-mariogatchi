@@ -2,7 +2,7 @@ package mariogatchi.use_cases.item_cases.use_item;
 
 import mariogatchi.entities.Inventory;
 
-import mariogatchi.entities.mariogatchi.Mariogatchi;
+import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.Statistics;
 import mariogatchi.entities.items.BadApple;
 import mariogatchi.entities.items.Item;

@@ -1,6 +1,6 @@
 package mariogatchi.use_cases.add_mariogatchi;
 
-import mariogatchi.entities.mariogatchi.Mariogatchi;
+import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 
 public class AddMariogatchiRequestModel {
