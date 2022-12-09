@@ -9,7 +9,7 @@ public class Mariogatchi {
     /* Avatar is and Image representing the  mariogatchi.Mariogatchi  each mariogatchi.Mariogatchi has its own avatar */
     private final Image AVATAR;
 
-    /* Rarity represents the rarity of the  mariogatchi.Mariogatchi,
+    /* Rarity represents the rarity of the mariogatchi.Mariogatchi,
        rarity can be either uncommon, common, rare and legendary*/
     private String rarity;
 
@@ -37,8 +37,6 @@ public class Mariogatchi {
         this.rarity = rarity;
     }
 
-    /* Gets the level of the mariogatchi */
-    public int getLvl() { return this.lvl; }
 
     /* Gets the name of the mariogatchi */
     public String getName(){
