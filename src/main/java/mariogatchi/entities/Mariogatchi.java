@@ -3,6 +3,7 @@ package mariogatchi.entities;
 import java.awt.Image;
 
 public class Mariogatchi {
+
     /* name is a string representing the name of the mariogatchi.Mariogatchi */
     private String name;
 
@@ -24,7 +25,7 @@ public class Mariogatchi {
     /* Each Mariogatchi posses their own statistics which are defined in the Statistics class*/
     private Statistics stats;
 
-    public void Mariogatchi(int level, String name, Image avatar, String rarity) {
+    public Mariogatchi(int level, String name, Image avatar, String rarity) {
         this.avatar = avatar;
         this.lvl = level;
         this.name = name;
@@ -50,15 +51,5 @@ public class Mariogatchi {
         return "Your mariogatchi.Mariogatchi " + this.name + " is level " + this.lvl + "... No wonder why he's" + this.rarity;
     }
 
-    public boolean increaselvl() {
-        if (this.stats.getAgility() >= this.stats.getMaxLevel() && this.stats.getMaxLevel() >= this.stats.getStrategy()) {     /* This function upgrades the mariogatchi.Mariogatchi Level only if the XP level passes the level cap*/
-            this.stats.LevelUp();
-            this.stats.ResetAgility();
-            return true;
-        } else {
-            return false;
-        }
-
-
-    }
 }
+

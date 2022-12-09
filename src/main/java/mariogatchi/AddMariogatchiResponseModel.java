@@ -1,13 +1,16 @@
 package mariogatchi;
 
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+
 public class AddMariogatchiResponseModel {
         private User user;
         private Mariogatchi mariogatchi;
 
-        /*
-        The Response Model (output data) for the AddItem Use Case
-        @param Mariogatchi - The mariogatchi that was to be added to the inventory
-        @param User - The User who wants to catch the Mariogatchi
+        /**
+        The Response Model (output data) for the AddMariogatchi Use Case
+        @param mariogatchi - The mariogatchi that was to be added to the inventory
+        @param user - The User who wants to catch the Mariogatchi
          */
         public  AddMariogatchiResponseModel(Mariogatchi mariogatchi, User user) {
             this.mariogatchi = mariogatchi;
@@ -15,7 +18,7 @@ public class AddMariogatchiResponseModel {
         }
 
         // returns the Mariogatchi
-        public Mariogatchi get() {
+        public Mariogatchi getMariogatchi() {
             return this.mariogatchi;
         }
         // returns the User

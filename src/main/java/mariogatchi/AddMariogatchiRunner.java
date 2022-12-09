@@ -1,6 +1,16 @@
 package mariogatchi;
 
+import mariogatchi.entities.Mariogatchi;
+import mariogatchi.entities.User;
+
 public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
+
+    /**
+     The Runner  for the AddMariogatchi Use Case, adds the mariogatchi if the user does not already own the mariogatchi
+     or if the user inventory is less than 10
+     @param PRESENTER - The presenter that presents Successview or Failview
+
+     */
 
     private final AddMariogatchiPresenter PRESENTER;
 
@@ -13,7 +23,7 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
     @Override
     public AddMariogatchiResponseModel addMariogatchiToList(AddMariogatchiRequestModel requestModel){
         if (MariogatchiInList(requestModel.getMariogatchi(), requestModel.getUser())){
-            return PRESENTER.prepareFailView("You already own an identical Mariogatchi");
+            return PRESENTER.prepareFailView("You already own a Mariogatchi of the same name...");
         }
         else if (!(MariogatchiInList(requestModel.getMariogatchi(), requestModel.getUser())) && requestModel.getUser().getMariogatchis().size() < 10){
             AddMariogatchiResponseModel responseModel = new AddMariogatchiResponseModel(requestModel.getMariogatchi(), requestModel.getUser());
@@ -21,13 +31,16 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
 
         }
         else{
-            return PRESENTER.prepareFailView("Mariogatchi can not be caught: You have to many Mariogatchis");
+            return PRESENTER.prepareFailView("Mariogatchi can not be caught: You have to many Mariogatchis...");
         }
     }
 
-    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){ return user.getMariogatchis().contains(mariogatchi)};
-
-
-
-
+    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){
+        for(Mariogatchi mar : user.getMariogatchis() ){
+            if (mar.getName().equals(mariogatchi.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
