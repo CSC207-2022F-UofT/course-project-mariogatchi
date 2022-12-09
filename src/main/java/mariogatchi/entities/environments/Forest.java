@@ -17,6 +17,7 @@ import static mariogatchi.entities.environments.Env.FOREST;
  */
 public class Forest extends Environment implements MariogatchiGeneratable {
     private List<Mariogatchi> generatedMariogatchis;
+
     /**
      * Constructor:
      * create an instance of the forest subclass using the parent constructor

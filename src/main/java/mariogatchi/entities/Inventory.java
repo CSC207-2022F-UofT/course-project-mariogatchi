@@ -3,6 +3,7 @@ package mariogatchi.entities;
 import mariogatchi.entities.items.Item;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -21,7 +22,7 @@ public class Inventory implements Serializable {
      * @param defaultItemToQuantity A map of item instances to their quantity
      * @param defaultCapacity The capacity of the inventory
      */
-    public Inventory(Map<Item.Items, Integer> defaultItemToQuantity, int defaultCapacity) {
+    public Inventory(HashMap<Item.Items, Integer> defaultItemToQuantity, int defaultCapacity) {
         this.ITEM_TO_QUANTITY = defaultItemToQuantity;
         this.CAPACITY = defaultCapacity;
         this.occupied = getInitialOccupied(defaultItemToQuantity);

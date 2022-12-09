@@ -49,7 +49,7 @@ public class FindMariogatchiRunner implements FindMariogatchiInputBoundary {
                     FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(mariogatchi, false);
                     return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareSuccessView(mariogatchiResponseModel);
                 } else {
-                    FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(null, false);
+                    FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(new Mariogatchi("common"), false);
                     return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareFailureView
                             ("There are no more Mariogatchis in the forest!", mariogatchiResponseModel);
                 }
