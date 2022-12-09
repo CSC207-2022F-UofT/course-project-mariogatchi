@@ -1,6 +1,8 @@
 package mariogatchi.use_cases.info_access;
 
 
+import mariogatchi.entities.Statistics;
+
 public class InformationAccessRunner implements InfoAccessInputBoundary {
 
     private final InfoAccessPresenter PRESENTER;
@@ -14,10 +16,8 @@ public class InformationAccessRunner implements InfoAccessInputBoundary {
       Check a specific statistic for a mariogatchi
      */
     public InfoAccessResponseModel checkStatistic(InfoAccessRequestModel requestModel) {
-        int statValue = requestModel.getStats().getStat(requestModel.getStatToCheck());
-        return this.PRESENTER.prepareSuccessView(
-                new InfoAccessResponseModel(requestModel.getStatToCheck(), statValue)
-                );
+        Statistics statValue = requestModel.getUser().getMariogatchiStatsFromUser(requestModel.getMariogatchi());
+        return this.PRESENTER.prepareSuccessView(new InfoAccessResponseModel(statValue));
     }
 
 }

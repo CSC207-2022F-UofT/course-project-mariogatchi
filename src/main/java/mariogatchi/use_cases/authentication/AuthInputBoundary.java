@@ -1,29 +1,35 @@
 package mariogatchi.use_cases.authentication;
 
-import mariogatchi.entities.Account;
-import mariogatchi.entities.Inventory;
-import mariogatchi.entities.Statistics;
-import mariogatchi.entities.User;
+import mariogatchi.entities.*;
 import mariogatchi.entities.environments.Environment;
 
+/**
+ * Contains the abstract request methods and getter methods for the entity instances in AuthenticatorRunner
+ */
 public interface AuthInputBoundary {
-     public AuthenticationResponseModel logoutRequest(Account account);
+    AuthenticationResponseModel logoutRequest(Account account);
 
-    public AuthenticationResponseModel deleteRequest(Account account);
+    AuthenticationResponseModel deleteRequest(Account account);
 
-    public AuthenticationResponseModel authenticationRequest(AuthenticationRequestModel requestModel);
+    AuthenticationResponseModel authenticationRequest(AuthenticationRequestModel requestModel);
 
-    public Account getCurrAccount();
+    Account getCurrAccount();
 
-    public User getCurrUser();
+    User getCurrUser();
 
-    public void setCurrAccount(Account account);
+    void setCurrAccount(Account account);
 
-    public void setCurrUser(User user);
+    void setCurrUser(User user);
 
-    public Inventory getCurrUserInventory();
+    Inventory getCurrUserInventory();
 
-    public Environment getCurrUserEnvironment();
+    Environment getCurrUserEnvironment();
 
-    public Statistics getCurrUserStatistics();
+    Mariogatchi getMariogatchiFromUser(String mariogatchiName);
+
+    Mariogatchi getRandomMariogatchiFromUser();
+
+    Statistics getMariogatchiStatisticsFromUser(String mariogatchiName);
+
+    String getFriendCodeFromAccount();
 }

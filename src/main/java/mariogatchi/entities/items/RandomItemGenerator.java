@@ -6,20 +6,20 @@ Returns a random reusable item
  */
 public class RandomItemGenerator {
 
-    private final ItemFactory ITEMFACTORY;
+    private final NonReusableItemFactory NON_REUSABLE_ITEM_FACTORY;
 
     public RandomItemGenerator() {
-        this.ITEMFACTORY = new ItemFactory();
+        this.NON_REUSABLE_ITEM_FACTORY = new NonReusableItemFactory();
     }
 
     public Item generateRandomItem() {
-        Item.Items[] itemEnumSet = Item.Items.values();
+        Item.NonReusableItems[] itemEnumSet = Item.NonReusableItems.values();
 
         Random random_method = new Random();
         // generates a random index for the enum set based on its size
         int index = random_method.nextInt(itemEnumSet.length);
-        Item.Items newItemName = itemEnumSet[index];
+        Item.NonReusableItems newItemName = itemEnumSet[index];
 
-        return this.ITEMFACTORY.getItem(newItemName);
+        return this.NON_REUSABLE_ITEM_FACTORY.getItem(newItemName);
     }
 }

@@ -6,10 +6,9 @@ import mariogatchi.use_cases.item_cases.add_item.AddItemInputBoundary;
 import mariogatchi.use_cases.item_cases.add_item.AddItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.add_item.AddItemResponseModel;
 import mariogatchi.use_cases.item_cases.add_item.AddItemRunner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +37,7 @@ public class AddRandomItemRunnerTest {
         };
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating an addItemOutputBoundary and addItemInputBoundary
@@ -87,7 +86,7 @@ public class AddRandomItemRunnerTest {
         };
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 0);
 
         // creating an addItemOutputBoundary and addItemInputBoundary

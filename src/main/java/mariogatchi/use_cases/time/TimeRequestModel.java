@@ -1,5 +1,7 @@
 package mariogatchi.use_cases.time;
 import mariogatchi.entities.Statistics;
+import mariogatchi.entities.User;
+
 public class TimeRequestModel {
     /**
      * The time right now
@@ -8,17 +10,17 @@ public class TimeRequestModel {
     /**
      * A mariogatchi's stats object
      */
-    private Statistics stats;
+    private User user;
 
     /**
      The input data needed for the Time use case
      @param time - current time
-     @param stats - User's stats
+     @param user - User
       */
 
-    public TimeRequestModel (int time, Statistics stats) {
+    public TimeRequestModel (int time, User user) {
         this.currentTime = time;
-        this.stats = stats;
+        this.user = user;
     }
 
     // return time
@@ -27,6 +29,6 @@ public class TimeRequestModel {
     }
 
     // return stats
-    public Statistics getStats(){ return this.stats;}
+    public User getUser(){ return this.user;}
 
 }

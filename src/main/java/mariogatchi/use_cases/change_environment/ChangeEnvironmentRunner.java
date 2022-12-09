@@ -1,43 +1,51 @@
 package mariogatchi.use_cases.change_environment;
 import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.environments.Environment;
-import mariogatchi.entities.environments.EnvironmentFactory;
 
+/**
+ * ChangeEnvironmentRunner: implements input boundary and changes environment if possible
+ */
 public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
-    private final ChangeEnvironmentPresenter ENVIRONMENT_PRESENTER; // presenter
+    private final ChangeEnvironmentOutputBoundary ENVIRONMENT_OUTPUT_BOUNDARY;
 
     /**
-     * Request model (input data) for the ChangeEnvironment use case.
-     *
-     * @param environmentPresenter The implementing class object of the Output Boundary for this Use Case Interactor
+     * Constructs a runner
+     * @param environmentOutputBoundary the output boundary the input boundary is connected to
      */
-
-    public ChangeEnvironmentRunner(ChangeEnvironmentPresenter environmentPresenter) {
-        this.ENVIRONMENT_PRESENTER = environmentPresenter;
+    public ChangeEnvironmentRunner(ChangeEnvironmentOutputBoundary environmentOutputBoundary) {
+        this.ENVIRONMENT_OUTPUT_BOUNDARY = environmentOutputBoundary;
     }
 
-    /*
-     * Checks weather the user input a valid environment, and if it is, checks weather the user is already in that
-     * current environment. If the user is already in the environment the user wants to change to, notify the user,
-     * otherwise change the environment of the user by creating a new instance of that environment and change
-     * the user classes instance variable representing environment to the users input.
+    /**
+     * Overrides response model creations
+     * - If the user is currently in the environment they choose to go to, the environment is not changed. The current
+     *   environment of the user is passed to the response model along with an error message.
+     * - If the user chooses to go to an environment they are currently not in, by using an EnvironmentFactory, a new
+     *   instance of that environment class is created and is set as the users current environment, the environment
+     *   has changed. The environment in which the user is now in is passed to the response model.
      */
-
     @Override
-    public ChangeEnvironmentResponseModel environmentResponseModel(ChangeEnvironmentRequestModel environmentRequestModel) {
+    public ChangeEnvironmentResponseModel changeEnvironment(ChangeEnvironmentRequestModel environmentRequestModel) {
         if (isSame(environmentRequestModel)){
-            return ENVIRONMENT_PRESENTER.prepareFailView("Cannot change environment: You are already in that environment!");
+            Env currEnvironment = environmentRequestModel.getNewEnvironment();
+            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(currEnvironment);
+            return ENVIRONMENT_OUTPUT_BOUNDARY.changeEnvPrepareFailureView
+                    ("Cannot change environment: You are already in that environment!", environmentResponseModel);
         } else {
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
-            Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNEW_ENVIRONMENT());
-                environmentRequestModel.getUser().setEnvironment(newEnvironment);
-            Env changedEnvironment = environmentRequestModel.getUser().getEnvironment().getName();
+            Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNewEnvironment());
+                environmentRequestModel.getUser().setCurrentEnvironment(newEnvironment);
+            Env changedEnvironment = environmentRequestModel.getNewEnvironment();
             ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironment);
-
-            return ENVIRONMENT_PRESENTER.prepareSuccessView(environmentResponseModel);
+            return ENVIRONMENT_OUTPUT_BOUNDARY.changeEnvPrepareSuccessView(environmentResponseModel);
         }
     }
+
+    /**
+     * Returns whether the user is in the environment they want to go to
+     * @return whether the user is in the environment they want to go to
+     */
     private boolean isSame(ChangeEnvironmentRequestModel environmentRequestModel){
-        return environmentRequestModel.getNEW_ENVIRONMENT().equals(environmentRequestModel.getCURR_ENVIRONMENT());
+        return environmentRequestModel.getNewEnvironment().equals(environmentRequestModel.getCurrEnvironment());
     }
 }

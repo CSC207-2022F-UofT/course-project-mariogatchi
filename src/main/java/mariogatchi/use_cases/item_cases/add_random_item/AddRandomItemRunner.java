@@ -6,7 +6,7 @@ import mariogatchi.use_cases.item_cases.add_item.AddItemRequestModel;
 import mariogatchi.use_cases.item_cases.add_item.AddItemResponseModel;
 
 /*
-Adds a randomly generated item to the users inventory
+Interactor for the add random item use case
  */
 public class AddRandomItemRunner implements AddRandomItemInputBoundary {
 
@@ -14,13 +14,16 @@ public class AddRandomItemRunner implements AddRandomItemInputBoundary {
 
     private final RandomItemGenerator randomItemGenerator;
 
-
-
     public AddRandomItemRunner(AddRandomItemOutputBoundary addRandomItemOutputBoundary) {
         this.ADDRANDOMITEMPRESENTER = addRandomItemOutputBoundary;
         this.randomItemGenerator = new RandomItemGenerator();
     }
 
+    /**
+     * Adds a random item to a players inventory.
+     * @param requestModel an instance of the Add Random Item use case input boundary
+     * @return an instance of the Add Random Item use case output boundary (AddRandomItemResponseModel)
+     */
     @Override
     public AddRandomItemResponseModel addRandomItem(AddRandomItemRequestModel requestModel) {
         Item randomItem = this.randomItemGenerator.generateRandomItem();

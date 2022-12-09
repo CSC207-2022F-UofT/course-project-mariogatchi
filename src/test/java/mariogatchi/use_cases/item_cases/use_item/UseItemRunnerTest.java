@@ -1,38 +1,33 @@
 package mariogatchi.use_cases.item_cases.use_item;
 
 import mariogatchi.entities.Inventory;
-
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.Statistics;
+import mariogatchi.entities.environments.Env;
+import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.BadApple;
 import mariogatchi.entities.items.Item;
-import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.Leash;
-
-import java.awt.image.BufferedImage;
-
-import mariogatchi.entities.environments.Env;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /*
 Unit testing class for the UseItem use case
  */
 public class UseItemRunnerTest {
 
-    Map<Item.Items, Integer> itemToQuant;
-    Mariogatchi gatchi;
+    HashMap<Item.Items, Integer> itemToQuant;
 
     Env currentEnvironment;
+
+    Mariogatchi gatchi;
+
     @BeforeEach
     void setup() throws IOException {
 
@@ -43,10 +38,7 @@ public class UseItemRunnerTest {
         this.currentEnvironment = Env.HOME;
 
         // creating default Mariogatchi
-        String imagePath = "mariogatchi/use_cases/item_cases/use_item/mariogatchi_image.png";
-        BufferedImage mariogatchiImage = ImageIO.read(new File(imagePath));
-
-        this.gatchi = new Mariogatchi(0, "mario", mariogatchiImage, "common");
+        this.gatchi = new Mariogatchi(0, "mario", null, "common");
     }
     /*
     For a non-reusable item for which there is at least one already
@@ -69,7 +61,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -101,8 +93,8 @@ public class UseItemRunnerTest {
         UseItemOutputBoundary USE_ITEM_PRESENTER = new UseItemOutputBoundary() {
             @Override
             public UseItemResponseModel useItemPrepareSuccessView(UseItemResponseModel responseModel) {
-                // check that stats for HAPPINESS is still 50, ENERGY is 40, CLEANLINESS is 40
-                assertEquals(50, (int) responseModel.getStatToValue().get(Statistics.Stats.HAPPINESS));
+                // check that stats for HAPPINESS is 70, ENERGY is 40, CLEANLINESS is 40
+                assertEquals(70, (int) responseModel.getStatToValue().get(Statistics.Stats.HAPPINESS));
                 assertEquals(40, (int) responseModel.getStatToValue().get(Statistics.Stats.ENERGY));
                 assertEquals(40, (int) responseModel.getStatToValue().get(Statistics.Stats.CLEANLINESS));
                 // check that quantity of apple in inventory is 1
@@ -111,7 +103,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 fail(error);
                 return null;
             }
@@ -121,6 +113,8 @@ public class UseItemRunnerTest {
         this.itemToQuant.put(new Leash().getName(), 1);
         Inventory inventory = new Inventory(this.itemToQuant, 100);
 
+        // creating current environment
+        this.currentEnvironment = Env.PARK;
 
         // creating the UseItemInputBoundary
         UseItemInputBoundary useItemRunner = new UseItemRunner(USE_ITEM_PRESENTER);
@@ -148,7 +142,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 System.out.println(error + ": This was supposed to happen");
                 return null;
             }
@@ -185,7 +179,7 @@ public class UseItemRunnerTest {
             }
 
             @Override
-            public UseItemResponseModel useItemPrepareFailureView(String error) {
+            public UseItemResponseModel useItemPrepareFailureView(String error, UseItemResponseModel responseModel) {
                 System.out.println(error + ": This was supposed to happen");
                 return null;
             }

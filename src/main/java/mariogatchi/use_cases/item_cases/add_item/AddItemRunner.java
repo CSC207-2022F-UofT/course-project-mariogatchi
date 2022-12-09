@@ -4,6 +4,9 @@ import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.Reusable;
 import mariogatchi.entities.Inventory;
 
+/*
+Interactor for the add item use case
+ */
 public class AddItemRunner implements AddItemInputBoundary{
 
 
@@ -20,10 +23,13 @@ public class AddItemRunner implements AddItemInputBoundary{
         this.ADDITEMPRESENTER = presenter;
     }
 
-    /*
-    Checks whether the item can be added to the Inventory based on if the item is reusable (and if it already
-    exists in the Inventory) and if there is enough space in the inventory.
-    If the item can be added, it is added to the given Inventory.
+    /**
+     * Returns an instance of the add item response model. Adds an item to the user's inventory.
+     * Checks whether the item can be added to the Inventory based on if the item is reusable (and if it already
+     * exists in the Inventory) and if there is enough space in the inventory.
+     * If the item can be added, it is added to the given Inventory.
+     * @param requestModel an instance of the Add Item use case input boundary
+     * @return an instance of the Add Item use case output boundary (AddItemResponseModel)
      */
     @Override
     public AddItemResponseModel addItemToInv(AddItemRequestModel requestModel) {

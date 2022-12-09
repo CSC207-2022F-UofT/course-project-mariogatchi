@@ -1,6 +1,8 @@
 package mariogatchi.use_cases.time;
 
 
+import mariogatchi.entities.Mariogatchi;
+
 public class TimeRunner implements TimeInputBoundary {
 
     private final TimePresenter PRESENTER;
@@ -14,8 +16,11 @@ public class TimeRunner implements TimeInputBoundary {
       Check how much time has passed since last action and decrement stats
      */
     public TimeResponseModel checkPassedTime(TimeRequestModel requestModel) {
-        long timeDiff = requestModel.getStats().statDecay(requestModel.getTime());
-        return this.PRESENTER.prepareSuccessView(new TimeResponseModel(requestModel.getStats(), timeDiff));
+        long timeDiff = 0;
+        for(Mariogatchi m : requestModel.getUser().getMariogatchis()){
+            timeDiff = m.getStats().statDecay(requestModel.getTime());
+        }
+        return this.PRESENTER.prepareSuccessView(new TimeResponseModel( timeDiff));
     }
 
 }

@@ -1,10 +1,8 @@
 package mariogatchi.use_cases.authentication;
 
+import com.harium.postgrest.Insert;
 import mariogatchi.data_access.DataAccess;
-import mariogatchi.entities.Account;
-import mariogatchi.entities.Inventory;
-import mariogatchi.entities.Statistics;
-import mariogatchi.entities.User;
+import mariogatchi.entities.*;
 import mariogatchi.entities.environments.Environment;
 
 import java.io.File;
@@ -16,21 +14,39 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
+/**
+ * Used for handling all Authentication related requests.
+ */
 public class AuthenticatorRunner implements AuthInputBoundary{
     private final Charset CHARS = StandardCharsets.UTF_8;
-    private final String HASHTYPE = "SHA-256";
 
     private final AuthenticationPresenter presenter;
 
     private Account currAccount = null;
-
+    /**
+     * The currently logged in Account instance
+     */
     private User currUser = null;
+    /**
+     * The currently loaded User instance
+     */
 
+    /**
+     * The main constructor for the class
+     * @param presenter The presenter instance to be passed in
+     */
     public AuthenticatorRunner(AuthenticationPresenter presenter) {
         this.presenter = presenter;
     }
 
+
+    /**
+     *  Used to log out of the current account
+     * @param account the account to log out of
+     * @return the response model containing the result of the request
+     */
     @Override
     public AuthenticationResponseModel logoutRequest(Account account) {
         DataAccess data = new DataAccess();
@@ -40,6 +56,11 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         return presenter.prepareLoginFailure(response);
     }
 
+    /**
+     * Used to delete the current account
+     * @param account the account to be deleted
+     * @return The response model containing the result of the request
+     */
     @Override
     public AuthenticationResponseModel deleteRequest(Account account) {
         DataAccess data = new DataAccess();
@@ -48,16 +69,20 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         if (data.deleteFile(account_data_file)) { // deletes the data account file
             AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Logged out and deleted account");
             return presenter.prepareLoginFailure(response);
-        } else {
-            // this case should never happen, but if it does there is a problem
         }
         return null;
     }
 
+    /**
+     * Used for Signup and Login to accounts.
+     * @param requestModel the request model containing the information for the request
+     * @return The response model containing the result of the request
+     */
     @Override
     public AuthenticationResponseModel authenticationRequest(AuthenticationRequestModel requestModel) {
-        String username = requestModel.getUsername();
+        String username = requestModel.getUSERNAME();
         String password = requestModel.getPassword();
+        String HASHTYPE = "SHA-256";
         switch (requestModel.getType()) {
             case LOGIN:
                 //DisplayPresenter display = new DisplayPresenter();
@@ -89,8 +114,10 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                 if (uniqueUsername(username)) {
                     if (validPassword(password)) {
                         DataAccess data = new DataAccess();
-                        Account account = new Account(username, hasher(password, HASHTYPE));
+                        String randomFriendCode = UUID.randomUUID().toString();
+                        Account account = new Account(username, hasher(password, HASHTYPE), randomFriendCode);
                         data.saveObject("data\\" + username + ".ser", account); // saves the account
+                        data.insertDBRow("users", Insert.row().column("code", randomFriendCode));
                         // return a saved account and login by calling a method from alert boundary
                         AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Signed up and Logged in");
                         return presenter.prepareLoginSuccess(response);
@@ -109,13 +136,17 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                     AuthenticationResponseModel response = new AuthenticationResponseModel(null, "Username is Already In Use");
                     return presenter.prepareLoginFailure(response);
                 }
+            default:
+                return new AuthenticationResponseModel(new Account("b", "b".getBytes(), "b"), "");
         }
-
-        return null;
     }
 
 
-
+    /**
+     Checks whether a password meets the minimum security specification
+     @param password - the password to be checked
+     @return a boolean whether or not the password is valid
+     */
     private boolean validPassword(String password) { // Checks if a password is secure
         boolean containsNumber = false;
         boolean containsSymbol = false;
@@ -135,9 +166,15 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                 break;
             }
         }
-        return (password.length() > 8 && containsNumber && containsSymbol && containsUpper && containsLower); // returns if all are true
+        return (password.length() >= 8 && containsNumber && containsSymbol && containsUpper && containsLower); // returns if all are true
 
     }
+
+    /**
+     * Checks whether a username is in use
+     * @param username the username input from user
+     * @return a boolean whether that username is in user
+     */
     private boolean uniqueUsername(String username) { // Checks whether a given username is unique
         DataAccess data = new DataAccess();
         File folder = data.loadFile("data\\"); // Loads the data folder
@@ -154,6 +191,13 @@ public class AuthenticatorRunner implements AuthInputBoundary{
         return true;
 
     }
+
+    /**
+     * Used to hash passwords
+     * @param txt The input to be hased.
+     * @param hashType Essentially a constant
+     * @return the hashed string
+     */
     private byte[] hasher(final String txt, final String hashType){
         MessageDigest digest;
         byte[] encodedHash = null;
@@ -195,10 +239,26 @@ public class AuthenticatorRunner implements AuthInputBoundary{
     public Environment getCurrUserEnvironment() {
         return this.currUser.getCurrentEnvironment();
     }
+
     @Override
-    public Statistics getCurrUserStatistics() {
-        return this.currUser.getStatistics();
+    public Mariogatchi getMariogatchiFromUser(String mariogatchiName) {
+        return this.currUser.getMariogatchiFromUser(mariogatchiName, currUser.getMariogatchis());
     }
 
+    @Override
+    public Mariogatchi getRandomMariogatchiFromUser() {
+        return this.currUser.getMariogatchis().get((int) (Math.random() * this.currUser.getMariogatchis().size()));
+    }
+
+
+    @Override
+    public Statistics getMariogatchiStatisticsFromUser(String mariogatchiName) {
+        return this.currUser.getMariogatchiStatsFromUser(mariogatchiName);
+    }
+
+    @Override
+    public String getFriendCodeFromAccount() {
+        return this.currAccount.getFRIEND_CODE();
+    }
 
 }

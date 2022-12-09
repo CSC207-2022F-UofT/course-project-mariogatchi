@@ -42,7 +42,7 @@ class AddMariogatchiRunnerTest {
             }
         });
 
-        mariogatchirunner.addMariogatchiToList(new AddMariogatchiRequestModel(new User(""), new Mariogatchi(10,"Jiahaogatchi", null, "Rare")));
+        mariogatchirunner.addMariogatchiToList(new AddMariogatchiRequestModel(new User(""), new Mariogatchi("Jiahaogatchi", null, "Rare")));
         }
 
     @Test
@@ -69,11 +69,11 @@ class AddMariogatchiRunnerTest {
             }
         });
         List<Mariogatchi> lst = new ArrayList<Mariogatchi>();
-        lst.add(new Mariogatchi(10,"Jiahaogatchi", null, "Rare"));
+        lst.add(new Mariogatchi("Jiahaogatchi", null, "Rare"));
         User u = new User("");
         u.setMariogatchis(lst);
         mariogatchirunner.addMariogatchiToList(new AddMariogatchiRequestModel( u,
-                new Mariogatchi(10,"Jiahaogatchi", null, "Rare"))
+                new Mariogatchi("Jiahaogatchi", null, "Rare"))
         );
     }
 
@@ -102,12 +102,12 @@ class AddMariogatchiRunnerTest {
         });
         List<Mariogatchi> lst = new ArrayList<Mariogatchi>();
         for(int i = 0; i < 10; i++){
-            lst.add(new Mariogatchi(10,"Jiahaogatchi" + i, null, "Rare"));
+            lst.add(new Mariogatchi("Jiahaogatchi" + i, null, "Rare"));
         }
         User u = new User("");
         u.setMariogatchis(lst);
         mariogatchirunner.addMariogatchiToList(new AddMariogatchiRequestModel( u,
-                new Mariogatchi(10,"Jiahaogatchi", null, "Rare"))
+                new Mariogatchi("Jiahaogatchi", null, "Rare"))
         );
     }
 }
