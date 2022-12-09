@@ -40,8 +40,44 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         initDynamicComponents();
     }
 
+<<<<<<< HEAD
     public void setInputController(InputController ic){
         this.ic = ic;
+=======
+    public void startDP(InputController input ){
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DisplayPresenter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+
+         this.setInputController(input);
+         this.setVisible(true);
+    }
+
+    public void setInputController(InputController input ){
+        this.ic = input;
+>>>>>>> 1f9028a29b0f4fc38c70de8c2a091af3f2c0d201
     }
 
 
@@ -2218,6 +2254,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     
     @Override
     public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel){
+        System.out.println("Reached");
         changeScreen("Games");
         clearLoginFields();
         return responseModel;

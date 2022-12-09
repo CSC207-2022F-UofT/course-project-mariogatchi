@@ -120,6 +120,7 @@ public class AuthenticatorRunner implements AuthInputBoundary{
                         data.insertDBRow("users", Insert.row().column("code", randomFriendCode));
                         // return a saved account and login by calling a method from alert boundary
                         AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Signed up and Logged in");
+                        System.out.println("saved");
                         return presenter.prepareLoginSuccess(response);
                         //display.updateLoginState(true, "Signup Up and Logged In");
 
