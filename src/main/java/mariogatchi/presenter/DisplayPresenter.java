@@ -1927,12 +1927,13 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_loginBackBtnActionPerformed
 
     private void forestNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestNextBtnActionPerformed
-        
+        ic.request(InputController.Actions.FIND_MARIO, List.of("deny"));
     }//GEN-LAST:event_forestNextBtnActionPerformed
 
     private void forestAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestAcceptBtnActionPerformed
         changeScreen("Home");
         ic.request(InputController.Actions.HOME, null);
+        ic.request(InputController.Actions.FIND_MARIO, List.of("accept"));
     }//GEN-LAST:event_forestAcceptBtnActionPerformed
 
     private void gameNewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameNewBtnActionPerformed
