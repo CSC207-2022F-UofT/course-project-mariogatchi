@@ -190,5 +190,6 @@ public class Main {
                 PLAYDATE_PRESENTER, displayPresenter);
 
         displayPresenter.setInputController(input);
+
     }
 }
