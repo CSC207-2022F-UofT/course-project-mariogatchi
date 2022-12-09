@@ -66,13 +66,9 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DisplayPresenter dp = new DisplayPresenter();
-                dp.setInputController(input);
-                dp.setVisible(true);
-            }
-        });
+
+         this.setInputController(input);
+         this.setVisible(true);
     }
 
     public void setInputController(InputController input ){
@@ -2253,6 +2249,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     
     @Override
     public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel){
+        System.out.println("Reached");
         changeScreen("Games");
         clearLoginFields();
         return responseModel;
