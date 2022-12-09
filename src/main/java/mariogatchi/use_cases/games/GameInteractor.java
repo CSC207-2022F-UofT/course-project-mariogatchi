@@ -12,6 +12,7 @@ import mariogatchi.use_cases.authentication.AuthenticationPresenter;
 import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,12 +21,15 @@ import java.util.Map;
  */
 public class GameInteractor implements GameInputBoundary{
 
-    private final Apple APPLE = new Apple();
+    private final Item APPLE = new Apple();
 
     /**
      * The default items that the user starts with
      */
-    private final Map<Item.Items, Integer> DEFAULT_ITEMS = Map.of(APPLE.getName(), 1);
+    private final Map<Item.Items, Integer> DEFAULT_ITEMS = new HashMap<>() {{
+        put(APPLE.getName(), 1);
+    }};
+
 
     /**
      * The default inventory that the user starts with
