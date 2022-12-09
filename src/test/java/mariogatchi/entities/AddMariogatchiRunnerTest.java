@@ -1,14 +1,10 @@
 package mariogatchi.entities;
 
-import mariogatchi.AddMariogatchiPresenter;
-import mariogatchi.AddMariogatchiRequestModel;
-import mariogatchi.AddMariogatchiResponseModel;
-import mariogatchi.AddMariogatchiRunner;
-import mariogatchi.entities.Mariogatchi;
-import mariogatchi.entities.User;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRequestModel;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiPresenter;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiResponseModel;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRunner;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-
 
 
 import java.util.ArrayList;
@@ -46,10 +42,8 @@ class AddMariogatchiRunnerTest {
             }
         });
 
-        mariogatchirunner.addMariogatchiToList(new AddMariogatchiRequestModel( new User(""),
-                new Mariogatchi(10,"Jiahaogatchi", null, "Rare"))
-            );
-    }
+        mariogatchirunner.addMariogatchiToList(new AddMariogatchiRequestModel(new User(""), new Mariogatchi(10,"Jiahaogatchi", null, "Rare")));
+        }
 
     @Test
 
