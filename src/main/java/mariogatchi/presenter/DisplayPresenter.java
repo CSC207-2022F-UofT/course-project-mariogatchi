@@ -1905,31 +1905,37 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     private void forestAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestAcceptBtnActionPerformed
         changeScreen("Home");
+        ic.request(InputController.Actions.HOME, null);
     }//GEN-LAST:event_forestAcceptBtnActionPerformed
 
     private void gameNewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameNewBtnActionPerformed
         changeScreen("Forest");
+        ic.request(InputController.Actions.FOREST, null);
     }//GEN-LAST:event_gameNewBtnActionPerformed
 
     private void forestViewMariogatchiStatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestViewMariogatchiStatsBtnActionPerformed
         changeScreen("Stats");
         updatePreviousScreen("Forest");
+        ic.request(InputController.Actions.INFO, List.of("hi", forestMariogatchiNameTxt.getText()));
     }//GEN-LAST:event_forestViewMariogatchiStatsBtnActionPerformed
 
     private void gameSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameSelectBtnActionPerformed
         ic.requestGames(InputController.GamesActions.LOAD_GAME, List.of(gameSelectionList.getSelectedValue()));
         changeScreen("Home");
+        ic.request(InputController.Actions.HOME, null);
     }//GEN-LAST:event_gameSelectBtnActionPerformed
 
     private void toParkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toParkBtnActionPerformed
         if(!isDialogOpen()){
             changeScreen("Park");
+            ic.request(InputController.Actions.PARK, null);
         }
     }//GEN-LAST:event_toParkBtnActionPerformed
 
     private void toForestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toForestBtnActionPerformed
         if(!isDialogOpen()){
             changeScreen("Forest");
+            ic.request(InputController.Actions.FOREST, null);
         }
     }//GEN-LAST:event_toForestBtnActionPerformed
 
@@ -1962,11 +1968,13 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     private void toHomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toHomeBtnActionPerformed
         if(!isDialogOpen()){
             changeScreen("Home");
+            ic.request(InputController.Actions.HOME, null);
         }
     }//GEN-LAST:event_toHomeBtnActionPerformed
 
     private void useItemAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useItemAcceptBtnActionPerformed
         useItemDialog.setVisible(false);
+        ic.request(InputController.Actions.USE_ITEM, List.of(useItemItemTxt.getText(), selectMariogatchiL.getSelectedValue()));
     }//GEN-LAST:event_useItemAcceptBtnActionPerformed
 
     private void useItemDeclineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useItemDeclineBtnActionPerformed
@@ -2059,6 +2067,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         changeScreen("Stats");
         pre2 = "Home";
         updatePreviousScreen("ViewMariogatchi");
+        ic.request(InputController.Actions.INFO, List.of("hi", selectMariogatchiL.getSelectedValue());
     }//GEN-LAST:event_viewMariogatchiSelectBtnActionPerformed
 
     private void viewMariogatchiReleaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMariogatchiReleaseBtnActionPerformed
