@@ -1917,6 +1917,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_forestViewMariogatchiStatsBtnActionPerformed
 
     private void gameSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameSelectBtnActionPerformed
+        ic.requestGames(InputController.GamesActions.LOAD_GAME, List.of(gameSelectionList.getSelectedValue()));
         changeScreen("Home");
     }//GEN-LAST:event_gameSelectBtnActionPerformed
 
@@ -2042,7 +2043,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_gameSelectionListValueChanged
 
     private void gameDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameDeleteBtnActionPerformed
-        
+        ic.requestGames(InputController.GamesActions.DELETE_GAME, List.of(gameSelectionList.getSelectedValue()));
     }//GEN-LAST:event_gameDeleteBtnActionPerformed
 
     private void homeViewMariogatchiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeViewMariogatchiBtnActionPerformed
