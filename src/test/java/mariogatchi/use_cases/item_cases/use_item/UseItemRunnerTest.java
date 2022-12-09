@@ -8,8 +8,8 @@ import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.BadApple;
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.Leash;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class UseItemRunnerTest {
         this.currentEnvironment = Env.HOME;
 
         // creating default Mariogatchi
-        this.gatchi = new Mariogatchi(0, "mario", null, "common");
+        this.gatchi = new Mariogatchi("mario", null, "common");
     }
     /*
     For a non-reusable item for which there is at least one already
@@ -93,6 +93,7 @@ public class UseItemRunnerTest {
         UseItemOutputBoundary USE_ITEM_PRESENTER = new UseItemOutputBoundary() {
             @Override
             public UseItemResponseModel useItemPrepareSuccessView(UseItemResponseModel responseModel) {
+                // check that stats for HAPPINESS is still 70, ENERGY is 40, CLEANLINESS is 40
                 // check that stats for HAPPINESS is 70, ENERGY is 40, CLEANLINESS is 40
                 assertEquals(70, (int) responseModel.getStatToValue().get(Statistics.Stats.HAPPINESS));
                 assertEquals(40, (int) responseModel.getStatToValue().get(Statistics.Stats.ENERGY));
@@ -113,6 +114,7 @@ public class UseItemRunnerTest {
         this.itemToQuant.put(new Leash().getName(), 1);
         Inventory inventory = new Inventory(this.itemToQuant, 100);
 
+        this.currentEnvironment = Env.PARK;
         // creating current environment
         this.currentEnvironment = Env.PARK;
 

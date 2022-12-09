@@ -1,5 +1,6 @@
 package mariogatchi.controllers;
 
+import mariogatchi.entities.Mariogatchi;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiInputBoundary;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiPresenter;
 import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiRequestModel;
@@ -290,7 +291,7 @@ public class InputController {
                     if (Objects.equals(inputs.get(0), "accept")) {
                         acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), FIND_MARIOGATCHI.getMariogatchiOutput());
                     } else { // "find mariogatchi"
-                        acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), null);
+                        acceptFindReq = new FindMariogatchiRequestModel(AUTH.getCurrUser(), inputs.get(0), new Mariogatchi("common"));
                     }
                     FindMariogatchiResponseModel responseAcceptFind = FIND_MARIOGATCHI.findMariogatchi(acceptFindReq);
                     FIND_MARIOGATCHI.setMariogatchiOutput(responseAcceptFind.getMariogatchi());

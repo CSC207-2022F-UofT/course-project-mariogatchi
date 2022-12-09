@@ -22,8 +22,8 @@ public class KillMariogatchiFactoryTest {
     RemoveMariogatchiFactory killFactory = new KillMariogatchiFactory();
     User user = new User("Test User");
     User mariogatchiless = new User("No Mariogatchis");
-    Mariogatchi mariogatchi = new Mariogatchi(10, "Nishigatchi", null, "Rare");
-    Mariogatchi mario = new Mariogatchi(10, "Nicolegatchi", null, "Rare");
+    Mariogatchi mariogatchi = new Mariogatchi("Nishigatchi", null, "Rare");
+    Mariogatchi mario = new Mariogatchi("Nicolegatchi", null, "Rare");
     MariogatchiManager manager = new MariogatchiManager();
 
     /**

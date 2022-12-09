@@ -3,6 +3,7 @@ package mariogatchi.entities;
 import mariogatchi.entities.environments.Environment;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +21,9 @@ public class User implements Serializable{
      */
     public User(String name){
         this.name = name;
+        this.mariogatchis = new ArrayList<>();
     }
+
 
     public String getName(){
         return name;
@@ -43,11 +46,12 @@ public class User implements Serializable{
     }
 
     public void setMariogatchis(List<Mariogatchi> mariogatchis){
+        mariogatchis.remove(null);
         this.mariogatchis = mariogatchis;
     }
 
     public Environment getCurrentEnvironment() {
-        return this.currentEnvironment;
+        return currentEnvironment;
     }
 
     public void setCurrentEnvironment(Environment environment) {

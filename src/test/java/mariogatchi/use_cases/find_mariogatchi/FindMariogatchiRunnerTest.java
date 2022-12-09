@@ -9,7 +9,7 @@ import static mariogatchi.entities.environments.Env.FOREST;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class FindMariogatchiRunnerTest {
@@ -67,7 +67,6 @@ public class FindMariogatchiRunnerTest {
         FindMariogatchiRequestModel findMariogatchiRequestModel = new FindMariogatchiRequestModel(testUser, "deny", mariogatchiForest);
         FindMariogatchiResponseModel findMariogatchiResponseModel = findMariogatchiRunner.findMariogatchi(findMariogatchiRequestModel);
         assertFalse(findMariogatchiResponseModel.getCatchTrigger());
-        assertNull(findMariogatchiResponseModel.getMariogatchi());
     }
 
     @Test

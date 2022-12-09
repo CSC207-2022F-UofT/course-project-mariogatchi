@@ -17,7 +17,6 @@ import static mariogatchi.entities.environments.Env.FOREST;
  */
 public class Forest extends Environment implements MariogatchiGeneratable {
     private List<Mariogatchi> generatedMariogatchis;
-    private final List<Mariogatchi> GENERATED_MARIOGATCHIS;
 
     /**
      * Constructor:
@@ -29,7 +28,6 @@ public class Forest extends Environment implements MariogatchiGeneratable {
     public Forest() {
         super(FOREST);
         this.generatedMariogatchis = createMariogacthis();
-        this.GENERATED_MARIOGATCHIS = createMariogacthis();
     }
 
     /**
