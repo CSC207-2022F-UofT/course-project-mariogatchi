@@ -11,7 +11,7 @@ public class Leash extends Item implements Reusable{
 
     public Leash() {
         super(Items.LEASH,
-                new HashSet<>(List.of(Env.HOME)),
+                new HashSet<>(List.of(Env.PARK)),
                 new HashMap<>() {{
                     put(ItemEffects.HAPPINESS, 20);
                     put(ItemEffects.ENERGY, -10);

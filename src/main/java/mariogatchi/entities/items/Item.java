@@ -28,12 +28,21 @@ public abstract class Item implements Serializable {
         // non-reusable
         APPLE,
         BAD_APPLE,
+        TREAT,
+        STEAK,
+
+        AGILITY_TRAINING_BOOK,
+
+        STRATEGY_TRAINING_BOOK,
 
         // reusable
         SPONGE,
         BED,
         LEASH,
-        COMB
+        COMB,
+
+        SWORD,
+
     }
 
     public enum NonReusableItems {
@@ -43,6 +52,14 @@ public abstract class Item implements Serializable {
          */
         APPLE,
         BAD_APPLE,
+
+        TREAT,
+
+        STEAK,
+
+        AGILITY_TRAINING_BOOK,
+
+        STRATEGY_TRAINING_BOOK,
     }
 
     public enum ItemEffects {

@@ -257,5 +257,8 @@ public class Statistics implements Serializable {
             KillMariogatchi mariogatchiKiller = new KillMariogatchiFactory().getAction("starvation");
         }
     }
+    public int sum(){
+        return this.hunger + this.cleanliness + this.energy + this.happiness + this.strategy + this.agility;
+    }
 
 }
