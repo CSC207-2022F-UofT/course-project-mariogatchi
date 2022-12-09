@@ -5,7 +5,6 @@ package mariogatchi.use_cases.manager.remove_mariogatchi;
  * All responses for removing a Mariogatchi
  */
 public class RemoveMariogatchiPresenter implements RemoveMariogatchiPresenterInterface {
-
     /**
      * @param type kill action
      * @return the message for Mariogatchi death specified by the type

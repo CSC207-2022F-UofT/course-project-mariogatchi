@@ -16,7 +16,7 @@ public class TimeRequestModel {
      @param stats - User's stats
       */
 
-    public TimeRequestModel ( int time, Statistics stats) {
+    public TimeRequestModel (int time, Statistics stats) {
         this.currentTime = time;
         this.stats = stats;
     }

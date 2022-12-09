@@ -1,4 +1,4 @@
-package mariogatchi;
+package mariogatchi.use_cases.add_mariogatchi;
 
 public interface AddMariogatchiPresenter {
      /*

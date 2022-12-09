@@ -1,9 +1,10 @@
 package mariogatchi.use_cases.change_environment;
 
 import mariogatchi.entities.environments.Environment;
+import mariogatchi.entities.environments.Env;
 
 public class ChangeEnvironmentResponseModel{
-    private final Environment NEWENVIRONMENT; // the environment of the user after it has been changed
+    private final Env NEW_ENVIRONMENT; // the environment of the user after it has been changed
 
     /**
      * Response model (output data) for the ChangeEnvironment use case.
@@ -11,12 +12,12 @@ public class ChangeEnvironmentResponseModel{
      */
 
     // constructor
-    public ChangeEnvironmentResponseModel(Environment newEnvironment){
-        this.NEWENVIRONMENT = newEnvironment;
+    public ChangeEnvironmentResponseModel(Env newEnvironment){
+        this.NEW_ENVIRONMENT = newEnvironment;
     }
 
     // getter for current users changed in-game environment, return newEnvironment
-    public Environment getNewEnvironment(){
-        return NEWENVIRONMENT;
+    public Env getNEW_ENVIRONMENT(){
+        return NEW_ENVIRONMENT;
     }
 }

@@ -19,9 +19,10 @@ public class InfoAccessRequestModel {
      @param statsName - the name of the statistic to check
       */
 
-    public InfoAccessRequestModel (Statistics stats, Stats statName) {
+    public InfoAccessRequestModel (Statistics stats, String statName) {
         this.stats = stats;
-        this.statToCheck = statName;
+        this.statToCheck = Stats.valueOf("statName");
+
     }
 
     // return stats
@@ -33,5 +34,7 @@ public class InfoAccessRequestModel {
     public Stats getStatToCheck() {
         return this.statToCheck;
     }
+
+
 
 }

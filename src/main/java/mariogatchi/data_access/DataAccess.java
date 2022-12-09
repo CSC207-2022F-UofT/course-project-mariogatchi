@@ -11,7 +11,6 @@ import java.io.Serializable;
 public class DataAccess implements DataAccessInterface{
 
     private final String DIR = System.getProperty("user.dir") + "\\src\\main\\java\\mariogatchi\\";
-
     @Override
     public void saveObject(final String filename, Serializable obj){
         try{

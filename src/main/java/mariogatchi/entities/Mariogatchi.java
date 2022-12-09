@@ -1,5 +1,7 @@
 package mariogatchi.entities;
 
+import mariogatchi.entities.Statistics;
+
 import java.awt.Image;
 
 public class Mariogatchi {
@@ -14,8 +16,8 @@ public class Mariogatchi {
     private int lvl;
 
 
-    /* Rarety represents the rarety of the  mariogatchi.Mariogatchi,
-       rarety can be either uncommon, common, rare and legendary*/
+    /* Rarity represents the rarity of the  mariogatchi.Mariogatchi,
+       rarity can be either uncommon, common, rare and legendary*/
     private String rarity;
 
 
@@ -36,7 +38,6 @@ public class Mariogatchi {
     /* Gets the level of the mariogatchi */
     public int getLvl() { return this.lvl; }
 
-
     /* Gets the name of the mariogatchi */
     public String getName() { return this.name; }
 
@@ -45,6 +46,11 @@ public class Mariogatchi {
 
     /* Gets the avatar of the mariogatchi */
     public Image getAvatar() { return this.avatar; }
+
+    /* Gets the Statistics of the mariogatchi */
+    public Statistics getStats() {
+        return stats;
+    }
 
     @Override
     public String toString() {
