@@ -6,7 +6,7 @@ public class TimeRequestModel {
     /**
      * The time right now
      */
-    private int currentTime;
+    private long currentTime;
     /**
      * A mariogatchi's stats object
      */
@@ -18,13 +18,13 @@ public class TimeRequestModel {
      @param user - User
       */
 
-    public TimeRequestModel (int time, User user) {
+    public TimeRequestModel (long time, User user) {
         this.currentTime = time;
         this.user = user;
     }
 
     // return time
-    public int getTime() {
+    public long getTime() {
         return this.currentTime;
     }
 

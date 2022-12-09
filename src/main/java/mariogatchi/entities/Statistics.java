@@ -254,9 +254,5 @@ public class Statistics implements Serializable {
             this.levelUp();
         }
     }
-    public int sum(){
-        return this.hunger + this.cleanliness + this.energy + this.happiness + this.strategy + this.agility;
-    }
-
 
 }

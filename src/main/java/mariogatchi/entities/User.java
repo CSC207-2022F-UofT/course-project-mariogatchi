@@ -20,7 +20,9 @@ public class User implements Serializable{
      */
     public User(String name){
         this.name = name;
+        this.mariogatchis = List.of();
     }
+
 
     public String getName(){
         return name;
@@ -47,7 +49,7 @@ public class User implements Serializable{
     }
 
     public Environment getCurrentEnvironment() {
-        return this.currentEnvironment;
+        return currentEnvironment;
     }
 
     public void setCurrentEnvironment(Environment environment) {

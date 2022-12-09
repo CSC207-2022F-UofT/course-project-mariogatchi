@@ -31,7 +31,17 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
         }
     }
 
-    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){ return user.getMariogatchis().contains(mariogatchi);};
+    public boolean MariogatchiInList(Mariogatchi mariogatchi, User user){
+        if (user.getMariogatchis() == null) {
+            return false;
+        }
+        for(Mariogatchi mar : user.getMariogatchis()) {
+            if (mar.getName().equals(mariogatchi.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 

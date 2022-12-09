@@ -17,6 +17,9 @@ public class TimeRunner implements TimeInputBoundary {
      */
     public TimeResponseModel checkPassedTime(TimeRequestModel requestModel) {
         long timeDiff = 0;
+        if (requestModel.getUser().getMariogatchis() == null) {
+            return this.PRESENTER.prepareFailView("No Mariogatchis");
+        }
         for(Mariogatchi m : requestModel.getUser().getMariogatchis()){
             timeDiff = m.getStats().statDecay(requestModel.getTime());
         }

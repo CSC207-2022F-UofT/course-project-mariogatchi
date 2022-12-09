@@ -5,27 +5,29 @@ import mariogatchi.entities.Account;
 import mariogatchi.entities.Inventory;
 import mariogatchi.entities.User;
 import mariogatchi.entities.environments.Forest;
-import mariogatchi.entities.environments.Home;
 import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.Item;
 import mariogatchi.use_cases.authentication.AuthenticationPresenter;
 import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * Used for handling all game related requests
  */
 public class GameInteractor implements GameInputBoundary{
 
-    private final Apple APPLE = new Apple();
+    private final Item APPLE = new Apple();
 
     /**
      * The default items that the user starts with
      */
-    private final Map<Item.Items, Integer> DEFAULT_ITEMS = Map.of(APPLE.getName(), 1);
+    private final HashMap<Item.Items, Integer> DEFAULT_ITEMS = new HashMap<>() {{
+        put(APPLE.getName(), 1);
+    }};
 
     /**
      * The default inventory that the user starts with
@@ -128,7 +130,6 @@ public class GameInteractor implements GameInputBoundary{
         String name = game.getNAME();
         for (User u : account.getUsers()) { // Gets the games in the account
             if (u.getName().equals(name)) {
-                u.setCurrentEnvironment(new Home());
                 account.delUser(u);
                 GameResponseModel response = new GameResponseModel(u, "Loaded game");
                 return gamePresenter.prepareLoadGame(response);

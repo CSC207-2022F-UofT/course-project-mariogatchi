@@ -4,7 +4,7 @@ import mariogatchi.entities.Inventory;
 import mariogatchi.entities.items.Apple;
 import mariogatchi.entities.items.Item;
 import mariogatchi.entities.items.Leash;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class AddItemRunnerTest {
         };
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
         // creating quantity
         int quantityToAdd = 1;
@@ -74,7 +74,7 @@ public class AddItemRunnerTest {
 
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Apple().getName(), 1);
         Inventory inventory = new Inventory(itemToQuant, 100);
 
@@ -113,7 +113,7 @@ public class AddItemRunnerTest {
 
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
@@ -152,7 +152,7 @@ public class AddItemRunnerTest {
         };
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         Inventory inventory = new Inventory(itemToQuant, 100);
 
         // creating quantity
@@ -190,7 +190,7 @@ public class AddItemRunnerTest {
         };
 
         // creating Inventory
-        Map<Item.Items, Integer> itemToQuant = new HashMap<>();
+        HashMap<Item.Items, Integer> itemToQuant = new HashMap<>();
         itemToQuant.put(new Leash().getName(), 1);
         Inventory inventory = new Inventory(itemToQuant, 100);
 
