@@ -2067,11 +2067,11 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         changeScreen("Stats");
         pre2 = "Home";
         updatePreviousScreen("ViewMariogatchi");
-        ic.request(InputController.Actions.INFO, List.of("hi", selectMariogatchiL.getSelectedValue());
+        ic.request(InputController.Actions.INFO, List.of("hi", viewMariogatchiList.getSelectedValue()));
     }//GEN-LAST:event_viewMariogatchiSelectBtnActionPerformed
 
     private void viewMariogatchiReleaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMariogatchiReleaseBtnActionPerformed
-        
+        ic.request(InputController.Actions.REMOVE_MARIO, List.of(viewMariogatchiList.getSelectedValue()));
     }//GEN-LAST:event_viewMariogatchiReleaseBtnActionPerformed
 
     private void friendSendRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendSendRequestBtnActionPerformed
