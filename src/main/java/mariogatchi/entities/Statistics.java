@@ -1,5 +1,4 @@
 package mariogatchi.entities;
-
 import java.io.Serializable;
 
 /**
@@ -247,6 +246,13 @@ public class Statistics implements Serializable {
         if(this.agility == this.maxLevel && this.strategy == this.maxLevel){
             this.levelUp();
         }
+    }
+
+    public boolean checkDeath(){
+        if (this.hunger <= 0 || this.energy <= 0){
+            return true;
+        }
+        return false;
     }
     public int sum(){
         return this.hunger + this.cleanliness + this.energy + this.happiness + this.strategy + this.agility;
