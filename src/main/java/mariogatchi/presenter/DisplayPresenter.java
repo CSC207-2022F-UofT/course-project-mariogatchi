@@ -23,6 +23,8 @@ import mariogatchi.use_cases.item_cases.add_random_item.AddRandomItemOutputBound
 import mariogatchi.use_cases.item_cases.add_random_item.AddRandomItemResponseModel;
 import mariogatchi.use_cases.item_cases.use_item.UseItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.use_item.UseItemResponseModel;
+import mariogatchi.use_cases.playdate.PlaydatePresenter;
+import mariogatchi.use_cases.playdate.PlaydateResponseModel;
 
 /**
  *
@@ -87,6 +89,11 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         foundItemContinueBtn = new javax.swing.JButton();
         foundItemS = new javax.swing.JScrollPane();
         foundItemF = new javax.swing.JTextArea();
+        nameNewGameDialog = new javax.swing.JDialog();
+        nameNewGameTxt = new javax.swing.JLabel();
+        nameNewGameContinueBtn = new javax.swing.JButton();
+        nameNewGameS = new javax.swing.JScrollPane();
+        nameNewGameF = new javax.swing.JTextArea();
         startScreen = new javax.swing.JPanel();
         loginBtn = new javax.swing.JButton();
         signupBtn = new javax.swing.JButton();
@@ -240,7 +247,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         useItemDialog.setMinimumSize(new java.awt.Dimension(350, 150));
         useItemDialog.setResizable(false);
 
-        useItemTxt.setFont(new java.awt.Font("Fira Sans", 0, 24)); // NOI18N
+        useItemTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
         useItemTxt.setText("Use sure you want to use");
 
         useItemAcceptBtn.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
@@ -266,22 +273,21 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         useItemDialog.getContentPane().setLayout(useItemDialogLayout);
         useItemDialogLayout.setHorizontalGroup(
             useItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, useItemDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(useItemTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
             .addGroup(useItemDialogLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(useItemDeclineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(useItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(useItemTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(useItemDialogLayout.createSequentialGroup()
-                        .addGap(0, 44, Short.MAX_VALUE)
-                        .addComponent(useItemAcceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(useItemDialogLayout.createSequentialGroup()
-                        .addComponent(useItemItemTxt)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(useItemDeclineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(useItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(useItemDialogLayout.createSequentialGroup()
+                                .addGap(0, 44, Short.MAX_VALUE)
+                                .addComponent(useItemAcceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(useItemDialogLayout.createSequentialGroup()
+                                .addComponent(useItemItemTxt)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         useItemDialogLayout.setVerticalGroup(
             useItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +404,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
         jScrollPane4.setViewportView(selectMariogatchiL);
 
-        selectMariogatchiTxt.setFont(new java.awt.Font("Fira Sans", 0, 24)); // NOI18N
+        selectMariogatchiTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
         selectMariogatchiTxt.setText("Select Mariogatchi");
 
         selectMariogatchiSelectBtn.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
@@ -483,7 +489,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         incomingRequestDialog.setMinimumSize(new java.awt.Dimension(350, 260));
         incomingRequestDialog.setResizable(false);
 
-        incomingRequestTxt.setFont(new java.awt.Font("Fira Sans", 0, 24)); // NOI18N
+        incomingRequestTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
         incomingRequestTxt.setText("Incoming Request");
 
         incomingRequestAcceptBtn.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
@@ -518,10 +524,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(incomingRequestAcceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
-            .addGroup(incomingRequestDialogLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(incomingRequestTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, incomingRequestDialogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(incomingRequestFriendCodeV)
@@ -529,6 +531,10 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
             .addGroup(incomingRequestDialogLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(incomingRequestFriendCodeTxt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(incomingRequestDialogLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(incomingRequestTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         incomingRequestDialogLayout.setVerticalGroup(
@@ -592,7 +598,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         foundItemDialog.setResizable(false);
 
         foundItemTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
-        foundItemTxt.setText("Error");
+        foundItemTxt.setText("Found an Item");
 
         foundItemContinueBtn.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
         foundItemContinueBtn.setText("Continue");
@@ -632,6 +638,55 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
                 .addComponent(foundItemS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(foundItemContinueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+
+        nameNewGameDialog.setFocusableWindowState(false);
+        nameNewGameDialog.setLocation(new java.awt.Point(0, 0));
+        nameNewGameDialog.setMinimumSize(new java.awt.Dimension(300, 200));
+        nameNewGameDialog.setResizable(false);
+
+        nameNewGameTxt.setFont(new java.awt.Font("Fira Sans", 1, 24)); // NOI18N
+        nameNewGameTxt.setText("Name New Game");
+
+        nameNewGameContinueBtn.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
+        nameNewGameContinueBtn.setText("Continue");
+        nameNewGameContinueBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameNewGameContinueBtnActionPerformed(evt);
+            }
+        });
+
+        nameNewGameF.setColumns(20);
+        nameNewGameF.setRows(5);
+        nameNewGameS.setViewportView(nameNewGameF);
+
+        javax.swing.GroupLayout nameNewGameDialogLayout = new javax.swing.GroupLayout(nameNewGameDialog.getContentPane());
+        nameNewGameDialog.getContentPane().setLayout(nameNewGameDialogLayout);
+        nameNewGameDialogLayout.setHorizontalGroup(
+            nameNewGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nameNewGameDialogLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(nameNewGameContinueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(nameNewGameDialogLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(nameNewGameTxt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nameNewGameDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nameNewGameS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+        nameNewGameDialogLayout.setVerticalGroup(
+            nameNewGameDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nameNewGameDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nameNewGameTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nameNewGameS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nameNewGameContinueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
@@ -800,7 +855,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         gameLogoutBtn.setText("Logout");
         gameLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
+                gameLogoutBtnActionPerformed(evt);
             }
         });
 
@@ -1844,12 +1899,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         clearLoginFields();
     }//GEN-LAST:event_loginBackBtnActionPerformed
 
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        if(!isDialogOpen()){
-            changeScreen("Start");
-        }
-    }//GEN-LAST:event_logoutBtnActionPerformed
-
     private void forestNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestNextBtnActionPerformed
         
     }//GEN-LAST:event_forestNextBtnActionPerformed
@@ -2088,6 +2137,14 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     private void foundItemContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foundItemContinueBtnActionPerformed
         foundItemDialog.setVisible(false);
     }//GEN-LAST:event_foundItemContinueBtnActionPerformed
+
+    private void gameLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameLogoutBtnActionPerformed
+        ic.requestGames(InputController.GamesActions.LOGOUT, null);
+    }//GEN-LAST:event_gameLogoutBtnActionPerformed
+
+    private void nameNewGameContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameNewGameContinueBtnActionPerformed
+        ic.requestGames(InputController.GamesActions.CREATE_GAME, List.of(nameNewGameF.getText()));
+    }//GEN-LAST:event_nameNewGameContinueBtnActionPerformed
     
     private String previousScreen = "Start";
     private String pre2 = "";
@@ -2191,7 +2248,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     @Override
     public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel){
-        
         return responseModel;
     }
 
@@ -2228,6 +2284,19 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         errorF.setText(error);
         return responseModel;
     }
+    
+    // @Override
+    // public PlaydateResponseModel prepareSuccessView(PlaydateResponseModel responseModel){
+        
+    //     return responseModel;
+    // }
+
+    // @Override
+    // public PlaydateResponseModel prepareFailView(String error){
+    //     errorDialog.setVisible(true);
+    //     errorF.setText(error);
+    //     return null;
+    // }
     
     /**
      * @param args the command line arguments
@@ -2377,6 +2446,11 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     private javax.swing.JPanel mariogatchiScreen;
     private javax.swing.JLabel mariogatchiStrategyTxt;
     private javax.swing.JLabel mariogatchiStrategyVTxt;
+    private javax.swing.JButton nameNewGameContinueBtn;
+    private javax.swing.JDialog nameNewGameDialog;
+    private javax.swing.JTextArea nameNewGameF;
+    private javax.swing.JScrollPane nameNewGameS;
+    private javax.swing.JLabel nameNewGameTxt;
     private javax.swing.JButton outOfMariogatchiContinueBtn;
     private javax.swing.JDialog outOfMariogatchiDialog;
     private javax.swing.JLabel outOfMariogatchiTxt;
