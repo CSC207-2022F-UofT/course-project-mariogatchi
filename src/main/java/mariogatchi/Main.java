@@ -185,11 +185,12 @@ public class Main {
 
         DisplayPresenter displayPresenter = new DisplayPresenter();
         InputController input = new InputController(displayPresenter, displayPresenter, displayPresenter,
-                REMOVE_PRESENTER, displayPresenter, TIME_PRESENTER, displayPresenter, MOVE_PRESENTER, ADD_MARIO_PRESENTER,
+                REMOVE_PRESENTER, displayPresenter, TIME_PRESENTER, displayPresenter, displayPresenter, ADD_MARIO_PRESENTER,
                 displayPresenter, REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER,
                 PLAYDATE_PRESENTER, displayPresenter);
 
         displayPresenter.startDP(input);
 
+        
     }
 }
