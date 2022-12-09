@@ -729,11 +729,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         setMinimumSize(new java.awt.Dimension(600, 500));
         setName("Mariogatchi"); // NOI18N
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
         getContentPane().setLayout(new java.awt.CardLayout());
 
         startScreen.setMinimumSize(new java.awt.Dimension(600, 500));
@@ -1913,10 +1908,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         
     }
     
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        System.out.println("hi");
-    }//GEN-LAST:event_formWindowClosing
-
     private void loginAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAcceptBtnActionPerformed
         InputController.LoginActions la;
         if(isLogin){
@@ -1982,11 +1973,13 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
         changeScreen("Login");
         loginScreenTitleTxt.setText("Signup for an account");
+        isLogin = false;
     }//GEN-LAST:event_signupBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         changeScreen("Login");
         loginScreenTitleTxt.setText("Login into an account");
+        isLogin = true;
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
@@ -2108,31 +2101,31 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_viewMariogatchiReleaseBtnActionPerformed
 
     private void friendSendRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendSendRequestBtnActionPerformed
-        // TODO add your handling code here:
+        ic.request(InputController.Actions.PLAYDATE_REQUEST, List.of(friendInputCodeF.getText(), ""));
     }//GEN-LAST:event_friendSendRequestBtnActionPerformed
 
     private void friendInboxBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendInboxBtnActionPerformed
-        // TODO add your handling code here:
+        ic.request(InputController.Actions.PLAYDATE_CHECK, null);
     }//GEN-LAST:event_friendInboxBtnActionPerformed
 
     private void successContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_successContinueBtnActionPerformed
-        // TODO add your handling code here:
+        successDialog.setVisible(false);
     }//GEN-LAST:event_successContinueBtnActionPerformed
 
     private void incomingRequestAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomingRequestAcceptBtnActionPerformed
-        // TODO add your handling code here:
+        incomingRequestDialog.setVisible(false);
     }//GEN-LAST:event_incomingRequestAcceptBtnActionPerformed
 
     private void incomingRequestDeclineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomingRequestDeclineBtnActionPerformed
-        // TODO add your handling code here:
+        incomingRequestDialog.setVisible(false);
     }//GEN-LAST:event_incomingRequestDeclineBtnActionPerformed
 
     private void parkFindRandomItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parkFindRandomItemBtnActionPerformed
-        // TODO add your handling code here:
+        ic.request(InputController.Actions.ADD_ITEM, List.of());
     }//GEN-LAST:event_parkFindRandomItemBtnActionPerformed
 
     private void selectMariogatchiSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectMariogatchiSelectBtnActionPerformed
-        // TODO add your handling code here:
+        selectMariogatchiDialog.setVisible(false);
     }//GEN-LAST:event_selectMariogatchiSelectBtnActionPerformed
 
     private void outOfMariogatchiContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outOfMariogatchiContinueBtnActionPerformed
