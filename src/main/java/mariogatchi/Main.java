@@ -189,7 +189,7 @@ public class Main {
                 displayPresenter, REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER,
                 PLAYDATE_PRESENTER, displayPresenter);
 
-        displayPresenter.setInputController(input);
+        displayPresenter.startDP(input);
 
     }
 }
