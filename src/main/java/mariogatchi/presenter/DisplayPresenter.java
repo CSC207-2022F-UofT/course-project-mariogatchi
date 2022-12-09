@@ -40,10 +40,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         initDynamicComponents();
     }
 
-<<<<<<< HEAD
-    public void setInputController(InputController ic){
-        this.ic = ic;
-=======
     public void startDP(InputController input ){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -77,7 +73,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     public void setInputController(InputController input ){
         this.ic = input;
->>>>>>> 1f9028a29b0f4fc38c70de8c2a091af3f2c0d201
     }
 
 
@@ -1943,6 +1938,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     private void gameNewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameNewBtnActionPerformed
         changeScreen("Forest");
         ic.request(InputController.Actions.FOREST, null);
+        ic.request(InputController.Actions.FIND_MARIO, List.of("find mariogatchi"));
     }//GEN-LAST:event_gameNewBtnActionPerformed
 
     private void forestViewMariogatchiStatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestViewMariogatchiStatsBtnActionPerformed
@@ -1968,6 +1964,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         if(!isDialogOpen()){
             changeScreen("Forest");
             ic.request(InputController.Actions.FOREST, null);
+            ic.request(InputController.Actions.FIND_MARIO, List.of("find mariogatchi"));
         }
     }//GEN-LAST:event_toForestBtnActionPerformed
 
