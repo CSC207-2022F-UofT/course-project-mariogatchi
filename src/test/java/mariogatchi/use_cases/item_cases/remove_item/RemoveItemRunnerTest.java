@@ -7,7 +7,6 @@ import mariogatchi.entities.items.Leash;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 

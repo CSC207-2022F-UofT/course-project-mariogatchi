@@ -115,12 +115,6 @@ public class Statistics implements Serializable {
         return this.lastCheckTime;
     }
 
-    public int sum(){
-
-
-        return this.hunger + this.cleanliness + this.energy + this.happiness + this.strategy + this.agility;
-    }
-
     public void levelUp(){
         this.maxLevel += 10;
         int newMaxLevel = this.maxLevel + 10;
@@ -253,6 +247,9 @@ public class Statistics implements Serializable {
         if(this.agility == this.maxLevel && this.strategy == this.maxLevel){
             this.levelUp();
         }
+    }
+    public int sum(){
+        return this.hunger + this.cleanliness + this.energy + this.happiness + this.strategy + this.agility;
     }
 
 }

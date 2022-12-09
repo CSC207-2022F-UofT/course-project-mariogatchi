@@ -11,12 +11,8 @@ import mariogatchi.entities.items.Leash;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -42,7 +38,6 @@ public class UseItemRunnerTest {
         this.currentEnvironment = Env.HOME;
 
         // creating default Mariogatchi
-
         this.gatchi = new Mariogatchi("mario", null, "common");
     }
     /*
@@ -99,6 +94,7 @@ public class UseItemRunnerTest {
             @Override
             public UseItemResponseModel useItemPrepareSuccessView(UseItemResponseModel responseModel) {
                 // check that stats for HAPPINESS is still 70, ENERGY is 40, CLEANLINESS is 40
+                // check that stats for HAPPINESS is 70, ENERGY is 40, CLEANLINESS is 40
                 assertEquals(70, (int) responseModel.getStatToValue().get(Statistics.Stats.HAPPINESS));
                 assertEquals(40, (int) responseModel.getStatToValue().get(Statistics.Stats.ENERGY));
                 assertEquals(40, (int) responseModel.getStatToValue().get(Statistics.Stats.CLEANLINESS));
@@ -119,6 +115,9 @@ public class UseItemRunnerTest {
         Inventory inventory = new Inventory(this.itemToQuant, 100);
 
         this.currentEnvironment = Env.PARK;
+        // creating current environment
+        this.currentEnvironment = Env.PARK;
+
         // creating the UseItemInputBoundary
         UseItemInputBoundary useItemRunner = new UseItemRunner(USE_ITEM_PRESENTER);
 
