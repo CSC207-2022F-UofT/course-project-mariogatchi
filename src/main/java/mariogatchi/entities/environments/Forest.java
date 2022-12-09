@@ -29,7 +29,6 @@ public class Forest extends Environment implements MariogatchiGeneratable {
     public Forest() {
         super(FOREST);
         this.generatedMariogatchis = createMariogacthis();
-        super(Env.FOREST);
         this.GENERATED_MARIOGATCHIS = createMariogacthis();
     }
 
@@ -43,7 +42,6 @@ public class Forest extends Environment implements MariogatchiGeneratable {
 
     public void setGeneratedMariogatchis(List<Mariogatchi> generatedMariogatchis){
         this.generatedMariogatchis = generatedMariogatchis;
-        return this.GENERATED_MARIOGATCHIS;
     }
 
     /**

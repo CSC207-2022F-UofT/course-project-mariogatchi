@@ -1,8 +1,4 @@
 package mariogatchi.entities;
-
-import mariogatchi.use_cases.manager.remove_mariogatchi.factories.KillMariogatchiFactory;
-import mariogatchi.use_cases.manager.remove_mariogatchi.killmariogatchi.KillMariogatchi;
-
 import java.io.Serializable;
 
 /**
@@ -251,10 +247,6 @@ public class Statistics implements Serializable {
     private void checStatsEvents(){
         if(this.agility == this.maxLevel && this.strategy == this.maxLevel){
             this.levelUp();
-        }
-
-        if(this.hunger <= 0 || this.energy <= 0){
-            KillMariogatchi mariogatchiKiller = new KillMariogatchiFactory().getAction("starvation");
         }
     }
     public int sum(){
