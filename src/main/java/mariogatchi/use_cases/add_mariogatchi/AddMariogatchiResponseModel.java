@@ -24,9 +24,9 @@ public class AddMariogatchiResponseModel {
         }
 
         // returns the Mariogatchi
-        public Mariogatchi get() {
+        public Mariogatchi getMariogatchi() {
             return this.mariogatchi;
         }
         // returns the User
         public User getuser(){return this.user;}
-    }
+}

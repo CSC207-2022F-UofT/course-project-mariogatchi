@@ -31,7 +31,7 @@ public class FindMariogatchiRequestModel {
         this.GENERATED_MARIOGATCHIS = generatedMariogatchis;
         if (choice.equalsIgnoreCase("find mariogatchi")){
             this.CATCH_DECISION = false;
-            this.CURR_MARIOGATCHI = null;
+            this.CURR_MARIOGATCHI = new Mariogatchi("common");
         } else if (choice.equalsIgnoreCase("deny")) {
             this.CATCH_DECISION = false;
             this.CURR_MARIOGATCHI = mariogatchi;

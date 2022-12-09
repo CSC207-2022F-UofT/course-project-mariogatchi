@@ -31,7 +31,7 @@ public class Mariogatchi {
 
     public Mariogatchi(String rarity) {
         this.AVATAR = null;
-        this.name = null;
+        this.name = "";
         this.rarity = rarity;
         stats = new Statistics(rarity);
         this.rarity = rarity;

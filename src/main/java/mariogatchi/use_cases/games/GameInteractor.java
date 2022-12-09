@@ -98,6 +98,7 @@ public class GameInteractor implements GameInputBoundary{
                     return authPresenter.prepareLoginSuccess(response);
                 } else {
                     User user = new User(name);
+                    user.setMariogatchis(new ArrayList<>());
                     user.setInventory(DEFAULT_INVENTORY); // Adds the reusable items to the users inventory
                     user.setCurrentEnvironment(new Forest());
                     account.addUserInstance(user); // Adds the game to the account

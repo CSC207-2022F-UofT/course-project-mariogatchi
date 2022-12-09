@@ -22,6 +22,7 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary{
             return PRESENTER.prepareFailView("You already own an identical Mariogatchi");
         }
         else if (!(MariogatchiInList(requestModel.getMariogatchi(), requestModel.getUser())) && requestModel.getUser().getMariogatchis().size() < 10){
+            requestModel.getUser().getMariogatchis().add(requestModel.getMariogatchi());
             AddMariogatchiResponseModel responseModel = new AddMariogatchiResponseModel(requestModel.getMariogatchi(), requestModel.getUser());
             return PRESENTER.prepareSuccessView(responseModel);
 
