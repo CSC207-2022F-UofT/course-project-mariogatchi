@@ -7,5 +7,5 @@ package mariogatchi.entities.environments;
 public enum Env {
     PARK,
     HOME,
-    FOREST
+    Env, FOREST
 }

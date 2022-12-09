@@ -14,10 +14,13 @@ public class MariogatchiFactory {
      * @return Mariogatchi with the rarity provided in the input
      */
     public Mariogatchi getRarity(String rarity){
-        return switch (rarity) {
-            case "common" -> new Mariogatchi("common");
-            case "rare" -> new Mariogatchi("rare");
-            default -> throw new IllegalArgumentException("This is not a valid rarity");
-        };
+        switch (rarity) {
+            case "common":
+                return new Mariogatchi("common");
+            case "rare":
+                return new Mariogatchi("rare");
+            default:
+                throw new IllegalArgumentException("This is not a valid rarity");
+        }
     }
 }

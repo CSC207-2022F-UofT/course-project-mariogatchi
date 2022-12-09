@@ -1,7 +1,6 @@
 package mariogatchi.use_cases.change_environment;
 import mariogatchi.entities.environments.Env;
 import mariogatchi.entities.environments.Environment;
-import mariogatchi.entities.environments.EnvironmentFactory;
 
 /**
  * ChangeEnvironmentRunner: implements input boundary and changes environment if possible
@@ -36,11 +35,8 @@ public class ChangeEnvironmentRunner implements ChangeEnvironmentInputBoundary {
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
             Environment newEnvironment = environmentFactory.getName(environmentRequestModel.getNewEnvironment());
                 environmentRequestModel.getUser().setCurrentEnvironment(newEnvironment);
-            Env changedEnvironment = environmentRequestModel.getUser().getCurrentEnvironment().getName();
-            Environment newEnvironmentTwo = environmentFactory.getName(environmentRequestModel.getNewEnvironment());
-                environmentRequestModel.getUser().setCurrentEnvironment(newEnvironmentTwo);
-            Env changedEnvironmentTwo = environmentRequestModel.getUser().getCurrentEnvironment().getName();
-            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironmentTwo);
+            Env changedEnvironment = environmentRequestModel.getNewEnvironment();
+            ChangeEnvironmentResponseModel environmentResponseModel = new ChangeEnvironmentResponseModel(changedEnvironment);
             return ENVIRONMENT_OUTPUT_BOUNDARY.changeEnvPrepareSuccessView(environmentResponseModel);
         }
     }
