@@ -17,7 +17,7 @@ This project is written in Java and utilizes clean architecture. Source code can
 
 - Iterator:  GeneratatedMariogatchis
 - Abstract Factory: RemoveMariogatchiFactory
-- Factory Method: TransferMariogatchiFactory
+- Factory Method: KillMariogatchiFactory, TransferMariogatchiFactory
 - Dependency Injection: UseItemRequestModel
 
 
