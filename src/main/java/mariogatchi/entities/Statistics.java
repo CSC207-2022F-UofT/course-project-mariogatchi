@@ -129,10 +129,10 @@ public class Statistics implements Serializable {
         this.strategy = newMaxLevel / 2;
     }
 
+    /**
+     * make sure to check for string errors
+     */
     public boolean changeStat(Stats stat, int factor, Operator operate){
-        /**
-         * make sure to check for string errors
-         */
         boolean changed = true;
         if(operate == Operator.SUBTRACT && factor > 0) {
             switch (stat) {//use switch case for efficiency
