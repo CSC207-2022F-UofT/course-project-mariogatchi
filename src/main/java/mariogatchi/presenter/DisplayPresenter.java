@@ -2098,41 +2098,58 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_outOfMariogatchiContinueBtnActionPerformed
 
     private void inventoryItemTreatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemTreatBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Treat");
+        }
     }//GEN-LAST:event_inventoryItemTreatBtnActionPerformed
 
     private void inventoryItemStrategyTrainingBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemStrategyTrainingBookBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Strategy Training Book");
+        }
     }//GEN-LAST:event_inventoryItemStrategyTrainingBookBtnActionPerformed
 
     private void inventoryItemSteakBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemSteakBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Steak");
+        }
     }//GEN-LAST:event_inventoryItemSteakBtnActionPerformed
 
     private void inventoryItemAgilityTrainingBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemAgilityTrainingBookBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Agility Training Book");
+        }
     }//GEN-LAST:event_inventoryItemAgilityTrainingBookBtnActionPerformed
 
     private void inventoryItemSpongeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemSpongeBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Sponge");
+        }
     }//GEN-LAST:event_inventoryItemSpongeBtnActionPerformed
 
     private void inventoryItemCombBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemCombBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Comb");
+        }
     }//GEN-LAST:event_inventoryItemCombBtnActionPerformed
 
     private void inventoryItemBedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemBedBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Bed");
+        }
     }//GEN-LAST:event_inventoryItemBedBtnActionPerformed
 
     private void exitGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitGameBtnActionPerformed
         if(!isDialogOpen()){
+            ic.request(InputController.Actions.EXIT, null);
             changeScreen("Game");
         }
     }//GEN-LAST:event_exitGameBtnActionPerformed
 
     private void inventoryItemSwordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryItemSwordBtnActionPerformed
-        // TODO add your handling code here:
+        if(!isDialogOpen()){
+            useItem("Sword");
+        }
     }//GEN-LAST:event_inventoryItemSwordBtnActionPerformed
 
     private void foundItemContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foundItemContinueBtnActionPerformed
@@ -2141,6 +2158,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     private void gameLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameLogoutBtnActionPerformed
         ic.requestGames(InputController.GamesActions.LOGOUT, null);
+        changeScreen("Start");
     }//GEN-LAST:event_gameLogoutBtnActionPerformed
 
     private void nameNewGameContinueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameNewGameContinueBtnActionPerformed
