@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 import static mariogatchi.entities.environments.Env.FOREST;
-import mariogatchi.entities.environments.GeneratedMariogatchis;
-import mariogatchi.entities.environments.MariogatchiGeneratable;
 
 /**
  * Entity Subclass
