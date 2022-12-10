@@ -16,4 +16,5 @@ public interface GameInputBoundary {
     AuthenticationResponseModel requestAuth(GameRequestModel game, Account account);
 
     GameResponseModel requestGame(GameRequestModel game, Account account);
+    void startGame();
 }

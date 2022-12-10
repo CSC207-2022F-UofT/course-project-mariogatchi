@@ -3,13 +3,14 @@ package mariogatchi.use_cases.find_mariogatchi;
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 import mariogatchi.entities.environments.Forest;
+import mariogatchi.entities.environments.GeneratedMariogatchis;
 import mariogatchi.entities.environments.MariogatchiFactory;
 import mariogatchi.use_cases.change_environment.EnvironmentFactory;
 import static mariogatchi.entities.environments.Env.FOREST;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 
 public class FindMariogatchiRunnerTest {
@@ -58,15 +59,17 @@ public class FindMariogatchiRunnerTest {
             testUser.getMariogatchis().add(mariogatchi);
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
             testUser.setCurrentEnvironment(environmentFactory.getName(FOREST));
-            ((Forest) testUser.getCurrentEnvironment()).setGeneratedMariogatchis(new ArrayList<>());
+            GeneratedMariogatchis generatedMariogatchis = new GeneratedMariogatchis();
+            ((Forest) testUser.getCurrentEnvironment()).setGeneratedMariogatchis(generatedMariogatchis);
             Mariogatchi mariogatchiForest = mariogatchiFactory.getRarity("common");
             mariogatchiForest.setName("Mario Mariogatchi");
-            ((Forest) testUser.getCurrentEnvironment()).getGeneratedMariogatchis().add(mariogatchiForest);
+            ((Forest) testUser.getCurrentEnvironment()).getGeneratedMariogatchis().addMariogatchi(mariogatchiForest);
 
         FindMariogatchiRunner findMariogatchiRunner = new FindMariogatchiRunner(findMariogatchiOutputBoundary);
         FindMariogatchiRequestModel findMariogatchiRequestModel = new FindMariogatchiRequestModel(testUser, "deny", mariogatchiForest);
         FindMariogatchiResponseModel findMariogatchiResponseModel = findMariogatchiRunner.findMariogatchi(findMariogatchiRequestModel);
         assertFalse(findMariogatchiResponseModel.getCatchTrigger());
+        assertNull(findMariogatchiResponseModel.getMariogatchi());
     }
 
     @Test
@@ -90,10 +93,11 @@ public class FindMariogatchiRunnerTest {
             testUser.getMariogatchis().add(mariogatchi);
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
             testUser.setCurrentEnvironment(environmentFactory.getName(FOREST));
-            ((Forest) testUser.getCurrentEnvironment()).setGeneratedMariogatchis(new ArrayList<>());
+            GeneratedMariogatchis generatedMariogatchis = new GeneratedMariogatchis();
+            ((Forest) testUser.getCurrentEnvironment()).setGeneratedMariogatchis(generatedMariogatchis);
             Mariogatchi mariogatchiForest = mariogatchiFactory.getRarity("common");
             mariogatchiForest.setName("Mario Mariogatchi");
-            ((Forest) testUser.getCurrentEnvironment()).getGeneratedMariogatchis().add(mariogatchiForest);
+            ((Forest) testUser.getCurrentEnvironment()).getGeneratedMariogatchis().addMariogatchi(mariogatchiForest);
 
         FindMariogatchiRunner findMariogatchiRunner = new FindMariogatchiRunner(findMariogatchiOutputBoundary);
         FindMariogatchiRequestModel findMariogatchiRequestModel = new FindMariogatchiRequestModel(testUser, "find mariogatchi", null);
@@ -123,10 +127,11 @@ public class FindMariogatchiRunnerTest {
             testUser.getMariogatchis().add(mariogatchi);
             EnvironmentFactory environmentFactory = new EnvironmentFactory();
             testUser.setCurrentEnvironment(environmentFactory.getName(FOREST));
-            ((Forest) testUser.getCurrentEnvironment()).setGeneratedMariogatchis(new ArrayList<>());
+            GeneratedMariogatchis generatedMariogatchis = new GeneratedMariogatchis();
+            ((Forest) testUser.getCurrentEnvironment()).setGeneratedMariogatchis(generatedMariogatchis);
             Mariogatchi mariogatchiForest = mariogatchiFactory.getRarity("common");
             mariogatchiForest.setName("Mario Mariogatchi");
-            ((Forest) testUser.getCurrentEnvironment()).getGeneratedMariogatchis().add(mariogatchiForest);
+            ((Forest) testUser.getCurrentEnvironment()).getGeneratedMariogatchis().addMariogatchi(mariogatchiForest);
 
         FindMariogatchiRunner findMariogatchiRunner = new FindMariogatchiRunner(findMariogatchiOutputBoundary);
         FindMariogatchiRequestModel findMariogatchiRequestModel = new FindMariogatchiRequestModel(testUser, "accept", mariogatchiForest);

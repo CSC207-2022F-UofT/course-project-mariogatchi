@@ -12,6 +12,8 @@ public class FindMariogatchiRunner implements FindMariogatchiInputBoundary {
 
     private Mariogatchi mariogatchiOutput;
 
+    private Iterator<Mariogatchi> mariogatchiIterator;
+
     /**
      * Constructs a runner
      * @param mariogatchiOutputBoundary the output boundary the input boundary is connected to
@@ -36,17 +38,19 @@ public class FindMariogatchiRunner implements FindMariogatchiInputBoundary {
      */
     @Override
     public FindMariogatchiResponseModel findMariogatchi(FindMariogatchiRequestModel mariogatchiRequestModel) {
-        Iterator<Mariogatchi> mariogatchiIterator = mariogatchiRequestModel.getGeneratedMariogatchis().iterator();
+        if(this.mariogatchiIterator == null || !this.mariogatchiIterator.hasNext()){
+            this.mariogatchiIterator = mariogatchiRequestModel.getGeneratedMariogatchis().iterator();
+        }
         if (!mariogatchiRequestModel.getDecision()){ // if the decision is false -> they don't want to catch the Mariogatchi
             if (mariogatchiRequestModel.getUser().getMariogatchis().size() == 0){
                 Mariogatchi mariogatchi = mariogatchiIterator.next();
                 FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(mariogatchi, true);
-                return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareFailureView
-                        ("This Mariogatchi was added to your collection!", mariogatchiResponseModel);
+                return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareSuccessView
+                        (mariogatchiResponseModel);
             } else {
                 if (mariogatchiIterator.hasNext()){
                     Mariogatchi mariogatchi = mariogatchiIterator.next();
-                    FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(mariogatchi, false);
+                    FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(mariogatchi, true);
                     return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareSuccessView(mariogatchiResponseModel);
                 } else {
                     FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(new Mariogatchi("common"), false);
@@ -57,8 +61,7 @@ public class FindMariogatchiRunner implements FindMariogatchiInputBoundary {
         } else {
             Mariogatchi mariogatchi = mariogatchiRequestModel.getCurrMariogatchi();
             FindMariogatchiResponseModel mariogatchiResponseModel = new FindMariogatchiResponseModel(mariogatchi, true);
-            return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareFailureView
-                    ("This Mariogatchi was added to your collection!", mariogatchiResponseModel);
+            return MARIOGATCHI_OUTPUT_BOUNDARY.findMariogatchiPrepareSuccessView(mariogatchiResponseModel);
         }
     }
 

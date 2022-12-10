@@ -35,6 +35,11 @@ public class GameInteractorRunnerTest {
             public GameResponseModel prepareLoadGame(GameResponseModel responseModel) {
                 return responseModel;
             }
+
+            @Override
+            public void enterGameFirst() {
+                return;
+            }
         };
         Account account = new Account("TestGame", "Password1*".getBytes(), "friendcode");
         User user = null;

@@ -70,4 +70,11 @@ public class User implements Serializable{
         return getMariogatchiFromUser(name, this.getMariogatchis()).getStats();
     }
 
+    public List<String> getMariogatchiNames() {
+        List<String> mList = new ArrayList<String>();
+        for(Mariogatchi m : mariogatchis){
+            mList.add(m.getName());
+        }
+        return mList;
+    }
 }

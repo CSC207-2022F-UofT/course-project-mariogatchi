@@ -23,14 +23,14 @@ public class AddMariogatchiRunner implements AddMariogatchiInputBoundary {
     @Override
     public AddMariogatchiResponseModel addMariogatchiToList(AddMariogatchiRequestModel requestModel) {
         if (MariogatchiInList(requestModel.getMariogatchi(), requestModel.getUser())) {
-            return PRESENTER.prepareFailView("You already own a Mariogatchi of the same name...");
+            return PRESENTER.prepareAddFailView("You already own a Mariogatchi of the same name...");
         } else if (!(MariogatchiInList(requestModel.getMariogatchi(), requestModel.getUser())) && requestModel.getUser().getMariogatchis().size() < 10) {
             requestModel.getUser().getMariogatchis().add(requestModel.getMariogatchi());
             AddMariogatchiResponseModel responseModel = new AddMariogatchiResponseModel(requestModel.getMariogatchi(), requestModel.getUser());
-            return PRESENTER.prepareSuccessView(responseModel);
+            return PRESENTER.prepareAddSuccessView(responseModel);
 
         } else {
-            return PRESENTER.prepareFailView("Mariogatchi can not be caught: You have to many Mariogatchis...");
+            return PRESENTER.prepareAddFailView("Mariogatchi can not be caught: You have to many Mariogatchis...");
         }
     }
 
