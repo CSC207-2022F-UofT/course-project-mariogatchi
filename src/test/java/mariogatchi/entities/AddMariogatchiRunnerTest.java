@@ -23,12 +23,12 @@ public class AddMariogatchiRunnerTest {
         /*Tests the case in which a User tries to add a Mariogatchi with all the requirements completed */
         AddMariogatchiRunner mariogatchirunner = new AddMariogatchiRunner(new AddMariogatchiPresenter() {
             @Override
-            public AddMariogatchiResponseModel prepareSuccessView(AddMariogatchiResponseModel responseModel) {
+            public AddMariogatchiResponseModel prepareAddSuccessView(AddMariogatchiResponseModel responseModel) {
                 return responseModel;
             }
 
             @Override
-            public AddMariogatchiResponseModel prepareFailView(String error) {
+            public AddMariogatchiResponseModel prepareAddFailView(String error) {
                 return null;
             }
         });
@@ -53,7 +53,7 @@ public class AddMariogatchiRunnerTest {
         /*Tests the case in which a User tries to add a Mariogatchi he already owns */
         AddMariogatchiRunner mariogatchirunner = new AddMariogatchiRunner(new AddMariogatchiPresenter() {
             @Override
-            public AddMariogatchiResponseModel prepareSuccessView(AddMariogatchiResponseModel responseModel) {
+            public AddMariogatchiResponseModel prepareAddSuccessView(AddMariogatchiResponseModel responseModel) {
                 boolean added = false;
                 for (Mariogatchi mar : responseModel.getuser().getMariogatchis()) {
                     if (mar == responseModel.getMariogatchi()) {
@@ -66,7 +66,7 @@ public class AddMariogatchiRunnerTest {
             }
 
             @Override
-            public AddMariogatchiResponseModel prepareFailView(String error) {
+            public AddMariogatchiResponseModel prepareAddFailView(String error) {
                 return null;
             }
         });
@@ -85,7 +85,7 @@ public class AddMariogatchiRunnerTest {
 
             AddMariogatchiRunner mariogatchirunner = new AddMariogatchiRunner(new AddMariogatchiPresenter() {
                 @Override
-                public AddMariogatchiResponseModel prepareSuccessView(AddMariogatchiResponseModel responseModel) {
+                public AddMariogatchiResponseModel prepareAddSuccessView(AddMariogatchiResponseModel responseModel) {
                     boolean added = false;
                     for (Mariogatchi mar : responseModel.getuser().getMariogatchis()) {
                         if (mar == responseModel.getMariogatchi()) {
@@ -98,7 +98,7 @@ public class AddMariogatchiRunnerTest {
                 }
 
                 @Override
-                public AddMariogatchiResponseModel prepareFailView(String error) {
+                public AddMariogatchiResponseModel prepareAddFailView(String error) {
                     return null;
                 }
             });

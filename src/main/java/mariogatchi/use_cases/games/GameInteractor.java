@@ -95,7 +95,7 @@ public class GameInteractor implements GameInputBoundary{
                 if (names.contains(name)) {
                     // Return a game with this name already exists message using the alert boundary
                     AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Game already exists");
-                    return authPresenter.prepareLoginSuccess(response);
+                    return response;
                 } else {
                     User user = new User(name);
                     user.setMariogatchis(new ArrayList<>());
@@ -105,14 +105,14 @@ public class GameInteractor implements GameInputBoundary{
                     String username = account.getUsername();
                     data.saveObject("data\\" + username + ".ser", account); // saves the account to data
                     AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Game Created");
-                    return authPresenter.prepareLoginSuccess(response);
+                    return response;
                 }
             case DELETE:
                 for (User u : users) {
                     if (u.getName().equals(name)) {
                         account.delUser(u); // delete the user
                         AuthenticationResponseModel response = new AuthenticationResponseModel(account, "Game Deleted");
-                        return authPresenter.prepareLoginSuccess(response);
+                        return response;
                     }
                 }
 
@@ -139,5 +139,8 @@ public class GameInteractor implements GameInputBoundary{
         return null;
     }
 
-
+    @Override
+    public void startGame(){
+        gamePresenter.enterGameFirst();
+    }
 }

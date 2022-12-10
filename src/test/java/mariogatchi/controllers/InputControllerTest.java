@@ -72,6 +72,10 @@ public class InputControllerTest {
             public GameResponseModel prepareLoadGame(GameResponseModel responseModel) {
                 return responseModel;
             }
+
+            public void enterGameFirst(){
+                return;
+            }
         };
         this.ADD_PRESENTER = new AddItemOutputBoundary() {
             @Override
@@ -130,12 +134,12 @@ public class InputControllerTest {
         };
         this.ADD_MARIO_PRESENTER = new AddMariogatchiPresenter() {
             @Override
-            public AddMariogatchiResponseModel prepareSuccessView(AddMariogatchiResponseModel responseModel) {
+            public AddMariogatchiResponseModel prepareAddSuccessView(AddMariogatchiResponseModel responseModel) {
                 return responseModel;
             }
 
             @Override
-            public AddMariogatchiResponseModel prepareFailView(String error) {
+            public AddMariogatchiResponseModel prepareAddFailView(String error) {
                 return null;
             }
         };

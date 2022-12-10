@@ -3,8 +3,7 @@ package mariogatchi.use_cases.find_mariogatchi;
 import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 import mariogatchi.entities.environments.Forest;
-
-import java.util.List;
+import mariogatchi.entities.environments.GeneratedMariogatchis;
 
 /**
  * FindMariogatchiRequestModel: the information the use case requests from the controller
@@ -23,12 +22,7 @@ public class FindMariogatchiRequestModel {
      */
     public FindMariogatchiRequestModel(User user, String choice, Mariogatchi mariogatchi) {
         USER = user;
-        List<Mariogatchi> userMariogatchis = ((Forest) user.getCurrentEnvironment()).getGeneratedMariogatchis();
-        GeneratedMariogatchis generatedMariogatchis = new GeneratedMariogatchis();
-        for (Mariogatchi m: userMariogatchis){
-            generatedMariogatchis.addMariogatchi(m);
-        }
-        this.GENERATED_MARIOGATCHIS = generatedMariogatchis;
+        this.GENERATED_MARIOGATCHIS = ((Forest) user.getCurrentEnvironment()).getGeneratedMariogatchis();
         if (choice.equalsIgnoreCase("find mariogatchi")){
             this.CATCH_DECISION = false;
             this.CURR_MARIOGATCHI = new Mariogatchi("common");

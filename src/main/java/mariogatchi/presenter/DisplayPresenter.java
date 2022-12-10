@@ -11,6 +11,8 @@ import javax.swing.DefaultListModel;
 import mariogatchi.controllers.InputController;
 import mariogatchi.entities.User;
 import mariogatchi.entities.items.Item.Items;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiPresenter;
+import mariogatchi.use_cases.add_mariogatchi.AddMariogatchiResponseModel;
 import mariogatchi.use_cases.authentication.AuthenticationPresenter;
 import mariogatchi.use_cases.authentication.AuthenticationResponseModel;
 import mariogatchi.use_cases.change_environment.ChangeEnvironmentOutputBoundary;
@@ -34,7 +36,7 @@ import mariogatchi.use_cases.playdate.PlaydateResponseModel;
  *
  * @author Samuel
  */
-public class DisplayPresenter extends javax.swing.JFrame implements AuthenticationPresenter, InfoAccessPresenter, GamePresenter, FindMariogatchiOutputBoundary, AddItemOutputBoundary, AddRandomItemOutputBoundary, UseItemOutputBoundary, ChangeEnvironmentOutputBoundary {
+public class DisplayPresenter extends javax.swing.JFrame implements AuthenticationPresenter, InfoAccessPresenter, GamePresenter, FindMariogatchiOutputBoundary, AddItemOutputBoundary, AddRandomItemOutputBoundary, UseItemOutputBoundary, ChangeEnvironmentOutputBoundary, AddMariogatchiPresenter {
 
     /**
      * Creates new form NewJFrame
@@ -1886,13 +1888,14 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     }//GEN-LAST:event_forestNextBtnActionPerformed
 
     private void forestAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestAcceptBtnActionPerformed
+        ic.request(InputController.Actions.FIND_MARIO, List.of("accept"));
         changeScreen("Home");
         ic.request(InputController.Actions.HOME, null);
-        ic.request(InputController.Actions.FIND_MARIO, List.of("accept"));
     }//GEN-LAST:event_forestAcceptBtnActionPerformed
 
     private void gameNewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameNewBtnActionPerformed
         nameNewGameDialog.setVisible(true);
+        nameNewGameDialog.setFocusableWindowState(true);
     }//GEN-LAST:event_gameNewBtnActionPerformed
 
     private void forestViewMariogatchiStatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forestViewMariogatchiStatsBtnActionPerformed
@@ -2052,7 +2055,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         changeScreen("Stats");
         pre2 = "Home";
         updatePreviousScreen("ViewMariogatchi");
-        ic.request(InputController.Actions.INFO, List.of("hi", viewMariogatchiList.getSelectedValue()));
+        ic.request(InputController.Actions.INFO, List.of(viewMariogatchiList.getSelectedValue()));
     }//GEN-LAST:event_viewMariogatchiSelectBtnActionPerformed
 
     private void viewMariogatchiReleaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMariogatchiReleaseBtnActionPerformed
@@ -2166,10 +2169,6 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         if(nameNewGameF.getText().length() > 0){
             nameNewGameDialog.setVisible(false);
             ic.requestGames(InputController.GamesActions.CREATE_GAME, List.of(nameNewGameF.getText()));
-            ic.requestGames(InputController.GamesActions.LOAD_GAME, List.of(nameNewGameF.getText()));
-            changeScreen("Forest");
-            ic.request(InputController.Actions.FIND_MARIO, List.of("find mariogatchi"));
-            System.out.println(forestMariogatchiNameTxt.getText());
         }else{
             errorDialog.setVisible(true);
             errorF.setText("Name must be not empty");
@@ -2207,16 +2206,22 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         switch(itemName){
             case APPLE:
                 inventoryItemAppleV.setText(String.valueOf(value));
+                break;
             case BAD_APPLE:
                 inventoryItemBadAppleV.setText(String.valueOf(value));
+                break;
             case TREAT:
                 inventoryItemTreatV.setText(String.valueOf(value));
+                break;
             case STEAK:
                 inventoryItemSteakV.setText(String.valueOf(value));
+                break;
             case STRATEGY_TRAINING_BOOK:
                 inventoryItemStrategyTrainingBookV.setText(String.valueOf(value));
+                break;
             case AGILITY_TRAINING_BOOK:
                 inventoryItemAgilityTrainingBookV.setText(String.valueOf(value));
+                break;
         }
     }
     
@@ -2227,6 +2232,7 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     @Override
     public AuthenticationResponseModel prepareLoginSuccess(AuthenticationResponseModel responseModel){
         changeScreen("Games");
+        friendCodeV.setText(responseModel.getAccount().getFRIEND_CODE());
         clearLoginFields();
         DefaultListModel listModel1 = new DefaultListModel();
         for(User user : responseModel.getAccount().getUsers()){
@@ -2250,13 +2256,12 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     
     @Override
     public ChangeEnvironmentResponseModel changeEnvPrepareFailureView(String errorMessage, ChangeEnvironmentResponseModel changeEnvironmentResponseModel){
-        errorDialog.setVisible(true);
-        errorF.setText(errorMessage);
         return changeEnvironmentResponseModel;
     }
     
     @Override
     public InfoAccessResponseModel prepareSuccessView(InfoAccessResponseModel responseModel){
+        mariogatchiRarityVTxt.setText(String.valueOf(responseModel.getStats().getMaxLevel()));
         mariogatchiLevelVTxt.setText(String.valueOf(responseModel.getStats().getMaxLevel()));
         mariogatchiCleanlinessVTxt.setText(String.valueOf(responseModel.getStats().getCleanliness()));
         mariogatchiAgilityVTxt.setText(String.valueOf(responseModel.getStats().getAgility()));
@@ -2264,8 +2269,23 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
         mariogatchiEnergyVTxt.setText(String.valueOf(responseModel.getStats().getEnergy()));
         mariogatchiHappinessVTxt.setText(String.valueOf(responseModel.getStats().getHappiness()));
         mariogatchiStrategyVTxt.setText(String.valueOf(responseModel.getStats().getStrategy()));
-        mariogatchiAgilityVTxt.setText(String.valueOf(responseModel.getStats().getLastCheckTime()));
+        mariogatchiLastCheckInVTxt.setText(String.valueOf(responseModel.getStats().getLastCheckTime()));
         return responseModel;
+    }
+
+    @Override
+    public AddMariogatchiResponseModel prepareAddSuccessView(AddMariogatchiResponseModel responseModel) {
+        DefaultListModel listModel1 = new DefaultListModel();
+        for(String name : responseModel.getuser().getMariogatchiNames()){
+            listModel1.addElement(name);
+            viewMariogatchiList.setModel(listModel1);
+            selectMariogatchiL.setModel(listModel1);
+        }
+        return null;
+    }
+
+    public AddMariogatchiResponseModel prepareAddFailView(String error) {
+        return null;
     }
 
     @Override
@@ -2278,6 +2298,15 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
     @Override
     public FindMariogatchiResponseModel findMariogatchiPrepareSuccessView(FindMariogatchiResponseModel findMariogatchiResponseModel){
         forestMariogatchiNameTxt.setText(findMariogatchiResponseModel.getMariogatchi().getName());
+        mariogatchiRarityVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getRarity()));
+        mariogatchiLevelVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getMaxLevel()));
+        mariogatchiCleanlinessVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getCleanliness()));
+        mariogatchiAgilityVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getAgility()));
+        mariogatchiHungerVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getHunger()));
+        mariogatchiEnergyVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getEnergy()));
+        mariogatchiHappinessVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getHappiness()));
+        mariogatchiStrategyVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getStrategy()));
+        mariogatchiLastCheckInVTxt.setText(String.valueOf(findMariogatchiResponseModel.getMariogatchi().getStats().getLastCheckTime()));
         return findMariogatchiResponseModel;
     }
 
@@ -2294,11 +2323,32 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     @Override
     public GameResponseModel prepareLoadGame(GameResponseModel responseModel){
+        DefaultListModel listModel1 = new DefaultListModel();
+        for(String name : responseModel.getUser().getMariogatchiNames()){
+            listModel1.addElement(name);
+            viewMariogatchiList.setModel(listModel1);
+            selectMariogatchiL.setModel(listModel1);
+        }
         return responseModel;
     }
 
     @Override
+    public void enterGameFirst(){
+        changeScreen("Forest");
+        ic.request(InputController.Actions.FOREST, null);
+        ic.request(InputController.Actions.FIND_MARIO, List.of("find mariogatchi"));
+        ic.request(InputController.Actions.FIND_MARIO, List.of("find mariogatchi"));
+    }
+
+    @Override
     public AddItemResponseModel addItemPrepareSuccessView(AddItemResponseModel responseModel){
+        for (Items i: Items.values()){
+            if(responseModel.getInventory().itemExists(i)){
+                updateItem(i, responseModel.getInventory().getQuantity(i));
+            } else {
+                updateItem(i, 0);
+            }
+        }
         return responseModel;
     }
 
@@ -2326,7 +2376,11 @@ public class DisplayPresenter extends javax.swing.JFrame implements Authenticati
 
     @Override
     public UseItemResponseModel useItemPrepareSuccessView(UseItemResponseModel responseModel){
-        updateItem(responseModel.getName(), responseModel.getInventory().getQuantity(responseModel.getName()));
+        if(responseModel.getInventory().itemExists(responseModel.getName())){
+            updateItem(responseModel.getName(), responseModel.getInventory().getQuantity(responseModel.getName()));
+        } else {
+            updateItem(responseModel.getName(), 0);
+        }
         return responseModel;
     }
 

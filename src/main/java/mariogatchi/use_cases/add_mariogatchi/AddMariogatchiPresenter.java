@@ -5,7 +5,7 @@ public interface AddMariogatchiPresenter {
     Interface for the AddMariogatchi use case output boundary
      */
 
-    AddMariogatchiResponseModel prepareSuccessView(AddMariogatchiResponseModel responseModel);
+    AddMariogatchiResponseModel prepareAddSuccessView(AddMariogatchiResponseModel responseModel);
 
-    AddMariogatchiResponseModel prepareFailView(String error);
+    AddMariogatchiResponseModel prepareAddFailView(String error);
 }

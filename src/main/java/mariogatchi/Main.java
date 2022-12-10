@@ -10,8 +10,6 @@ import mariogatchi.use_cases.change_environment.ChangeEnvironmentOutputBoundary;
 import mariogatchi.use_cases.change_environment.ChangeEnvironmentResponseModel;
 import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiOutputBoundary;
 import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiResponseModel;
-import mariogatchi.use_cases.games.GamePresenter;
-import mariogatchi.use_cases.games.GameResponseModel;
 import mariogatchi.use_cases.info_access.InfoAccessPresenter;
 import mariogatchi.use_cases.info_access.InfoAccessResponseModel;
 import mariogatchi.use_cases.item_cases.add_item.AddItemOutputBoundary;
@@ -24,7 +22,6 @@ import mariogatchi.use_cases.item_cases.use_item.UseItemOutputBoundary;
 import mariogatchi.use_cases.item_cases.use_item.UseItemResponseModel;
 import mariogatchi.use_cases.playdate.PlaydatePresenter;
 import mariogatchi.use_cases.playdate.PlaydateResponseModel;
-import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchi;
 import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiDisplayerInterface;
 import mariogatchi.use_cases.remove_mariogatchi.RemoveMariogatchiPresenterInterface;
 import mariogatchi.use_cases.time.TimePresenter;
@@ -41,17 +38,6 @@ public class Main {
 
             @Override
             public AuthenticationResponseModel prepareLoginFailure(AuthenticationResponseModel responseModel) {
-                return responseModel;
-            }
-        };
-        GamePresenter GAME_PRESENTER = new GamePresenter() {
-            @Override
-            public GameResponseModel prepareExitGame(GameResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public GameResponseModel prepareLoadGame(GameResponseModel responseModel) {
                 return responseModel;
             }
         };
@@ -107,17 +93,6 @@ public class Main {
 
             @Override
             public InfoAccessResponseModel prepareFailView(String error) {
-                return null;
-            }
-        };
-        AddMariogatchiPresenter ADD_MARIO_PRESENTER = new AddMariogatchiPresenter() {
-            @Override
-            public AddMariogatchiResponseModel prepareSuccessView(AddMariogatchiResponseModel responseModel) {
-                return responseModel;
-            }
-
-            @Override
-            public AddMariogatchiResponseModel prepareFailView(String error) {
                 return null;
             }
         };
@@ -185,7 +160,7 @@ public class Main {
 
         DisplayPresenter displayPresenter = new DisplayPresenter();
         InputController input = new InputController(displayPresenter, displayPresenter, displayPresenter,
-                REMOVE_PRESENTER, displayPresenter, TIME_PRESENTER, displayPresenter, displayPresenter, ADD_MARIO_PRESENTER,
+                REMOVE_PRESENTER, displayPresenter, TIME_PRESENTER, displayPresenter, displayPresenter, displayPresenter,
                 displayPresenter, REMOVE_MARIOGATCHI_PRESENTER, REMOVE_MARIOGATCHI_DISPLAYER,
                 PLAYDATE_PRESENTER, displayPresenter);
 

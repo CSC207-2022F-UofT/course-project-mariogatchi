@@ -17,10 +17,7 @@ import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiOutputBoundary;
 import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiRequestModel;
 import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiResponseModel;
 import mariogatchi.use_cases.find_mariogatchi.FindMariogatchiRunner;
-import mariogatchi.use_cases.games.GameInputBoundary;
-import mariogatchi.use_cases.games.GameInteractor;
-import mariogatchi.use_cases.games.GamePresenter;
-import mariogatchi.use_cases.games.GameRequestModel;
+import mariogatchi.use_cases.games.*;
 import mariogatchi.use_cases.info_access.InfoAccessInputBoundary;
 import mariogatchi.use_cases.info_access.InfoAccessPresenter;
 import mariogatchi.use_cases.info_access.InfoAccessRequestModel;
@@ -191,10 +188,14 @@ public class InputController {
             case CREATE_GAME: // Pass the name of the new game
                 GameRequestModel createReq = new GameRequestModel(inputs.get(0), CREATE);
                 GAME.requestAuth(createReq, AUTH.getCurrAccount());
+                GameResponseModel gameResp = GAME.requestGame(createReq, AUTH.getCurrAccount());
+                AUTH.setCurrUser(gameResp.getUser());
+                GAME.startGame();
                 break;
             case LOAD_GAME: // Pass the name of the game to load
                 GameRequestModel loadReq = new GameRequestModel(inputs.get(0), LOAD);
                 AUTH.setCurrUser(GAME.requestGame(loadReq, AUTH.getCurrAccount()).getUser());
+                break;
             case DELETE_GAME: // Pass in the name of the game to delete
                 GameRequestModel deleteReq = new GameRequestModel(inputs.get(0), DELETE);
                 GAME.requestAuth(deleteReq, AUTH.getCurrAccount());
@@ -263,7 +264,7 @@ public class InputController {
                 REMOVE.removeItemFromInv(removeReq);
                 break;
             case USE_ITEM: // pass in the item name and the mariogatchi name
-                UseItemRequestModel useReq = new UseItemRequestModel(inputs.get(0), AUTH.getCurrUserEnvironment().getName(), AUTH.getMariogatchiFromUser(inputs.get(1)), AUTH.getCurrUserInventory());
+                UseItemRequestModel useReq = new UseItemRequestModel(inputs.get(0).toUpperCase(), AUTH.getCurrUserEnvironment().getName(), AUTH.getMariogatchiFromUser(inputs.get(1)), AUTH.getCurrUserInventory());
                 USE.useItem(useReq);
                 break;
             case HOME: // pass in nothing

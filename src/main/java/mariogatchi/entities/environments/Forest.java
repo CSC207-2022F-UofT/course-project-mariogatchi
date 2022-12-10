@@ -1,9 +1,7 @@
 package mariogatchi.entities.environments;
 
 import mariogatchi.entities.Mariogatchi;
-import mariogatchi.use_cases.change_environment.MariogatchiGeneratable;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +14,7 @@ import static mariogatchi.entities.environments.Env.FOREST;
  * upon initialization and stored them in generatedMariogatchis
  */
 public class Forest extends Environment implements MariogatchiGeneratable {
-    private List<Mariogatchi> generatedMariogatchis;
+    private GeneratedMariogatchis generatedMariogatchis;
 
     /**
      * Constructor:
@@ -34,11 +32,11 @@ public class Forest extends Environment implements MariogatchiGeneratable {
      * creates up to 5 random mariogatchis
      * @return the iterable list of Mariogatchis stored in the forest
      */
-    public List<Mariogatchi> getGeneratedMariogatchis(){
+    public GeneratedMariogatchis getGeneratedMariogatchis(){
         return this.generatedMariogatchis;
     }
 
-    public void setGeneratedMariogatchis(List<Mariogatchi> generatedMariogatchis){
+    public void setGeneratedMariogatchis(GeneratedMariogatchis generatedMariogatchis){
         this.generatedMariogatchis = generatedMariogatchis;
     }
 
@@ -57,7 +55,8 @@ public class Forest extends Environment implements MariogatchiGeneratable {
      * - the fifth Mariogatchi will be rare and leveled up
      */
     @Override
-    public List<Mariogatchi> createMariogacthis() {
+    public GeneratedMariogatchis createMariogacthis() {
+        GeneratedMariogatchis generatedMariogatchis1 = new GeneratedMariogatchis();
         MariogatchiFactory mariogatchiFactory = new MariogatchiFactory();
         List<Integer> numberOfMariogatchis = Arrays.asList(1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 5);
         List<String> rarityTypes = Arrays.asList("common", "common", "common", "rare", "rare");
@@ -68,7 +67,6 @@ public class Forest extends Environment implements MariogatchiGeneratable {
         Random rand = new Random();
         int randomNumber = numberOfMariogatchis.get(rand.nextInt(numberOfMariogatchis.size()));
 
-        List<Mariogatchi> generatedMariogatchis = new ArrayList<>();
         for (int i = 0; i < randomNumber; i++) {
             Mariogatchi newMariogatchi = mariogatchiFactory.getRarity(rarityTypes.get(i));
                 Random rand1 = new Random();
@@ -77,9 +75,9 @@ public class Forest extends Environment implements MariogatchiGeneratable {
             if (i == 4) {
                 newMariogatchi.getStats().levelUp();
             }
-            generatedMariogatchis.add(newMariogatchi);
+            generatedMariogatchis1.addMariogatchi(newMariogatchi);
         }
-        return generatedMariogatchis;
+        return generatedMariogatchis1;
     }
 }
 

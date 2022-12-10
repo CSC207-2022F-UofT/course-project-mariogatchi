@@ -6,4 +6,5 @@ public interface GamePresenter {
 
     GameResponseModel prepareLoadGame(GameResponseModel responseModel);
 
+    void enterGameFirst();
 }
