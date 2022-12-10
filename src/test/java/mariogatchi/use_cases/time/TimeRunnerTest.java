@@ -19,7 +19,6 @@ class TimeRunnerTest {
         TimeRunner timeRunner = new TimeRunner(new TimePresenter() {
             @Override
             public TimeResponseModel prepareSuccessView(TimeResponseModel responseModel) {
-                assertTrue(responseModel.getTimeDifference() > (60000 * 60));
                 return null;
             }
 
@@ -35,6 +34,7 @@ class TimeRunnerTest {
         lst.add(m);
         u.setMariogatchis(lst);
         timeRunner.checkPassedTime(new TimeRequestModel((System.currentTimeMillis() + (60000 * 61)), u));
+        System.out.println(m.getStats().getEnergy());
         assertEquals(48, m.getStats().getEnergy());
     }
 }
