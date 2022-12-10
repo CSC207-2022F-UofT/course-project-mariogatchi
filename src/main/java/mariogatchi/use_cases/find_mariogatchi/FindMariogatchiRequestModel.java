@@ -4,6 +4,7 @@ import mariogatchi.entities.Mariogatchi;
 import mariogatchi.entities.User;
 import mariogatchi.entities.environments.Forest;
 import mariogatchi.entities.environments.GeneratedMariogatchis;
+import mariogatchi.entities.environments.MariogatchiGeneratable;
 
 /**
  * FindMariogatchiRequestModel: the information the use case requests from the controller
